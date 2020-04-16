@@ -12,6 +12,7 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		font-family: 'Righteous', cursive;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -309,7 +310,7 @@
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		background-color: #323037;
-		border-radius: 4px;
+		border-radius: 40px;
 		color: #ffffff !important;
 		border: 0;
 		cursor: pointer;
@@ -441,8 +442,8 @@
 		input[type="button"].special,
 		button.special,
 		.button.special {
-			background-color: #f32853;
-			color: #ffffff !important;
+			background-color: #C0B283;
+			color: #f4f4f4 !important;
 		}
 
 			input[type="submit"].special:hover,
@@ -450,7 +451,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: #f44066;
+				background-color: rgb(212, 197, 148);
 			}
 
 			input[type="submit"].special:active,
@@ -458,7 +459,7 @@
 			input[type="button"].special:active,
 			button.special:active,
 			.button.special:active {
-				background-color: #f21040;
+				background-color: #C0B283;
 			}
 
 		@media screen and (max-width: 480px) {
@@ -986,7 +987,7 @@
 	}
 
 	header.major {
-		margin: 0 0 6em 0;
+		margin: 0 0 2em 0;
 	}
 
 		header.major h2 {
@@ -1001,6 +1002,7 @@
 		header.major p {
 			font-size: 1.7em;
 			margin-bottom: 0;
+			color: #373737;
 		}
 
 
@@ -1087,8 +1089,12 @@
 			width: 60em;
 		}
 
+		.wrapper.style1 {
+			background-color: #f4f4f4;
+		}
+
 		.wrapper.style2 {
-			background-color: #f6f6f6;
+			background-color: #DCD0C0;
 		}
 
 		.wrapper.style3 {
@@ -1225,14 +1231,20 @@
 			#header.alt nav {
 				right: 2em;
 				top: 2em;
+				border-radius: 40px;
+				padding-left: 30px;
+				padding-right: 30px;
+				background-color: #C0B283;
 			}
 
 				#header.alt nav a {
-					color: #ddd;
+					color: #f4f4f4;
+					font-family: 'Righteous', cursive;
 				}
 
 					#header.alt nav a:active, #header.alt nav a:hover {
-						color: #FFF;
+						opacity: 0.5;
+						color: #f4f4f4;
 					}
 
 			#header.alt .button {
@@ -1405,11 +1417,12 @@
 		}
 
 		#banner h2 {
-			color: #ffffff;
+			color: #f4f4f4;
 			display: inline-block;
 			font-size: 3.5em;
 			line-height: 1.35;
 			margin-bottom: 0.5em;
+			font-family: 'Righteous', cursive;
 		}
 
 		#banner p {
@@ -1432,7 +1445,7 @@
 
 	#footer {
 		padding: 8em 0 6em 0;
-		background: #f6f6f6;
+		background: #f4f4f4;
 		color: #aaa;
 		text-align: center;
 	}
