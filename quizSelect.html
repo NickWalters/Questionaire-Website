@@ -2,36 +2,27 @@
 
 <html>
 	<head>
-		<title>Quiz</title>
+		<title>Quiz Select</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/center.css" />
 	</head>
-	<body style="position:fixed;
-				 top:0;
-				 right:0;
-				 bottom:0;
-				 left:0;">
-		<div class="center">
+	<style>
+		main {
+			padding-top:20px;
+		}
+		div.worldQuiz{
+			padding-top:150px;
+		}
+	</style>
+	<body>
+	<div class="center">
 
-			<!-- Header -->
+		<!-- Header -->
 			<header id="header">
-				<div style="height:inherit;
-							margin-left:50px;" class="qnum">
-					<div style="
-								position:absolute;
-								top:30px;
-								left:150px;
-								height:35px;
-								width:35px;
-								border-radius:50%;
-								background-color:black;">
-								
-					</div>
-					<h1 style="left:200px;"><strong> <a href="quiz1.html">Quiz: </a></strong> test your Geography</h1>
-				</div>
-				<nav id="quiznav">
+				<h1><strong><a href="index.html">Sample</a></strong> by Nick</h1>
+				<nav id="nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
 					</ul>
@@ -40,17 +31,38 @@
 
 			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
-			<!-- Main -->
-			<section id="quiz" style="padding-top:20px;" class="wrapper">
-				<div class="image fit flush">
-					<img src="images/australia.jpg"/>
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="container">
+					<header class="major special">
+						<h3>Test your Geography and World Knowledge!</h2>
+					</header>
+					
+					<div class="center">
+						<div class="flagQuiz">
+							<h2>Flags Quiz</h2>
+							<div class="image fit flush">
+								<img src="images/australia.jpg"/>
+							</div>
+							<p>Are you truly aware of the outside world? Do you have what it takes to test your knowledge on the flags of the world? Take our test !</p>
+							<a href="worldQuiz.html" class="button special big">Take Quiz</a>
+						</div>	
+					</div>
+					
+					
+					<div class="center">
+						<div class="worldQuiz">
+							<h2>Geography/World Quiz</h2>
+							<div class="image fit flush">
+								<img src="images/people-banner.png"/>
+							</div>
+							<p>How much do you know about world culture, information and languages?</p>
+							<a href="flag.html" class="button special big">Take Quiz</a>
+						</div>
+					</div>
+					
 				</div>
-				<header class="special">
-					<h2>Flags Quiz</h2>
-					<p>Are you truly aware of the outside world? Do you have what it takes to test your knowledge on the flags of the world? Take our test !</p>
-					<li><a href="#" class="button special big">Take Quiz</a></li>
-				</header>
 			</section>
-		</div>
+	</div>
 	</body>
 </html>
