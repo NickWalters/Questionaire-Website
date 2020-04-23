@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Quiz</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/center.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="assets/js/flagquiz.js"></script>
+	</head>
+	<body>
+		<div class="center">
+
+			<!-- Header -->
+			<header id="header">
+				<nav id="quiznav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+			<!-- Main -->
+			<section id="quiz" class="wrapper">
+				<div class="container">
+					<h1>Example Quiz</h1>
+
+					<table id="newquiz">
+						<tr><td>Question Number</td><td>Question</td><td>Number of Answers</td><td>-</td></tr>
+						<tr><td>1</td><td>blah bla...</td><td>3</td><td>Edit</td></tr>
+						<tr><td>2</td><td>blah bla...</td><td>4</td><td>Edit</td></tr>
+					</table>
+
+					<form action="#">
+						<label for="img">Question image:</label>
+						<input type="file" id="img">
+						<label for="name">Qestion text: </label>
+						<input type="text" id="name">
+						<label for="numberOfAnswers">Number of Answers:</label>
+						<input type="number" id="numberOfAnswers">
+						<label for="answer1">Answer 1:</label>
+						<input type="text" id="answer1">
+						<label for="answer2">Answer 2:</label>
+						<input type="text" id="answer2">
+						<label for="answer3">Answer 3:</label>
+						<input type="text" id="answer3">
+					</form>
+					<a style="margin-top:80px;float:right;" href="#" class="button">Add Question</a>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>
