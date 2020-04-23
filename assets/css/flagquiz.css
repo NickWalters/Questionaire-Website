@@ -1,0 +1,46 @@
+body {
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+}
+
+div.question * {
+    display:inline-block;
+}
+
+div.question {
+    margin-left:50px;
+}
+
+.qCircle{
+    transform:translateY(10px);
+    height:35px;
+    width:35px;
+    position:relative;
+    border-radius:50%;
+    background-color:black;
+}
+
+div.qCircle span {
+    position:absolute;
+    transform:translateY(-30px);
+    width:inherit;
+    height:inherit;
+    text-align:center;
+    vertical-align:middle;
+    color:white;    
+}
+
+section#quiz {
+    padding-top:20px;
+}
+
+div.svgContainer {
+    width:35%;
+}
+
+div.svgContainer img{
+    width:100%;
+}
