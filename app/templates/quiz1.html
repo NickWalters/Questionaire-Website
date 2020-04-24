@@ -5,11 +5,11 @@
 		<title>Quiz</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/center.css" />
-		<link rel="stylesheet" href="assets/css/flagquiz.css" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/center.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/flagquiz.css') }}" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="assets/js/flagquiz.js"></script>
+		<script src="{{ url_for('static', filename='js/flagquiz.js') }}"></script>
 	</head>
 	<body>
 		<div class="center">
