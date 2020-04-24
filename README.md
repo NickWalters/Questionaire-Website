@@ -10,8 +10,10 @@ Enter the virtual environment
 Linux: source venv/bin/active
 Windows: venv/Scripts/active
 
-Install flask in the virtual environment (venv):
+Install flask and the allowed libraries in the virtual environment (venv):
 pip install flask
+pip install flask-sqlalchemy
+pip install flask-migrate
 
 Set path:
 Linux: export FLASK_APP:app.py

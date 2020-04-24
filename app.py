@@ -1,23 +1,14 @@
 from flask import Flask
-from flask import render_template
+from config import Config
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
+app.config.from_object(Config)
+app.static_folder = 'static'
 
-@app.route('/')
-def home():
-	return render_template('index.html')
-	
-@app.route('/quizSelect')
-def quizSelect():
-	return render_template('quizSelect.html')
-	
-@app.route('/world')
-def world():
-	return render_template('world.html')
-	
-@app.route('/flag')
-def flag():
-	return render_template('flag.html')
+import routes
 
 if __name__ == '__main__':
 	app.run() # for debug mode, Modify to app.run(debug=True).
+
