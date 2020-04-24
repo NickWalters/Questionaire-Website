@@ -15,5 +15,5 @@ function setPageData(question){
     console.log(question)
     $("#ajaxInput").html(question);
     $("h4.questionHint").html("");
-    $("#flag").attr("src","images/flag0"+question+".svg");
+    $("#flag").attr("src","../images/flag0"+question+".svg");
 }

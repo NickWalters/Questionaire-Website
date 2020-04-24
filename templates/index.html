@@ -5,8 +5,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/center.css" />
+		
+		<link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
 	</head>
 	<style>
 		div.element1{
@@ -17,12 +17,10 @@
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<h1><strong><a href="index.html">Quiz</a></strong>  Take the Test</h1>
+				<h1><strong><a href="{{ url_for('home') }}">Quiz</a></strong>  Take the Test</h1>
 				<nav id="nav">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="#">Admin</a></li>
-						<li><a href="elements.html">Elements</a></li>
+					<ul class="menu">
+							<li><a href="{{ url_for('home') }}">Home</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -35,7 +33,7 @@
 				<div class="element1">
 				</div>
 				<ul class="actions">
-					<li><a href="quizSelect.html" class="button special big">Get Started</a></li>
+					<li><a href="{{ url_for('quizSelect') }}" class="button special big">Get Started</a></li>
 				</ul>
 			</section>
 
@@ -96,5 +94,7 @@
 					</ul>
 				</div>
 			</footer>
+			{% block content %}
+			{% endblock %}
 	</body>
 </html>

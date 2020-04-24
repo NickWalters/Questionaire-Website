@@ -5,8 +5,8 @@
 		<title>Quiz Select</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/center.css" />
+		
+		<link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
 	</head>
 	<style>
 		main {
@@ -21,10 +21,10 @@
 
 		<!-- Header -->
 			<header id="header">
-				<h1><strong><a href="index.html">Quiz</a></strong> Select</h1>
+				<h1><strong><a href="{{ url_for('home') }}">Quiz</a></strong> Select</h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="index.html">Home</a></li>
+						<li><a href="{{ url_for('home') }}">Home</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -42,10 +42,10 @@
 						<div class="flagQuiz">
 							<h2>Flags Quiz</h2>
 							<div class="image fit flush">
-								<img src="images/australia.jpg"/>
+								<img src="../static/images/australia.jpg"/>
 							</div>
 							<p>Are you truly aware of the outside world? Do you have what it takes to test your knowledge on the flags of the world? Take our test !</p>
-							<a href="flag.html" class="button special big">Take Quiz</a>
+							<a href="{{ url_for('flag') }}" class="button special big">Take Quiz</a>
 						</div>	
 					</div>
 					
@@ -54,15 +54,17 @@
 						<div class="worldQuiz">
 							<h2>Geography/World Quiz</h2>
 							<div class="image fit flush">
-								<img src="images/people-banner.png"/>
+								<img src="../static/images/people-banner.png"/>
 							</div>
 							<p>How much do you know about world culture, information and languages?</p>
-							<a href="world.html" class="button special big">Take Quiz</a>
+							<a href="{{ url_for('world') }}" class="button special big">Take Quiz</a>
 						</div>
 					</div>
 					
 				</div>
 			</section>
 	</div>
+	{% block content %}
+	{% endblock %}
 	</body>
 </html>
