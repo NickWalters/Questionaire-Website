@@ -2,11 +2,11 @@
 
 Install python
 
-Start a virtual environment:
+Make a virtual environment in the project directory:
 python -m venv venv, or;
 python3 -m venv venv
 
-Enter the virtual environment:
+Enter the virtual environment 
 Linux: source venv/bin/active
 Windows: venv/Scripts/active
 
