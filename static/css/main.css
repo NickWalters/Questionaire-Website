@@ -43,6 +43,16 @@
 	body {
 		-webkit-text-size-adjust: none;
 	}
+	
+	
+/* Center Class - center the object in the middle of the screen */	
+	.center {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 80%;
+		padding: 10px;
+	}
 
 /* Box Model */
 
@@ -1098,7 +1108,7 @@
 
 		.wrapper.style3 {
 			background-attachment: fixed;
-			background-image: url("images/banner.png"), url("../../images/banner.png");
+			background-image: url("../images/banner.png"), url("../images/banner.png");
 			background-position: center center;
 			background-size: cover;
 		}
@@ -1404,7 +1414,7 @@
 	#banner {
 		padding: 16em 0 13em 0;
 		background-attachment: fixed;
-		background-image: url("images/overlay.png"), url("../../images/banner.jpg");
+		background-image: url("../images/overlay.png"), url("../images/banner.jpg");
 		background-position: center top;
 		background-size: cover;
 		line-height: 1.75;
