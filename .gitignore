@@ -1,0 +1,3 @@
+venv/*
+.vscode/*
+app/__pycache__/*

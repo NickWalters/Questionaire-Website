@@ -1,19 +1,18 @@
 # Installing venv as per MiguelGrinberg flask mega tutorial
 Install instructions
-python
-cd Questionaire-Website parent directory
 
-It is suggested in the tutorial to use a virtual environment
+Install python, I used windows store Python 3.8
+
+Start a virtual environment:
 python -m venv venv
 Linux: source venv/bin/active
 Windows: venv/Scripts/activate
 
+Now install flask in the virtual environment (venv):
 pip install flask
 
-Test install by:
-python
-import flask
+Set path
+LINUX: export FLASK_APP=qsite.py
+Windows: set FLASK_APP=qsite.py
 
-navigate to Questionare-Website & run flake
-cd .\Questionaire-Website\
 flask run
