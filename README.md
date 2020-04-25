@@ -10,8 +10,8 @@ Enter the virtual environment
 Linux: source venv/bin/active
 Windows: venv/Scripts/active
 
---- Alternative (Mac or linux)
-virtualenv env -p python3
+Alternative (Mac or linux):
+virtualenv env -p python3 
 source env/bin/activate
 
 
