@@ -10,10 +10,6 @@ Enter the virtual environment
 Linux: source venv/bin/active
 Windows: venv/Scripts/active
 
-Alternative (Mac or linux):
-virtualenv env -p python3 
-source env/bin/activate
-
 
 Install flask and the allowed libraries in the virtual environment (venv):
 pip install flask
