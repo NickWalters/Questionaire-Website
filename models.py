@@ -96,10 +96,10 @@ class Result(db.Model):
 	
 
 # create sample users
-db.drop_all()
+#db.drop_all()
 db.create_all()
 
-
+"""
 user_1 = User(username="JohnDoe", email="John@hotmail.com", admin=False, password_hash="notASecret")
 
 user_2 = User(username="Nick", email="nick@gmail.com", admin=True, password_hash="blahblah")
@@ -107,6 +107,7 @@ user_2 = User(username="Nick", email="nick@gmail.com", admin=True, password_hash
 
 db.session.add(user_1)
 db.session.add(user_2)
+"""
 
 users = User.query.all()
 print(users)
