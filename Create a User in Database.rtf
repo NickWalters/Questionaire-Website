@@ -37,7 +37,7 @@ But we already made a database already, so you don\'92t need to do this\
 \
 We now need to run this command:\
 \
-	\'93 from models import User, Result \'93\
+	 from models import *   \
 \
 This will import our user and result model defined \
 \
@@ -53,8 +53,8 @@ Create a user, for example:\
 \
 \
 Commit these changes:\
-	\'93app.db.session.add(user_1)\'94\
-	\'93app.db.session.commit()\'94\
+	\'93db.session.add(user_1)\'94\
+	\'93db.session.commit()\'94\
 \
 \
 }
