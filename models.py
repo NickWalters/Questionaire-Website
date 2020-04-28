@@ -26,6 +26,58 @@ class User(db.Model):
 		def __repr__(self):
 			print('<admin or not {}>'.format(self.admin))
 			return '{}'.format(self.username)
+
+class Question(db.Model):
+		"""Data model for Questions"""
+
+		__tablename__ = 'questionTable'
+		question_id = db.Column(db.Integer,
+									            primary_key=True)
+		question = db.Column(db.String(64),
+												index=False,
+												unique=True,
+												nullable=False)
+											
+		def __repr__(self):
+				return '<Question {}>'.format(self.question)
+
+
+class QuestionChoices(db.Model):
+		"""Data model for Question Choices"""
+
+		__tablename__ = 'choiceTable'
+		choice_id = db.Column(db.Integer,
+									            primary_key=True)
+		question_id = db.Column(db.Integer, ForeignKey(
+			                        'questionTable.question_id'))
+		choice = db.Column(db.String(80),
+											    index=True,
+											    unique=True,
+											    nullable=False)
+		is_right_choice = db.Column(db.Boolean,
+											    index=False,
+											    unique=False,
+											    nullable=False)
+											
+		def __repr__(self):
+				return '<Choice {}>'.format(self.choice)
+
+class UserAnswer(db.Model):
+		"""Data model for user answers."""
+
+		__tablename__ = 'usersAnswers'
+		answer_id = db.Column(db.Integer,
+												primary_key=True)
+		user_id = db.Column(db.Integer, ForeignKey(
+									                  'user.id'))
+		question_id = db.Column(db.Integer, ForeignKey(
+			                        'questionTable.question_id'))
+		choice_id = db.Column(db.Integer, ForeignKey(
+			                            'choiceTable.choice_id'))
+		is_right = db.Column(db.Boolean, ForeignKey(
+								  'choiceTable.is_right_choice'))
+											
+
 			
 			
 			
@@ -40,11 +92,13 @@ class Result(db.Model):
 	score = db.Column(db.Integer)
 	date_of_attempt = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 	
+
 	
 
 # create sample users
 db.drop_all()
 db.create_all()
+
 
 user_1 = User(username="JohnDoe", email="John@hotmail.com", admin=False, password_hash="notASecret")
 
