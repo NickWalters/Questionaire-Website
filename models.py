@@ -110,6 +110,7 @@ db.session.add(user_2)
 """
 
 users = User.query.all()
+print("Array of Users Registered: ")
 print(users)
 
 db.session.commit()
