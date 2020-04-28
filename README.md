@@ -9,8 +9,8 @@ virtualenv env -p python3
 source env/bin/activate
 
 3:
-install the required files/packages
-pip install -r examples/sqla/requirements.txt
+install the required files/packages (you must be in the project directory)
+pip install -r requirements.txt
 
 4:
 Set path:
