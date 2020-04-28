@@ -5,21 +5,21 @@ Install python and pip
 
 2:
 Enter the virtual environment by:
-virtualenv env -p python3
-source env/bin/activate
+```virtualenv env -p python3```
+```source env/bin/activate```
 
 3:
 install the required files/packages (you must be in the project directory)
-pip install -r requirements.txt
+```pip install -r requirements.txt```
 
 4:
 Set path:
-Linux: export FLASK_APP:app.py
-Windows: set FLASK_APP=app.py
+Linux: export ```FLASK_APP:app.py```
+Windows: set ```FLASK_APP=app.py```
 
 5:
 Run flask:
-flask run
+```flask run```
 
 Running this command will start the website
 You can access the website by visiting the provided link:
