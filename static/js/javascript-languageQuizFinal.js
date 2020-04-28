@@ -2,7 +2,7 @@ var question_index = 0;
 var score = 0;
 
 const images = [
-'../images/taiwan-languageQuiz.jpg','australia-languageQuiz.jpg','norway-languageQuiz.jpg','colombia-languageQuiz.jpg','pakistan-languageQuiz.jpg','ukraine-languageQuiz.jpg','malaysia-languageQuiz.jpg','mexico-languageQuiz.jpg','iran-languageQuiz.jpg','indonesia-languageQuiz.jpg'
+'./images/taiwan-languageQuiz.jpg','australia-languageQuiz.jpg','norway-languageQuiz.jpg','colombia-languageQuiz.jpg','pakistan-languageQuiz.jpg','ukraine-languageQuiz.jpg','malaysia-languageQuiz.jpg','mexico-languageQuiz.jpg','iran-languageQuiz.jpg','indonesia-languageQuiz.jpg'
 ]
 
 const questions = [
