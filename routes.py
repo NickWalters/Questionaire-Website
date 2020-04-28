@@ -19,10 +19,12 @@ def home():
 def quizSelect():
 	return render_template('quizSelect.html')
 	
-@app.route('/world')
-def world():
-	return render_template('world.html')
 	
 @app.route('/flag')
 def flag():
 	return render_template('flag.html')
+	
+
+@app.route('/languageQuiz')
+def languageQuiz():
+	return render_template('HTML-languageQuizFinal.html')

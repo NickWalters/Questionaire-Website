@@ -14,4 +14,9 @@ import routes, models
 
 if __name__ == '__main__':
 	app.run() # for debug mode, Modify to app.run(debug=True).
+	
+	
+@app.shell_context_processor
+def make_shell_context():
+	return {'db': db, 'User': User, 'Question': Question, 'QuestionChoices': QuestionChoices, 'UserAnswer': UserAnswer, 'Result': Result}
 
