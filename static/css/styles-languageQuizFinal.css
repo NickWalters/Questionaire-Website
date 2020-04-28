@@ -93,3 +93,21 @@ img{
 
 }
 
+.btn_link{
+    background-color: rgb(17, 165, 74);
+    border: 2px solid rgb(21, 87, 7);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+    font: 25px;
+    transition-duration: 0.75s;
+    width: 300px;
+}
+
+.btn_link:hover{
+    border-color: black;
+    background-color: rgb(34, 211, 72);
+}
+
+
