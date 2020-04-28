@@ -4,6 +4,7 @@ from sqlalchemy import ForeignKey, Column, Integer, String
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 
 class User(db.Model):
 		id = db.Column(db.Integer, primary_key=True)
