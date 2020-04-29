@@ -7,7 +7,7 @@ import os
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 from flask_migrate import Migrate
 
-db.drop_all()
+#db.drop_all()
 
 class User(db.Model):
 	__tablename__ = "user"
@@ -81,27 +81,23 @@ class UserAnswer(db.Model):
 
 db.create_all()
 
-db.session.query(User).delete()
-db.session.query(Quiz).delete()
-db.session.query(Question).delete()
-db.session.query(QuestionChoice).delete()
-db.session.query(UserAnswer).delete()
+#db.session.query(User).delete()
+#db.session.query(Quiz).delete()
+#db.session.query(Question).delete()
+#db.session.query(QuestionChoice).delete()
+#db.session.query(UserAnswer).delete()
 
-
-db.session.add(User(username="Admin", email="admin@admin.admin", admin=True, password_hash="password"))
+#db.session.add(User(username="Admin", email="admin@admin.admin", admin=True, password_hash="password"))
 #db.session.add(User(username="User", email="user@user.user", admin=False, password_hash="password"))
+#db.session.add(Quiz(quizname="Flag Quiz"))
+#db.session.add(Question(quiz_id=1,question_number=1,question_content="1"))
+#db.session.add(QuestionChoice(question_id=1,choice_number=1,choice_content="1",choice_correct=True))
+#db.session.add(UserAnswer(user_id=1,question_id=1,choice_id=1))
+
+#db.session.commit()
+
 print(User.query.all())
-
-db.session.add(Quiz(quizname="Flag Quiz"))
 print(Quiz.query.all())
-
-db.session.add(Question(quiz_id=1,question_number=1,question_content="1"))
 print(Question.query.all())
-
-db.session.add(QuestionChoice(question_id=1,choice_number=1,choice_content="1",choice_correct=True))
 print(QuestionChoice.query.all())
-
-db.session.add(UserAnswer(user_id=1,question_id=1,choice_id=1))
 print(UserAnswer.query.all())
-
-db.session.commit()
