@@ -20,11 +20,9 @@ def logout():
 	flash("Logged Out")
 	return redirect(url_for('index'))
 	
-
 @app.route('/index')
 def index():
 	return render_template('index.html')
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -49,12 +47,10 @@ def home():
 def quizSelect():
 	return render_template('quizSelect.html')
 	
-	
 @app.route('/flag')
 def flag():
 	return render_template('flag.html')
 	
-
 @app.route('/languageQuiz')
 def languageQuiz():
 	return render_template('HTML-languageQuizFinal.html')
