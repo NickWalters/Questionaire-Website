@@ -59,6 +59,7 @@ def home():
 	return render_template('index.html')
 	
 @app.route('/quizSelect')
+@login_required
 def quizSelect():
 	return render_template('quizSelect.html')
 	

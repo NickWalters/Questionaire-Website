@@ -34,12 +34,19 @@
 
 		<!-- Banner -->
 			<section id="banner">
+				</ul>
+				{% block content %}
+					{% if current_user.is_anonymous %}
+					<h4 style="color:white">Please Login to save your scores<p>
+					{% else %}
+					<h4 style="color:white">Hello, {{ current_user.username }}!</h1>
+					{% endif %}
+				{% endblock %}
 				<h2 class="title1">Take our Tests</h2>
 				<div class="element1">
 				</div>
 				<ul class="actions">
 					<li><a href="{{ url_for('quizSelect') }}" class="button special big">Get Started</a></li>
-				</ul>
 			</section>
 
 			<!-- One -->
@@ -99,7 +106,5 @@
 					</ul>
 				</div>
 			</footer>
-			{% block content %}
-			{% endblock %}
 	</body>
 </html>
