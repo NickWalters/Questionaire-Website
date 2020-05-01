@@ -4,6 +4,8 @@ from werkzeug.urls import url_parse
 from forms import LoginForm, RegistrationForm
 from models import *
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -37,7 +39,14 @@ def logout():
 	
 @app.route('/index')
 def index():
-	return render_template('index.html')
+	if current_user.is_authenticated:
+		if current_user.admin == False:
+			return render_template('index.html')
+		else:
+			flash("You are an Admin")
+			return redirect(url_for('hoster'))
+	else:
+		return render_template('index.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -70,3 +79,28 @@ def flag():
 @app.route('/languageQuiz')
 def languageQuiz():
 	return render_template('HTML-languageQuizFinal.html')
+	
+	
+
+admin = Admin(app)
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Quiz, db.session))
+admin.add_view(ModelView(Question, db.session))
+admin.add_view(ModelView(QuestionChoice, db.session))
+admin.add_view(ModelView(UserAnswer, db.session))
+
+@app.route('/hoster')
+@login_required
+def hoster():
+
+	if current_user.admin == True: 
+		users = User.query.all()
+
+		quiz = db.session.query(Quiz)
+		# quiz = db.session.query(Quiz).join(Question)
+
+		return render_template('admin.html', users=users, quiz=quiz)
+	
+	else:
+		flash('Cannot access admin page directly')
+		return redirect(url_for('index'))

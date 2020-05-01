@@ -1,4 +1,4 @@
-﻿Flask==1.1.2
+Flask==1.1.2
 Flask-SQLAlchemy==2.4.1
 itsdangerous==1.1.0
 Jinja2==2.11.2
@@ -11,3 +11,4 @@ Flask-WTF==0.14.3
 sqlalchemy-migrate==0.13.0
 Flask-Login==0.5.0
 email-validator==1.1.0
+Flask-Admin==1.5.6
