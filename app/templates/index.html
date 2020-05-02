@@ -20,8 +20,12 @@
 				<h1><strong><a href="{{ url_for('home') }}">Quiz</a></strong>  Take the Test</h1>
 				<nav id="nav">
 					<ul class="menu">
-							<li><a href="{{ url_for('home') }}">Home</a></li>
+							<li><a href="{{ url_for('index') }}">Home</a></li>
+							{% if current_user.is_anonymous %}
 							<li><a href="{{ url_for('login') }}">Login</a></li>
+							{% else %}
+							<li><a href="{{ url_for('logout') }}">Logout</a></li>
+							{% endif %}
 					</ul>
 				</nav>
 			</header>
@@ -30,12 +34,19 @@
 
 		<!-- Banner -->
 			<section id="banner">
+				</ul>
+				{% block content %}
+					{% if current_user.is_anonymous %}
+					<h4 style="color:white">Please Login to save your scores<p>
+					{% else %}
+					<h4 style="color:white">Hello, {{ current_user.username }}!</h1>
+					{% endif %}
+				{% endblock %}
 				<h2 class="title1">Take our Tests</h2>
 				<div class="element1">
 				</div>
 				<ul class="actions">
 					<li><a href="{{ url_for('quizSelect') }}" class="button special big">Get Started</a></li>
-				</ul>
 			</section>
 
 			<!-- One -->
@@ -95,7 +106,5 @@
 					</ul>
 				</div>
 			</footer>
-			{% block content %}
-			{% endblock %}
 	</body>
 </html>
