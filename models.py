@@ -7,6 +7,7 @@ import os
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 from flask_migrate import Migrate
 
+#Drop all tables from the DB
 #db.drop_all()
 
 class User(db.Model):
@@ -79,23 +80,27 @@ class UserAnswer(db.Model):
 	def __repr__(self):
 		return '<Answers {}>'.format(self.id)
 
+#Create DB models
 db.create_all()
 
+#Delete all rows from all tables
 #db.session.query(User).delete()
 #db.session.query(Quiz).delete()
 #db.session.query(Question).delete()
 #db.session.query(QuestionChoice).delete()
 #db.session.query(UserAnswer).delete()
 
+#Add an example row to each tables
 #db.session.add(User(username="Admin", email="admin@admin.admin", admin=True, password_hash="password"))
-#db.session.add(User(username="User", email="user@user.user", admin=False, password_hash="password"))
 #db.session.add(Quiz(quizname="Flag Quiz"))
 #db.session.add(Question(quiz_id=1,question_number=1,question_content="1"))
 #db.session.add(QuestionChoice(question_id=1,choice_number=1,choice_content="1",choice_correct=True))
 #db.session.add(UserAnswer(user_id=1,question_id=1,choice_id=1))
 
+#Commit the changes to the DB
 #db.session.commit()
 
+#Print all DB data
 print(User.query.all())
 print(Quiz.query.all())
 print(Question.query.all())
