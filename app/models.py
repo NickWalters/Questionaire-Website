@@ -30,7 +30,7 @@ class User(UserMixin, db.Model):
 		return check_password_hash(self.password_hash, password)
 
 	def __repr__(self):
-		return 'User: {}'.format(self.username)+' (admin:{}'.format(self.admin)+')'
+		return 'User: {}'.format(self.username)+' pass:{}'.format(self.password_hash)+'(admin:{}'.format(self.admin)+')'
 
 class Style(db.Model):
 	__tablename__ = 'style'
@@ -88,21 +88,21 @@ def load_user(id):
 db.create_all()
 
 #Delete all rows from all tables
-#db.session.query(User).delete()
+#db.session.commit()
 #db.session.query(Quiz).delete()
 #db.session.query(Question).delete()
 #db.session.query(QuestionChoice).delete()
 #db.session.query(UserAnswer).delete()
 
 #Add an example row to each tables
-#db.session.add(User(username="Admin", email="admin@admin.admin", admin=True, password_hash="password"))
+db.session.add(User(username="admin", email="admin@admin.admin", admin=True, password_hash=generate_password_hash("admin")))
+db.session.add(User(username="user", email="user@user.user", admin=False, password_hash=generate_password_hash("user")))
 #db.session.add(Quiz(quizname="Flag Quiz"))
 #db.session.add(Question(quiz_id=1,question_number=1,question_content="1"))
 #db.session.add(QuestionChoice(question_id=1,choice_number=1,choice_content="1",choice_correct=True))
 #db.session.add(UserAnswer(user_id=1,question_id=1,choice_id=1))
 
-#Commit the changes to the DB
-#db.session.commit()
+db.session.commit()
 
 #Print all DB data
 print(User.query.all())
