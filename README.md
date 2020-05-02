@@ -14,7 +14,7 @@ install the required files/packages (you must be in the project directory)
 
 4:
 Set path:
-Linux: export ```FLASK_APP:app.py```
+Linux: export ```FLASK_APP=app.py```
 Windows: set ```FLASK_APP=app.py```
 
 5:
@@ -36,6 +36,6 @@ Make a virtual environment in the project directory:
 python -m venv venv, or; python3 -m venv venv
 
 2: Enter the virtual environment 
-Linux by: virtualenv env -p python3 source venvenv/bin/active 
+Linux by: source venv/bin/activate
 Windows: venv/Scripts/activate
 
