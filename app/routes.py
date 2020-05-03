@@ -44,7 +44,7 @@ def index():
 			return render_template('index.html')
 		else:
 			flash("You are an Admin")
-			return redirect(url_for('hoster'))
+			return render_template('index.html')
 	else:
 		return render_template('index.html')
 

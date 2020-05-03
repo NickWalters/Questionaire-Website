@@ -2,5 +2,7 @@
 {% block content %}
 
 <div class="info">
-	<h1>Welcome Admin! {{current_user}}</h1>
+	<h1>Welcome {{current_user.username}}!</h1>
 <hr>
+
+{% endblock %}

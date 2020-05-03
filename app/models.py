@@ -84,6 +84,9 @@ class UserAnswer(db.Model):
 def load_user(id):
 	return User.query.get(int(id))
 
+# drops DB models, to reset the db
+db.drop_all()
+
 #Create DB models
 db.create_all()
 
@@ -97,10 +100,10 @@ db.create_all()
 #Add an example row to each tables
 db.session.add(User(username="admin", email="admin@admin.admin", admin=True, password_hash=generate_password_hash("admin")))
 db.session.add(User(username="user", email="user@user.user", admin=False, password_hash=generate_password_hash("user")))
-#db.session.add(Quiz(quizname="Flag Quiz"))
-#db.session.add(Question(quiz_id=1,question_number=1,question_content="1"))
-#db.session.add(QuestionChoice(question_id=1,choice_number=1,choice_content="1",choice_correct=True))
-#db.session.add(UserAnswer(user_id=1,question_id=1,choice_id=1))
+db.session.add(Quiz(quizname="Flag Quiz"))
+db.session.add(Question(quiz_id=1,question_number=1,question_content="1"))
+db.session.add(QuestionChoice(question_id=1,choice_number=1,choice_content="1",choice_correct=True))
+db.session.add(UserAnswer(user_id=1,question_id=1,choice_id=1))
 
 db.session.commit()
 
