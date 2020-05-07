@@ -9,6 +9,7 @@ from flask_migrate import Migrate
 
 #Drop all tables from the DB
 #db.drop_all()
+#db.session.commit()
 
 class User(UserMixin, db.Model):
 	__tablename__ = "user"
@@ -18,7 +19,7 @@ class User(UserMixin, db.Model):
 	admin = db.Column(db.Boolean, default=False, nullable=False) 
 	password_hash = db.Column(db.String(128))
 
-	# scores = db.relationship('Result', backref'user', lazy="dynamic")
+	UserAnswers = db.relationship('UserAnswer', backref='user', lazy="dynamic")
 	
 	def is_admin(self):
 		return self.admin
@@ -30,33 +31,73 @@ class User(UserMixin, db.Model):
 		return check_password_hash(self.password_hash, password)
 
 	def __repr__(self):
-		return 'User: {}'.format(self.username)+' pass:{}'.format(self.password_hash)+'(admin:{}'.format(self.admin)+')'
-
-class Style(db.Model):
-	__tablename__ = 'style'
-	id = db.Column(db.Integer,primary_key=True)
+		return 'User: {}'.format(self.username)+' (admin:{}'.format(self.admin)+')'
 
 class Quiz(db.Model):
 	__tablename__ = 'quiz'
 	id = db.Column(db.Integer,primary_key=True)
 	quizname = db.Column(db.String(80))
 	creator_id = db.Column(db.Integer, ForeignKey('user.id'))
-	style = db.Column(db.Integer, ForeignKey('style.id'))
-	quiz_content = db.Column(db.String(80))
-	#questions = db.relationship('Question', backref='person', lazy=True)
+	style = db.Column(db.Integer, ForeignKey('quizStyle.id'))
+
+	questions = db.relationship('Question', backref='quiz', lazy=True)
 
 	def __repr__(self):
 		return '<Quiz {}>'.format(self.quizname)
+
+
+class QuizStyle(db.Model):
+	__tablename__ = 'quizStyle'
+	id = db.Column(db.Integer,primary_key=True)
+	style_name = db.Column(db.String(64), index=True, unique=True)
+	template_file = db.Column(db.String(64))
+
+	#styleJs = db.relationship('StyleJs', backref='style', lazy=True)
+	#styleCss = db.relationship('StyleCss', backref='style', lazy=True)
+
+	def __repr__(self):
+		return '<Style: {}>'.format(self.style_name)
+		
+"""
+class StyleJs(db.Model):
+	__tablename__ = 'styleJs'
+	id = db.Column(db.Integer, ForeignKey('quizStyle.id'))
+	content = db.Column(db.String(80))
+
+	def __repr__(self):
+		return '<QuizJs {}>'.format(self.content)
+
+class StyleCss(db.Model):
+	__tablename__ = 'styleCss'
+	id = db.Column(db.Integer, ForeignKey('quizStyle.id'))
+	content = db.Column(db.String(80))
+
+	def __repr__(self):
+		return '<QuizCss {}>'.format(self.content)
+"""
 
 class Question(db.Model):
 	__tablename__ = 'question'
 	id = db.Column(db.Integer,primary_key=True)
 	quiz_id = db.Column(db.Integer, ForeignKey('quiz.id'))
 	question_number = db.Column(db.Integer)
-	question_content = db.Column(db.String(80))
-	#question_choices = db.relationship('QuestionChoice', backref='person', lazy=True)
+
+	question_choices = db.relationship('QuestionChoice', backref='question', lazy=True)
+	question_contents = db.relationship('QuestionContent', backref='question', lazy=True)
+	question_answers = db.relationship('UserAnswer', backref='question', lazy=True)
+
 	def __repr__(self):
-		return '<Question {}>'.format(self.question_content)
+		return '<Quiz {}'.format(self.quiz_id)+':Q{}>'.format(self.question_number)
+
+class QuestionContent(db.Model):
+	__tablename__ = 'questionContent'
+	id = db.Column(db.Integer,primary_key=True)
+	question_id = db.Column(db.Integer, ForeignKey('question.id'))
+	text_content = db.Column(db.String(80))
+	img_content = db.Column(db.String(80))
+	
+	def __repr__(self):
+		return '<Question {}>'.format(self.question_id)
 
 class QuestionChoice(db.Model):
 	__tablename__ = 'questionChoice'
@@ -65,7 +106,8 @@ class QuestionChoice(db.Model):
 	choice_number = db.Column(db.Integer)
 	choice_content = db.Column(db.String(80))
 	choice_correct = db.Column(db.Boolean)
-	#choice_chosen = db.relationship('UserAnswer', backref='person', lazy=True)
+	
+	#choice_chosen = db.relationship('UserAnswer', backref='questionChoice', lazy=True)
 	
 	def __repr__(self):
 		return '<Choice {}>'.format(self.choice_content)
@@ -76,6 +118,7 @@ class UserAnswer(db.Model):
 	user_id = db.Column(db.Integer, ForeignKey('user.id'))
 	question_id = db.Column(db.Integer, ForeignKey('question.id'))
 	choice_id = db.Column(db.Integer, ForeignKey('questionChoice.id'))
+	timestamp = db.Column(db.DateTime, default = datetime.utcnow)
 
 	def __repr__(self):
 		return '<Answers {}>'.format(self.id)
@@ -84,32 +127,14 @@ class UserAnswer(db.Model):
 def load_user(id):
 	return User.query.get(int(id))
 
-# drops DB models, to reset the db
-db.drop_all()
-
 #Create DB models
 db.create_all()
-
-#Delete all rows from all tables
-#db.session.commit()
-#db.session.query(Quiz).delete()
-#db.session.query(Question).delete()
-#db.session.query(QuestionChoice).delete()
-#db.session.query(UserAnswer).delete()
-
-#Add an example row to each tables
-db.session.add(User(username="admin", email="admin@admin.admin", admin=True, password_hash=generate_password_hash("admin")))
-db.session.add(User(username="user", email="user@user.user", admin=False, password_hash=generate_password_hash("user")))
-db.session.add(Quiz(quizname="Flag Quiz"))
-db.session.add(Question(quiz_id=1,question_number=1,question_content="1"))
-db.session.add(QuestionChoice(question_id=1,choice_number=1,choice_content="1",choice_correct=True))
-db.session.add(UserAnswer(user_id=1,question_id=1,choice_id=1))
-
-db.session.commit()
 
 #Print all DB data
 print(User.query.all())
 print(Quiz.query.all())
+print(QuizStyle.query.all())
 print(Question.query.all())
-print(QuestionChoice.query.all())
+#print(QuestionContent.query.all())
+#print(QuestionChoice.query.all())
 print(UserAnswer.query.all())

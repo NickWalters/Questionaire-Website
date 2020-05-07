@@ -74,7 +74,8 @@ def quizSelect():
 	
 @app.route('/flag')
 def flag():
-	return render_template('flag.html')
+	
+	return render_template('quizStyle1.html')
 	
 @app.route('/languageQuiz')
 def languageQuiz():
