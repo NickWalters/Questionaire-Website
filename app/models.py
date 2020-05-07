@@ -137,6 +137,8 @@ def load_user(id):
 #Create DB models
 db.create_all()
 
+
+
 #Print all DB data
 print(User.query.all())
 print(Quiz.query.all())

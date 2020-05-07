@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, abort
 from app import app, db
 from werkzeug.urls import url_parse
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, AnswerForm
 from app.models import *
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 from flask_admin import Admin
@@ -77,7 +77,10 @@ def flag():
 	quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
 	quizStyle = quiz.quizStyle.template_file
 	question = Question.query.filter_by(quiz_id=quiz.id).filter_by(question_number=1).first()
-	return render_template(quizStyle,quiz = quiz,question = question)
+	form = AnswerForm()
+	for choice in question.question_choices:
+		form.choices.append((choice.choice_number,choice.choice_content))
+	return render_template(quizStyle,quiz = quiz,question = question,form = form)
 
 @app.route('/languageQuiz')
 def languageQuiz():

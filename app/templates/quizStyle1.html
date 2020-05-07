@@ -1,22 +1,62 @@
-{% extends "quizStyle1Base.html" %}
+{% extends "quizBase.html" %}
 
-{% block question_number %}
-{{question.question_number}}
+{% block head %}
+	{{ super() }}
+	<title>Title</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',    filename='css/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',    filename='css/quizStyle1.css') }}">
 {% endblock %}
 
-{% block question_text_content %}
-{{question.question_contents.first().text_content}}
-{% endblock %}
+{% block body %}
+	<div class="center">
+		<header id="header">
+			<div class="question">
+				<div>Question</div>
+				<div>
+					<div class="qCircle">
+						<span id="ajaxInput">{{question.question_number}}</span>
+					</div>
+				</div>
+				<div><strong>{{quiz.quizname}}</strong> by {{quiz.creator.username}}</div>
+			</div>
+			<nav id="quiznav">
+				<ul>
+					<li><a href="{{ url_for('home') }}">Home</a></li>
+				</ul>
+			</nav>
+		</header>
 
-{% block question_img_content %}
-{{ url_for('static',    filename='images/'+question.question_contents.first().img_content) }}
-{% endblock %}
+		<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
-{% block question_choices %}
-{% for choice in question.question_choices %}
-	<div class="4u 12u$(xsmall)">
-		<input type="radio" id="{{ question.question_number }}-{{ choice.choice_number }}" name="{{ question.question_number }}" checked>
-		<label for="{{ question.question_number }}-{{ choice.choice_number }}">{{ choice.choice_content }}</label>
+		<!-- Main -->
+		<section id="quiz" class="wrapper">
+			
+			<div class="container">
+				<header>
+					<h3>{{question.question_contents.first().text_content}}</h3>
+				</header>
+				<div class="box alt">
+					<div class="row 50% uniform">
+						<div class="svgContainer"><img id="flag" src="{{ url_for('static',    filename='images/'+question.question_contents.first().img_content) }}" alt=""/></div>
+					</div>
+				</div>
+				<form action="" method="post" class="answer">
+					{{ form.hidden_tag() }}
+					
+					{% for choice in form.choices %}
+						<div class="radio">
+                            <input type="radio" id="{{ question.question_number }}-{{ choice[0] }}" name="{{ question.question_number }}" checked>
+		<label for="{{ question.question_number }}-{{ choice[0] }}">{{ choice[1] }}</label>
+                            
+						</div>
+					{% endfor %}
+
+					<div class="button">
+						{{form.submit()}}
+					</div>
+				</form>
+			</div>
+		</section>
 	</div>
-{% endfor %}
 {% endblock %}
