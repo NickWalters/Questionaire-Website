@@ -41,12 +41,12 @@
 						<div class="svgContainer"><img id="flag" src="{{ url_for('static',    filename='images/'+question.question_contents.first().img_content) }}" alt=""/></div>
 					</div>
 				</div>
-				<form action="" method="post" class="answer">
+				<form action="/Flag" method="post" class="answer">
 					{{ form.hidden_tag() }}
 					
 					{% for choice in form.choices %}
 						<div class="radio">
-                            <input type="radio" id="{{ question.question_number }}-{{ choice[0] }}" name="{{ question.question_number }}" checked>
+                            <input type="radio" id="{{ question.question_number }}-{{ choice[0] }}" name="{{ question.question_number }}">
 		<label for="{{ question.question_number }}-{{ choice[0] }}">{{ choice[1] }}</label>
                             
 						</div>

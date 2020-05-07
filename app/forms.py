@@ -30,4 +30,4 @@ class RegistrationForm(FlaskForm):
 class AnswerForm(FlaskForm):
 	choices=[]
 	submit = SubmitField('Submit')
-	radioField = RadioField('Choices',choices)
+	radioField = RadioField('Choices', choices)
