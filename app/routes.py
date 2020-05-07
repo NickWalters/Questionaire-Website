@@ -66,7 +66,7 @@ def register():
 @app.route('/')
 def home():
 	return render_template('index.html')
-	
+
 @app.route('/quizSelect')
 @login_required
 def quizSelect():
@@ -78,7 +78,7 @@ def flag():
 	quizStyle = quiz.quizStyle.template_file
 	question = Question.query.filter_by(quiz_id=quiz.id).filter_by(question_number=1).first()
 	return render_template(quizStyle,quiz = quiz,question = question)
-	
+
 @app.route('/languageQuiz')
 def languageQuiz():
 	return render_template('HTML-languageQuizFinal.html')

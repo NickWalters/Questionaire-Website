@@ -14,6 +14,16 @@ div.question {
     margin-left:50px;
 }
 
+div.answer {
+    width:50%;
+    float:left;
+}
+
+a.button {
+    bottom:0px;
+    float:right;
+}
+
 .qCircle{
     transform:translateY(10px);
     height:35px;
@@ -43,4 +53,5 @@ div.svgContainer {
 
 div.svgContainer img{
     width:100%;
+    border: 5px solid #00000050;
 }

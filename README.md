@@ -1,3 +1,10 @@
+README should describe:
+1. the purpose of the web application, explaining both the context and the assessment mechanism used. 
+2. the architecture of the web application 
+3. describe how to launch the web application. 
+4. describe some unit tests for the web application, and how to run them. 
+5. Include commit logs, showing contributions and review from both contributing students
+
 #Installing as per mega tutorial with venv
 
 1:
