@@ -19,7 +19,8 @@ class User(UserMixin, db.Model):
 	admin = db.Column(db.Boolean, default=False, nullable=False) 
 	password_hash = db.Column(db.String(128))
 
-	UserAnswers = db.relationship('UserAnswer', backref='user', lazy="dynamic")
+	userAnswers = db.relationship('UserAnswer', backref='user', lazy="dynamic")
+	quizzes = db.relationship('Quiz', back_populates="creator")
 	
 	def is_admin(self):
 		return self.admin
@@ -36,9 +37,13 @@ class User(UserMixin, db.Model):
 class Quiz(db.Model):
 	__tablename__ = 'quiz'
 	id = db.Column(db.Integer,primary_key=True)
-	quizname = db.Column(db.String(80))
+	quizname = db.Column(db.String(80), index=True)
+
 	creator_id = db.Column(db.Integer, ForeignKey('user.id'))
+	creator = relationship('User', back_populates="quizzes")
+
 	style = db.Column(db.Integer, ForeignKey('quizStyle.id'))
+	quizStyle = relationship('QuizStyle', back_populates="quizzes")
 
 	questions = db.relationship('Question', backref='quiz', lazy=True)
 
@@ -52,12 +57,14 @@ class QuizStyle(db.Model):
 	style_name = db.Column(db.String(64), index=True, unique=True)
 	template_file = db.Column(db.String(64))
 
+	quizzes = db.relationship('Quiz', back_populates="quizStyle")
+
 	#styleJs = db.relationship('StyleJs', backref='style', lazy=True)
 	#styleCss = db.relationship('StyleCss', backref='style', lazy=True)
 
 	def __repr__(self):
 		return '<Style: {}>'.format(self.style_name)
-		
+
 """
 class StyleJs(db.Model):
 	__tablename__ = 'styleJs'
@@ -82,8 +89,8 @@ class Question(db.Model):
 	quiz_id = db.Column(db.Integer, ForeignKey('quiz.id'))
 	question_number = db.Column(db.Integer)
 
-	question_choices = db.relationship('QuestionChoice', backref='question', lazy=True)
-	question_contents = db.relationship('QuestionContent', backref='question', lazy=True)
+	question_choices = db.relationship('QuestionChoice', backref='question', lazy='dynamic')
+	question_contents = db.relationship('QuestionContent', backref='question', lazy='dynamic')
 	question_answers = db.relationship('UserAnswer', backref='question', lazy=True)
 
 	def __repr__(self):
@@ -135,6 +142,6 @@ print(User.query.all())
 print(Quiz.query.all())
 print(QuizStyle.query.all())
 print(Question.query.all())
-#print(QuestionContent.query.all())
+print(QuestionContent.query.all())
 #print(QuestionChoice.query.all())
 print(UserAnswer.query.all())

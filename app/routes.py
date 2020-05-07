@@ -71,11 +71,13 @@ def home():
 @login_required
 def quizSelect():
 	return render_template('quizSelect.html')
-	
-@app.route('/flag')
+
+@app.route('/Flag')
 def flag():
-	
-	return render_template('quizStyle1.html')
+	quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
+	quizStyle = quiz.quizStyle.template_file
+	question = Question.query.filter_by(quiz_id=quiz.id).filter_by(question_number=1).first()
+	return render_template(quizStyle,quiz = quiz,question = question)
 	
 @app.route('/languageQuiz')
 def languageQuiz():
