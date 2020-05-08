@@ -68,6 +68,8 @@ def register():
 @app.route('/prelogin')
 @app.route('/')
 def prelogin():
+	if current_user.is_authenticated:
+		return render_template('index.html')
 	return render_template('prelogin.html')
 
 @app.route('/')
