@@ -27,7 +27,10 @@ class RegistrationForm(FlaskForm):
 		if user is not None:
 			raise ValidationError('Email has been used.')
 
-class AnswerForm(FlaskForm):
-	choices=[]
-	submit = SubmitField('Submit')
-	radioField = RadioField('Choices', choices)
+def AnswerForm(*args, **kwargs):
+	class StaticForm(FlaskForm):
+		pass
+	StaticForm.submit = SubmitField('Submit')
+	if args:
+		StaticForm.radioField = RadioField('radioField', coerce=int, choices=args[0])
+	return StaticForm()

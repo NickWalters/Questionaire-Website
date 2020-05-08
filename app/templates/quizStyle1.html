@@ -42,15 +42,13 @@
 					</div>
 				</div>
 				<form action="/Flag" method="post" class="answer">
-					{{ form.hidden_tag() }}
 					
-					{% for choice in form.choices %}
-						<div class="radio">
-                            <input type="radio" id="{{ question.question_number }}-{{ choice[0] }}" name="{{ question.question_number }}">
-		<label for="{{ question.question_number }}-{{ choice[0] }}">{{ choice[1] }}</label>
-                            
-						</div>
-					{% endfor %}
+					{% for subfield in form.radioField %}
+    <tr>
+        <td>{{ subfield }}</td>
+        <td>{{ subfield.label }}</td>
+    </tr>
+{% endfor %}
 
 					<div class="button">
 						{{form.submit()}}

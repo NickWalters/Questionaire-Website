@@ -15,6 +15,7 @@ Known issues:
 
 Minor issues:
 1. quizSelect border around images
+2. User.get_last_answer(self, quiz) sucks
 
 Optional extension:
 1. Community polling - i.e. “what country are you from?” Or “how many languages do you speak?” And compare that to other users.

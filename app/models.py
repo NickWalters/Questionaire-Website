@@ -1,15 +1,11 @@
 from app import db, login
 from datetime import datetime
-from sqlalchemy import ForeignKey, Column, Integer, String
+from sqlalchemy import ForeignKey, Column, Integer, String, desc
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 from flask_migrate import Migrate
-
-#Drop all tables from the DB
-#db.drop_all()
-#db.session.commit()
 
 class User(UserMixin, db.Model):
 	__tablename__ = "user"
@@ -31,6 +27,18 @@ class User(UserMixin, db.Model):
 	def check_password(self, password):
 		return check_password_hash(self.password_hash, password)
 
+	def get_last_answer(self, quiz):
+		lastanswer = None
+		for question in quiz.questions:
+			for answer in question.user_answers:
+				if answer.user_id==current_user.id:
+					if lastanswer == None:
+						lastanswer=answer
+					elif lastanswer.id<answer.id:
+						lastanswer = answer
+		#quiz.questions.user_answers.filter_by(user_id=id).order_by(UserAnswer.timestamp).first()
+		return lastanswer
+
 	def __repr__(self):
 		return 'User: {}'.format(self.username)+' (admin:{}'.format(self.admin)+')'
 
@@ -44,8 +52,13 @@ class Quiz(db.Model):
 
 	style = db.Column(db.Integer, ForeignKey('quizStyle.id'))
 	quizStyle = relationship('QuizStyle', back_populates="quizzes")
+	questions = db.relationship('Question', backref='quiz', lazy='dynamic')
 
-	questions = db.relationship('Question', backref='quiz', lazy=True)
+	def get_next_question(self, question):
+		next_question_number = self.questions.filter_by(id = question.id).first().question_number
+		
+		print("NEXT QUESTION NUMBER: {}".format(next_question_number))
+		return self.questions.filter_by(question_number=next_question_number).first()
 
 	def __repr__(self):
 		return '<Quiz {}>'.format(self.quizname)
@@ -91,7 +104,8 @@ class Question(db.Model):
 
 	question_choices = db.relationship('QuestionChoice', backref='question', lazy='dynamic')
 	question_contents = db.relationship('QuestionContent', backref='question', lazy='dynamic')
-	question_answers = db.relationship('UserAnswer', backref='question', lazy=True)
+	
+	user_answers = db.relationship('UserAnswer', back_populates="answered_questions")
 
 	def __repr__(self):
 		return '<Quiz {}'.format(self.quiz_id)+':Q{}>'.format(self.question_number)
@@ -126,7 +140,8 @@ class UserAnswer(db.Model):
 	question_id = db.Column(db.Integer, ForeignKey('question.id'))
 	choice_id = db.Column(db.Integer, ForeignKey('questionChoice.id'))
 	timestamp = db.Column(db.DateTime, default = datetime.utcnow)
-
+	
+	answered_questions = db.relationship('Question', back_populates="user_answers")
 	def __repr__(self):
 		return '<Answers {}>'.format(self.id)
 		
@@ -136,8 +151,6 @@ def load_user(id):
 
 #Create DB models
 db.create_all()
-
-
 
 #Print all DB data
 print(User.query.all())
