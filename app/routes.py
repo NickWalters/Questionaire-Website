@@ -64,9 +64,15 @@ def register():
 	
 	return render_template('register.html', title='Register', form=form)
 	
+
+@app.route('/prelogin')
+@app.route('/')
+def prelogin():
+	return render_template('prelogin.html')
+
 @app.route('/')
 def home():
-	return render_template('index.html')
+ 	return render_template('index.html')
 
 @app.route('/quizSelect')
 @login_required
@@ -126,3 +132,6 @@ def hoster():
 @login_required
 def results():
 	return render_template('results.html')
+
+
+
