@@ -143,7 +143,7 @@ class UserAnswer(db.Model):
 	
 	answered_questions = db.relationship('Question', back_populates="user_answers")
 	def __repr__(self):
-		return '<Answers {}>'.format(self.id)
+		return '<Answer id:{}'.format(self.id)+' u_id:{}'.format(self.user_id)+' q_id:{}'.format(self.question_id)+' q_id:{}'.format(self.choice_id)+'>'
 		
 @login.user_loader
 def load_user(id):

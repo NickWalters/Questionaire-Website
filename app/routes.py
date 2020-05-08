@@ -97,8 +97,6 @@ def flag():
 @app.route('/languageQuiz')
 def languageQuiz():
 	return render_template('HTML-languageQuizFinal.html')
-	
-	
 
 admin = Admin(app)
 admin.add_view(ModelView(User, db.session))
