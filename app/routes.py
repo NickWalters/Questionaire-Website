@@ -120,3 +120,9 @@ def hoster():
 	else:
 		flash('Cannot access admin page directly')
 		return redirect(url_for('index'))
+
+
+@app.route('/results')
+@login_required
+def results():
+	return render_template('results.html')
