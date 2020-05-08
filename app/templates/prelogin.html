@@ -7,8 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
 </head>
+<style>
+    body {
+        background-image: url(/static/images/overlay.png);
+        background-size: cover;
+    }
+</style>
 <body>
-    <a href="{{ url_for('login') }}">log in</a>
-    <a href="{{ url_for('register') }}">register</a>
+    <div>
+    <h4 style="color: white;">Welcome, Please Log in or Register</h4>
+    <a href="{{ url_for('login') }}" class="button special big">Log in</a>
+    <a href="{{ url_for('register') }}" class="button special big">Register</a>
+    </div>
 </body>
 </html>

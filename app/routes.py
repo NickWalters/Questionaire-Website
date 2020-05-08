@@ -36,7 +36,7 @@ def login():
 def logout():
 	logout_user()
 	flash("You have Logged Out")
-	return redirect(url_for('index'))
+	return redirect(url_for('prelogin'))
 	
 @app.route('/index')
 def index():
