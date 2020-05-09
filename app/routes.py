@@ -138,7 +138,7 @@ def results():
 	choices = db.session.query(QuestionChoice)
 	for answers1 in answers:
 		for choices1 in choices:
-			if choices1.id == answers1.choice_id and choices1.choice_correct == True:
+			if choices1.id == answers1.choice_id and choices1.choice_correct == True and answers1.user_id == current_user.id:
 				score = score + 1
 
 	return render_template('results.html', score = score)
