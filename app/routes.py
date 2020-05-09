@@ -133,7 +133,15 @@ def hoster():
 @app.route('/results')
 @login_required
 def results():
-	return render_template('results.html')
+	score = 0
+	answers = db.session.query(UserAnswer)
+	choices = db.session.query(QuestionChoice)
+	for answers1 in answers:
+		for choices1 in choices:
+			if choices1.id == answers1.choice_id and choices1.choice_correct == True:
+				score = score + 1
+
+	return render_template('results.html', score = score)
 
 
 
