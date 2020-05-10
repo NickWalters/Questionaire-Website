@@ -21,12 +21,10 @@
 				<nav id="nav">
 					<ul class="menu">
 							<li><a href="{{ url_for('index') }}">Home</a></li>
-							{% if current_user.is_anonymous %}
-							<li><a href="{{ url_for('login') }}">Login</a></li>
-							{% else %}
+							{% if current_user.admin == true%}
 							<li><a href="{{ url_for('admin.index') }}">Admin</a></li>
-							<li><a href="{{ url_for('logout') }}">Logout</a></li>
 							{% endif %}
+							<li><a href="{{ url_for('logout') }}">Logout</a></li>
 					</ul>
 				</nav>
 			</header>
