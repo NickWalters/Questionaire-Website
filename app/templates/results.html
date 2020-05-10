@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
     <title>View your results!</title>
 </head>
+<style>
+	.result{
+		font-size: 10vh;
+	}
+	.score, .message{
+		text-align: center;
+	}
+</style>
 <body>
     <div class="center">
         <!-- Header -->
@@ -18,13 +26,10 @@
 				</nav>
 			</header>
 
-			<div>
-				<span>{{score}}</span>
-				<p>/</p>
-				<span>10</span>
-			</div>
-			<div>
-				<p>you got 4 out of 10 correct</p>
+			<div class="result" class="center">
+				<h1 class="score">{{score}}/10</h1>
+			
+				<p class="message">you got {{score}} out of 10 correct</p>
 			</div>
 			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
     </div>

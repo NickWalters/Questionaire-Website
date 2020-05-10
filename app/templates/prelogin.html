@@ -12,10 +12,15 @@
         background-image: url(/static/images/overlay.png);
         background-size: cover;
     }
+
+    div {
+        text-align: center;
+        margin-top: 13%;
+    }
 </style>
 <body>
     <div>
-    <h4 style="color: white;">Welcome, Please Log in or Register</h4>
+    <h2 style="color: white;">Welcome, Please Log in or Register</h2>
     <a href="{{ url_for('login') }}" class="button special big">Log in</a>
     <a href="{{ url_for('register') }}" class="button special big">Register</a>
     </div>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="loginBox">
+<div class="loginBox center">
 	<h1>Sign in</h1>
 	<form action="" method="post" novalidate>
 		{{ form.hidden_tag() }}
@@ -36,11 +36,11 @@
 			{{ form.submit() }}
 		</p>
 		</div>
+		<a href="{{ url_for('register') }}" class="button">Register</a>
 
 
 	</form>
 	
-	<h3><a href="{{ url_for('register') }}">Sign up now!</a></h3>
 	
 </div> 
 

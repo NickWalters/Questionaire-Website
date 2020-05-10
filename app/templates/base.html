@@ -17,13 +17,13 @@
 			{% endif %}
 		</head>
 		<body>
-				<div>
+				<div class="center">
 					{% if current_user.is_anonymous %}
-					<a href="{{ url_for('prelogin') }}">Home</a>
-					<a href="{{ url_for('login') }}">Login</a>
+					<a href="{{ url_for('prelogin') }}" class="button">Home</a>
+					<a href="{{ url_for('login') }}" class="button">Login</a>
 					{% else %}
-					<a href="{{ url_for('index') }}">Home</a>
-					<a href="{{ url_for('logout') }}">Logout</a>
+					<a href="{{ url_for('index') }}" class="button">Home</a>
+					<a href="{{ url_for('logout') }}" class="button">Logout</a>
 					{% endif %}
 				</div>
 				<hr>
