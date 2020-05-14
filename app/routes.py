@@ -86,11 +86,15 @@ def flag():
 	quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
 	quizStyle = quiz.quizStyle.template_file
 	question=quiz.questions.filter_by(question_number=1).first()
-	last_answered_question = current_user.get_last_answer(quiz = quiz)
-	if last_answered_question != None:
-		print(last_answered_question)
-		question = quiz.get_next_question(question = last_answered_question)
+	last_user_answer = current_user.get_last_answer(quiz = quiz)
 
+	if last_user_answer != None:
+		print(last_user_answer)
+		question = quiz.get_next_question(last_user_answer = last_user_answer)
+
+	if question is None:
+		return render_template('Results.html',quiz = quiz)
+		
 	choices = []
 	for choice in question.question_choices:
 		choices.append((choice.choice_number,choice.choice_content))
@@ -100,6 +104,7 @@ def flag():
 		print("submitting: {}".format(answer))
 		db.session.add(answer)
 		db.session.commit()
+
 	return render_template(quizStyle,quiz = quiz,question = question,form = form)
 
 @app.route('/languageQuiz')

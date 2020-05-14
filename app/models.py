@@ -54,8 +54,17 @@ class Quiz(db.Model):
 	quizStyle = relationship('QuizStyle', back_populates="quizzes")
 	questions = db.relationship('Question', backref='quiz', lazy='dynamic')
 
-	def get_next_question(self, question):
-		next_question_number = self.questions.filter_by(id = question.id).first().question_number
+	def get_next_question(self, last_user_answer):
+		last_answered_question = self.questions.filter_by(id = last_user_answer.question_id).first()
+		last_answered_question_number = last_answered_question.question_number
+		next_question = last_answered_question_number + 1
+		
+		next_question_list = self.questions.filter_by(question_number = next_question)
+		if next_question_list.count() == 0 :
+			print("THERE ARE NO MORE QUESTIONS")
+			return None
+		print("GOT HERE 2")
+		next_question_number = next_question_list.first().question_number
 		
 		print("NEXT QUESTION NUMBER: {}".format(next_question_number))
 		return self.questions.filter_by(question_number=next_question_number).first()
