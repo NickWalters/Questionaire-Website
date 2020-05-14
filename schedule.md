@@ -17,6 +17,8 @@
 * Wrong links around the place
 * Change quizSelect to use DB (for quiz in Quiz.query.all())
 * AttributeError: 'AnonymousUserMixin' object has no attribute 'get_last_answer'
+* Takes submitting question 1 multiple times
+* Question 10 not submitting -> form issue
 
 ### Minor issues:
 * quizSelect border around images
