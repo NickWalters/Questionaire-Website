@@ -1,3 +1,6 @@
+### Github Meeting:
+https://bit.ly/3fT6ahN
+
 ### Project Plan:
 * <del>Quiz content into DB - Flag quiz
 * Quiz content into DB - Language quiz
