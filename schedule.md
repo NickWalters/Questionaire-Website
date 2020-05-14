@@ -1,17 +1,16 @@
 ### Github Meeting:
-https://bit.ly/3fT6ahN
 
 ### Project Plan:
 * <del>Quiz content into DB - Flag quiz
 * Quiz content into DB - Language quiz
 * <del>POST of quiz data to DB
 * Flask-Login (done?)
-* Flask-Admin
+* Flask-Admin - fix up individual pages
 * Migrate
 * Unit testing
-* DB drawings
+* DB drawings - dbSchema.xlsx
 * README.md
-* Results landing page
+* Results landing page 
 
 ### Known issues:
 * IMG files > 5MB
