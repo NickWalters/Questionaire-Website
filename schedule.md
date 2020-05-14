@@ -33,3 +33,9 @@
 * quiz.must_complete_attempts
 * timer
 * leaderboards
+
+Reference for Images
+banner.jpg
+- https://unsplash.com/photos/jCBzW_Q_UGI
+Overlay.png
+- https://www.pexels.com/photo/beige-analog-gauge-697662/
