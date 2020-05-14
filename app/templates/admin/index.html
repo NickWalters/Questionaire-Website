@@ -1,1 +1,7 @@
-{% extends 'admin/master.html'%}
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+
+    <a class="btn btn-primary" href="/"><i class="icon-arrow-left icon-white"></i> Back</a>
+
+{% endblock body %}

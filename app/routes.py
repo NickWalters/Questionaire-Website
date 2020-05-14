@@ -123,6 +123,7 @@ admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Quiz, db.session))
 admin.add_view(ModelView(Question, db.session))
 admin.add_view(ModelView(QuestionChoice, db.session))
+admin.add_view(ModelView(QuestionContent, db.session))
 admin.add_view(ModelView(UserAnswer, db.session))
 
 @app.route('/hoster')
@@ -154,6 +155,3 @@ def results():
 				score = score + 1
 
 	return render_template('results.html', score = score)
-
-
-
