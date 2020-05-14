@@ -14,6 +14,7 @@
 * IMG files > 5MB
 * Wrong links around the place
 * Change quizSelect to use DB (for quiz in Quiz.query.all())
+* AttributeError: 'AnonymousUserMixin' object has no attribute 'get_last_answer'
 
 ### Minor issues:
 * quizSelect border around images
