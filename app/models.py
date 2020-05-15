@@ -6,6 +6,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 from flask_migrate import Migrate
+from flask_admin.contrib.sqla import ModelView
+from flask_admin import Admin
+from app import app, db
 
 class User(UserMixin, db.Model):
 	__tablename__ = "user"
@@ -41,6 +44,9 @@ class User(UserMixin, db.Model):
 
 	def __repr__(self):
 		return 'User: {}'.format(self.username)+' (admin:{}'.format(self.admin)+')'
+		
+class UserView(ModelView):
+	form_columns = ['username','email','admin','password_hash']
 
 class Quiz(db.Model):
 	__tablename__ = 'quiz'
@@ -161,18 +167,43 @@ class UserAnswer(db.Model):
 	def __repr__(self):
 		return '<Answer id:{}'.format(self.id)+' u_id:{}'.format(self.user_id)+' q_id:{}'.format(self.question_id)+' q_id:{}'.format(self.choice_id)+'>'
 		
+class Score(db.Model):
+	__tablename__ = 'score'
+	id = db.Column(db.Integer, primary_key=True)
+	allScores = db.Column(db.Integer)
+	
+	def __repr__(self):
+		return '<Score {}>'.format(self.allScores)
+		
 @login.user_loader
 def load_user(id):
 	return User.query.get(int(id))
+	
+
+admin = Admin(app)
+admin.add_view(UserView(User, db.session))
+admin.add_view(ModelView(Quiz, db.session))
+admin.add_view(ModelView(QuizStyle, db.session))
+admin.add_view(ModelView(Question, db.session))
+admin.add_view(ModelView(QuestionChoice, db.session))
+admin.add_view(ModelView(QuestionContent, db.session))
+admin.add_view(ModelView(UserAnswer, db.session))
+
+
 
 #Create DB models
 db.create_all()
 
+
+
+
+
 #Print all DB data
-print(User.query.all())
-print(Quiz.query.all())
-print(QuizStyle.query.all())
-print(Question.query.all())
-print(QuestionContent.query.all())
+#print(User.query.all())
+#print(Quiz.query.all())
+#print(QuizStyle.query.all())
+print(Score.query.all())
+#print(Question.query.all())
+#print(QuestionContent.query.all())
 #print(QuestionChoice.query.all())
-print(UserAnswer.query.all())
+#print(UserAnswer.query.all())
