@@ -93,7 +93,14 @@ def flag():
 		question = quiz.get_next_question(last_user_answer = last_user_answer)
 
 	if question is None:
-		return render_template('Results.html',quiz = quiz)
+		score = 0
+		answers = db.session.query(UserAnswer)
+		choices = db.session.query(QuestionChoice)
+		for answers1 in answers:
+			for choices1 in choices:
+				if choices1.id == answers1.choice_id and choices1.choice_correct == True and answers1.user_id == current_user.id:
+					score = score + 1
+		return render_template('Results.html',quiz = quiz, score = score)
 		
 	choices = question.get_question_choices_as_array_of_pairs
 	
@@ -115,6 +122,7 @@ admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Quiz, db.session))
 admin.add_view(ModelView(Question, db.session))
 admin.add_view(ModelView(QuestionChoice, db.session))
+admin.add_view(ModelView(QuestionContent, db.session))
 admin.add_view(ModelView(UserAnswer, db.session))
 
 @app.route('/hoster')
@@ -146,6 +154,3 @@ def results():
 				score = score + 1
 
 	return render_template('results.html', score = score)
-
-
-

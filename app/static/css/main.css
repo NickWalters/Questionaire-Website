@@ -1108,7 +1108,7 @@
 
 		.wrapper.style3 {
 			background-attachment: fixed;
-			background-image: url("../images/banner.png"), url("../images/banner.png");
+			background-image: url("../images/banner.jpg"), url("../images/banner.jpg");
 			background-position: center center;
 			background-size: cover;
 		}
