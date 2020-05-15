@@ -91,10 +91,7 @@ def quiz(quiz_name):
 	quizStyle = quiz.quizStyle.template_file
 	question=quiz.get_first_question()
 	last_user_answer = current_user.get_last_answer(quiz = quiz)
-
-	if last_user_answer != None:
-		print(last_user_answer)
-		question = quiz.get_next_question(last_user_answer = last_user_answer)
+	
 
 	if question is None:
 		score = 0
@@ -104,7 +101,14 @@ def quiz(quiz_name):
 			for choices1 in choices:
 				if choices1.id == answers1.choice_id and choices1.choice_correct == True and answers1.user_id == current_user.id:
 					score = score + 1
-		return render_template('Results.html',quiz = quiz, score = score)
+		db.session.add(Score(allScores = score))
+		db.session.commit()
+		db.session.query(UserAnswer).delete()
+		print(question)
+		
+		
+		return render_template('resultsolo.html',quiz = quiz, score = score)
+		
 	
 	form = None
 	
@@ -120,6 +124,11 @@ def quiz(quiz_name):
 		print("submitting: {}".format(answer))
 		db.session.add(answer)
 		db.session.commit()
+		
+	if last_user_answer != None:
+		print(question)
+		print(last_user_answer)
+		question = quiz.get_next_question(last_user_answer = last_user_answer)
 
 	return render_template(quizStyle,quiz = quiz,question = question,form = form)
 
@@ -127,14 +136,6 @@ def quiz(quiz_name):
 def languageQuiz():
 	return render_template('HTML-languageQuizFinal.html')
 
-admin = Admin(app)
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Quiz, db.session))
-admin.add_view(ModelView(QuizStyle, db.session))
-admin.add_view(ModelView(Question, db.session))
-admin.add_view(ModelView(QuestionChoice, db.session))
-admin.add_view(ModelView(QuestionContent, db.session))
-admin.add_view(ModelView(UserAnswer, db.session))
 
 @app.route('/hoster')
 @login_required
@@ -156,12 +157,15 @@ def hoster():
 @app.route('/results')
 @login_required
 def results():
-	score = 0
-	answers = db.session.query(UserAnswer)
-	choices = db.session.query(QuestionChoice)
-	for answers1 in answers:
-		for choices1 in choices:
-			if choices1.id == answers1.choice_id and choices1.choice_correct == True and answers1.user_id == current_user.id:
-				score = score + 1
 
-	return render_template('results.html', score = score)
+	index = 0;
+	scoretotal = 0;
+	scoreall = db.session.query(Score)
+	for scr in scoreall:
+		index = index + 1
+		scoretotal = scr.allScores + scoretotal
+	averageScore = scoretotal/index
+	round(averageScore, 2)
+	
+
+	return render_template('resultsall.html', averageScore = averageScore)
