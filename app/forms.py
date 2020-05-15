@@ -65,6 +65,7 @@ class ButtonWidget(object):
 			params=self.html_params(name=field.name, **kwargs),
 			label=field.label.text)
 		)
-
+		
+#Credit https://gist.github.com/doobeh/239b1e4586c7425e5114
 class ButtonField(StringField):
     widget = ButtonWidget()
