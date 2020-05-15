@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "siteBase.html" %}
+
+{% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
     <title>View your results!</title>
-</head>
-<style>
-	.result{
-		font-size: 10vh;
-	}
-	.score, .message{
-		text-align: center;
-	}
-</style>
-<body>
+	<style>
+		.result{
+			font-size: 10vh;
+		}
+		.score, .message{
+			text-align: center;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
     <div class="center">
         <!-- Header -->
 			<header id="header">
@@ -32,6 +33,5 @@
 				<p class="message">you got {{score}} out of 10 correct</p>
 			</div>
 			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-    </div>
-</body>
-</html>
+	</div>
+{% endblock %}

@@ -1,22 +1,21 @@
-<!DOCTYPE HTML>
+{% extends "base.html" %}
 
-<html>
-	<head>
+{% block head %}
 		<title>Quiz Select</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		
 		<link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
-	</head>
-	<style>
-		main {
-			padding-top:20px;
-		}
-		div.worldQuiz{
-			padding-top:150px;
-		}
-	</style>
-	<body>
+		<style>
+			main {
+				padding-top:20px;
+			}
+			div.worldQuiz{
+				padding-top:150px;
+			}
+		</style>
+{% endblock %}
+
+{% block body %}
 	<div class="center">
 
 		<!-- Header -->
@@ -66,5 +65,4 @@
 	</div>
 	{% block content %}
 	{% endblock %}
-	</body>
-</html>
+{% endblock %}

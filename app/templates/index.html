@@ -1,20 +1,20 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
+{% extends "siteBase.html" %}
+
+{% block head %}
 		<title>Questionaire - How do you Compare?</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 		
 		<link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
-	</head>
-	<style>
-		div.element1{
-			background-color: white;
-		}
-	</style>
-	<body class="landing">
+		<style>
+			div.element1{
+				background-color: white;
+			}
+		</style>
+{% endblock %}
 
+{% block body %}
 		<!-- Header -->
 			<header id="header" class="alt">
 				<h1><strong><a href="{{ url_for('home') }}">Quiz</a></strong>  Take the Test</h1>
@@ -105,5 +105,4 @@
 					</ul>
 				</div>
 			</footer>
-	</body>
-</html>
+{% endblock %}
