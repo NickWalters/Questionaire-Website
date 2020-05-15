@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
+    <title>View your results!</title>
+</head>
+<style>
+	.result{
+		font-size: 10vh;
+	}
+	.score, .message{
+		text-align: center;
+	}
+</style>
+<body>
+    <div class="center">
+        <!-- Header -->
+			<header id="header">
+				<h1><strong><a href="{{ url_for('home') }}">Your</a></strong> Resultslah </h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="{{ url_for('home') }}">Home</a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<div class="result" class="center">
+				<h1 class="score">{{score}}/10</h1>
+			
+				<p class="message">you got {{score}} out of 10 correct</p>
+			</div>
+			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+    </div>
+</body>
+</html>
