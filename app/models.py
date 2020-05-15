@@ -57,18 +57,11 @@ class Quiz(db.Model):
 	def get_first_question(self):
 		return self.questions.filter_by(question_number=1).first()
 
-	def get_next_question(self, last_user_answer):
-		last_answered_question = self.questions.filter_by(id = last_user_answer.question_id).first()
-		last_answered_question_number = last_answered_question.question_number
-		next_question = last_answered_question_number + 1
-		
-		next_question_list = self.questions.filter_by(question_number = next_question)
-		if next_question_list.count() == 0 :
-			return None
-		next_question_number = next_question_list.first().question_number
-		
-		print("NEXT QUESTION NUMBER: {}".format(next_question_number))
-		return self.questions.filter_by(question_number=next_question_number).first()
+	def get_next_question(self, last_question):
+		return self.questions.filter_by(question_number=last_question.question_number+1).first()
+
+	def get_question_by_question_number(self, question_number):
+		return self.questions.filter_by(question_number = question_number).first()
 
 	def __repr__(self):
 		return '<Quiz {}>'.format(self.quizname)
@@ -115,7 +108,7 @@ class Question(db.Model):
 	question_choices = db.relationship('QuestionChoice', backref='question', lazy='dynamic')
 	question_contents = db.relationship('QuestionContent', backref='question', lazy='dynamic')
 	
-	user_answers = db.relationship('UserAnswer', back_populates="answered_questions")
+	user_answers = db.relationship('UserAnswer', back_populates="answered_question")
 
 	def get_question_choices_as_array_of_pairs(self):
 		choices = []
@@ -157,10 +150,10 @@ class UserAnswer(db.Model):
 	choice_id = db.Column(db.Integer, ForeignKey('questionChoice.id'))
 	timestamp = db.Column(db.DateTime, default = datetime.utcnow)
 	
-	answered_questions = db.relationship('Question', back_populates="user_answers")
+	answered_question = db.relationship('Question', back_populates="user_answers")
 	def __repr__(self):
 		return '<Answer id:{}'.format(self.id)+' u_id:{}'.format(self.user_id)+' q_id:{}'.format(self.question_id)+' q_id:{}'.format(self.choice_id)+'>'
-		
+
 @login.user_loader
 def load_user(id):
 	return User.query.get(int(id))

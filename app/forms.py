@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, HiddenField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
 from wtforms.widgets import html_params, HTMLString
 from app.models import User,Question,QuestionChoice
@@ -28,15 +28,14 @@ class RegistrationForm(FlaskForm):
 		if user is not None:
 			raise ValidationError('Email has been used.')
 
-def StyleOneForm(*args, **kwargs):
+def StyleOneForm(choices, *args, **kwargs):
 	class StaticForm(FlaskForm):
 		pass
+	StaticForm.radioField = RadioField('radioField', coerce=int, choices=choices)
 	StaticForm.submit = SubmitField('Submit')
-	if args:
-		StaticForm.radioField = RadioField('radioField', coerce=int, choices=args[0])
 	return StaticForm()
 
-def StyleTwoForm(*args, **kwargs):
+def StyleTwoForm(choices, question, *args, **kwargs):
 	class StaticForm(FlaskForm):
 		pass
 	if args:

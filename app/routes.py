@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request, abort
+from flask import render_template, flash, redirect, url_for, request, abort, session
 from app import app, db
 from werkzeug.urls import url_parse
 from app.forms import LoginForm, RegistrationForm, StyleOneForm, StyleTwoForm
@@ -83,45 +83,33 @@ def quizSelect():
 
 @app.route('/quiz/<string:quiz_name>', methods=['GET', 'POST'])
 def quiz(quiz_name):
-	quiz = None
-	if quiz_name == 'flag':
-		quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
-	elif quiz_name == 'lang':
-		quiz = Quiz.query.filter_by(quizname="Language Quiz").first()
+	quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
 	quizStyle = quiz.quizStyle.template_file
-	question=quiz.get_first_question()
-	last_user_answer = current_user.get_last_answer(quiz = quiz)
 
-	if last_user_answer != None:
-		print(last_user_answer)
-		question = quiz.get_next_question(last_user_answer = last_user_answer)
-
-	if question is None:
+	if session.get('question_number') != None:
+		question_number = session.pop('question_number', None)
+		question = quiz.get_question_by_question_number(question_number)
+		form = request.form
+		answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=form.get('radioField'))
+		next_question = quiz.get_next_question(last_question = question)
+		if next_question != None:
+			print("I got here 2")
+			session['question_number']=next_question.question_number
+			form = StyleOneForm(next_question.get_question_choices_as_array_of_pairs())
+			return render_template(quizStyle,quiz = quiz,question = next_question,form = form)
 		score = 0
 		answers = db.session.query(UserAnswer)
 		choices = db.session.query(QuestionChoice)
-		for answers1 in answers:
-			for choices1 in choices:
-				if choices1.id == answers1.choice_id and choices1.choice_correct == True and answers1.user_id == current_user.id:
+		for answer in answers:
+			for choice in choices:
+				if choice.id == answer.choice_id and choice.choice_correct == True and answer.user_id == current_user.id:
 					score = score + 1
-		return render_template('Results.html',quiz = quiz, score = score)
-	
-	form = None
-	
-	if quiz.quizStyle.style_name == 'Old flag style':
-		choices = question.get_question_choices_as_array_of_pairs()
-		form = StyleOneForm(choices,request.form)
-	elif quiz.quizStyle.style_name == 'Language quiz style':
-		choices = question.question_choices
-		form = StyleTwoForm(choices,request.form)
-	
-	if form.is_submitted():
-		answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=form.radioField.data)
-		print("submitting: {}".format(answer))
-		db.session.add(answer)
-		db.session.commit()
-
+		return render_template('results.html',quiz = quiz, score = score)
+	question=quiz.get_first_question()
+	session['question_number'] = question.question_number
+	form = StyleOneForm(question.get_question_choices_as_array_of_pairs())
 	return render_template(quizStyle,quiz = quiz,question = question,form = form)
+			
 
 @app.route('/languageQuiz')
 def languageQuiz():

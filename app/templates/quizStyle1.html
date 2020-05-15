@@ -41,7 +41,7 @@
 						<div class="svgContainer"><img id="flag" src="{{ url_for('static',    filename='images/'+question.question_contents.first().img_content) }}" alt=""/></div>
 					</div>
 				</div>
-				<form action="{{ url_for('quiz', quiz_name='flag') }}" method="post" class="answer">
+				<form action="{{ url_for('quiz', quiz_name='flag') }}" method="post" class="answer" name="form">
 					
 					{% for subfield in form.radioField %}
 						<tr>
