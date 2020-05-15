@@ -54,6 +54,9 @@ class Quiz(db.Model):
 	quizStyle = relationship('QuizStyle', back_populates="quizzes")
 	questions = db.relationship('Question', backref='quiz', lazy='dynamic')
 
+	def get_first_question(self):
+		return self.question.filter_by(question_number=1).first()
+
 	def get_next_question(self, last_user_answer):
 		last_answered_question = self.questions.filter_by(id = last_user_answer.question_id).first()
 		last_answered_question_number = last_answered_question.question_number
@@ -61,9 +64,7 @@ class Quiz(db.Model):
 		
 		next_question_list = self.questions.filter_by(question_number = next_question)
 		if next_question_list.count() == 0 :
-			print("THERE ARE NO MORE QUESTIONS")
 			return None
-		print("GOT HERE 2")
 		next_question_number = next_question_list.first().question_number
 		
 		print("NEXT QUESTION NUMBER: {}".format(next_question_number))
@@ -116,6 +117,12 @@ class Question(db.Model):
 	
 	user_answers = db.relationship('UserAnswer', back_populates="answered_questions")
 
+	def get_question_choices_as_array_of_pairs(self):
+		choices = []
+		for choice in self.question_choices:
+			choices.append((choice.choice_number,choice.choice_content))
+		return choices
+	
 	def __repr__(self):
 		return '<Quiz {}'.format(self.quiz_id)+':Q{}>'.format(self.question_number)
 

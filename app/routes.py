@@ -85,7 +85,7 @@ def quizSelect():
 def flag():
 	quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
 	quizStyle = quiz.quizStyle.template_file
-	question=quiz.questions.filter_by(question_number=1).first()
+	question=quiz.get_first_question
 	last_user_answer = current_user.get_last_answer(quiz = quiz)
 
 	if last_user_answer != None:
@@ -95,9 +95,8 @@ def flag():
 	if question is None:
 		return render_template('Results.html',quiz = quiz)
 		
-	choices = []
-	for choice in question.question_choices:
-		choices.append((choice.choice_number,choice.choice_content))
+	choices = question.get_question_choices_as_array_of_pairs
+	
 	form = AnswerForm(choices,request.form)
 	if form.is_submitted():
 		answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=form.radioField.data)
