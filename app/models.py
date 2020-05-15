@@ -55,7 +55,7 @@ class Quiz(db.Model):
 	questions = db.relationship('Question', backref='quiz', lazy='dynamic')
 
 	def get_first_question(self):
-		return self.question.filter_by(question_number=1).first()
+		return self.questions.filter_by(question_number=1).first()
 
 	def get_next_question(self, last_user_answer):
 		last_answered_question = self.questions.filter_by(id = last_user_answer.question_id).first()

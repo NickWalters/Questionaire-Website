@@ -81,11 +81,14 @@ def home():
 def quizSelect():
 	return render_template('quizSelect.html')
 
-@app.route('/Flag', methods=['GET', 'POST'])
-def flag():
-	quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
+@app.route('/quiz/<string:quiz_name>', methods=['GET', 'POST'])
+def quiz(quiz_name):
+	quiz = None
+	if quiz_name == 'flag':
+		quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
+
 	quizStyle = quiz.quizStyle.template_file
-	question=quiz.get_first_question
+	question=quiz.get_first_question()
 	last_user_answer = current_user.get_last_answer(quiz = quiz)
 
 	if last_user_answer != None:
@@ -102,7 +105,7 @@ def flag():
 					score = score + 1
 		return render_template('Results.html',quiz = quiz, score = score)
 		
-	choices = question.get_question_choices_as_array_of_pairs
+	choices = question.get_question_choices_as_array_of_pairs()
 	
 	form = AnswerForm(choices,request.form)
 	if form.is_submitted():
