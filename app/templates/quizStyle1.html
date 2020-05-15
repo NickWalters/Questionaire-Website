@@ -44,11 +44,11 @@
 				<form action="{{ url_for('quiz', quiz_name='flag') }}" method="post" class="answer">
 					
 					{% for subfield in form.radioField %}
-    <tr>
-        <td>{{ subfield }}</td>
-        <td>{{ subfield.label }}</td>
-    </tr>
-{% endfor %}
+						<tr>
+							<td>{{ subfield }}</td>
+							<td>{{ subfield.label }}</td>
+						</tr>
+					{% endfor %}
 
 					<div class="button">
 						{{form.submit()}}

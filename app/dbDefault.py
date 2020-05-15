@@ -92,9 +92,9 @@ db.session.add(QuestionChoice(question_id=10,choice_number=2,choice_content="Ind
 db.session.add(QuestionChoice(question_id=10,choice_number=3,choice_content="Angola",choice_correct=False))
 db.session.add(QuestionChoice(question_id=10,choice_number=4,choice_content="Jersey",choice_correct=True))
 
-db.session.add(Quiz(quizname="Language Quiz",creator_id=2,style=2))
+db.session.add(Quiz(quizname="Language Quiz",creator_id=1,style=2))
 
-db.session.add(QuizStyle(style_name="Language quiz style",template_file="HTML-languageQuizFinal.html"))
+db.session.add(QuizStyle(style_name="Language quiz style",template_file="quizStyle2.html"))
 
 db.session.add(Question(quiz_id=2,question_number=1))
 db.session.add(Question(quiz_id=2,question_number=2))

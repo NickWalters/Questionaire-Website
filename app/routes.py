@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, abort
 from app import app, db
 from werkzeug.urls import url_parse
-from app.forms import LoginForm, RegistrationForm, AnswerForm
+from app.forms import LoginForm, RegistrationForm, StyleOneForm, StyleTwoForm
 from app.models import *
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 from flask_admin import Admin
@@ -86,7 +86,8 @@ def quiz(quiz_name):
 	quiz = None
 	if quiz_name == 'flag':
 		quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
-
+	elif quiz_name == 'lang':
+		quiz = Quiz.query.filter_by(quizname="Language Quiz").first()
 	quizStyle = quiz.quizStyle.template_file
 	question=quiz.get_first_question()
 	last_user_answer = current_user.get_last_answer(quiz = quiz)
@@ -104,10 +105,16 @@ def quiz(quiz_name):
 				if choices1.id == answers1.choice_id and choices1.choice_correct == True and answers1.user_id == current_user.id:
 					score = score + 1
 		return render_template('Results.html',quiz = quiz, score = score)
-		
-	choices = question.get_question_choices_as_array_of_pairs()
 	
-	form = AnswerForm(choices,request.form)
+	form = None
+	
+	if quiz.quizStyle.style_name == 'Old flag style':
+		choices = question.get_question_choices_as_array_of_pairs()
+		form = StyleOneForm(choices,request.form)
+	elif quiz.quizStyle.style_name == 'Language quiz style':
+		choices = question.question_choices
+		form = StyleTwoForm(choices,request.form)
+	
 	if form.is_submitted():
 		answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=form.radioField.data)
 		print("submitting: {}".format(answer))
@@ -123,6 +130,7 @@ def languageQuiz():
 admin = Admin(app)
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Quiz, db.session))
+admin.add_view(ModelView(QuizStyle, db.session))
 admin.add_view(ModelView(Question, db.session))
 admin.add_view(ModelView(QuestionChoice, db.session))
 admin.add_view(ModelView(QuestionContent, db.session))
