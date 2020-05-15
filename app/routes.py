@@ -93,6 +93,7 @@ def quiz(quiz_name):
 		question = quiz.get_question_by_question_number(question_number)
 		form = request.form
 		if form:
+			print("here")
 			answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=form.get('radioField'))
 			db.session.add(answer)
 			db.session.commit()
