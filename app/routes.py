@@ -83,33 +83,47 @@ def quizSelect():
 
 @app.route('/quiz/<string:quiz_name>', methods=['GET', 'POST'])
 def quiz(quiz_name):
-	quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
-	quizStyle = quiz.quizStyle.template_file
+	quiz = None
+	if quiz_name == "flag":	quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
+	if quiz_name == "lang": quiz = Quiz.query.filter_by(quizname="Language Quiz").first()
+	quizStyle = quiz.quizStyle
 
 	if session.get('question_number') != None:
 		question_number = session.pop('question_number', None)
 		question = quiz.get_question_by_question_number(question_number)
 		form = request.form
-		answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=form.get('radioField'))
-		next_question = quiz.get_next_question(last_question = question)
-		if next_question != None:
-			print("I got here 2")
-			session['question_number']=next_question.question_number
-			form = StyleOneForm(next_question.get_question_choices_as_array_of_pairs())
-			return render_template(quizStyle,quiz = quiz,question = next_question,form = form)
-		score = 0
-		answers = db.session.query(UserAnswer)
-		choices = db.session.query(QuestionChoice)
-		for answer in answers:
-			for choice in choices:
-				if choice.id == answer.choice_id and choice.choice_correct == True and answer.user_id == current_user.id:
-					score = score + 1
-		return render_template('results.html',quiz = quiz, score = score)
+		if form:
+			answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=form.get('radioField'))
+			db.session.add(answer)
+			db.session.commit()
+			next_question = quiz.get_next_question(last_question = question)
+			if next_question != None:
+				session['question_number']=next_question.question_number
+				form = make_form(quizStyle, next_question)
+				return render_template(quizStyle.template_file,quiz = quiz,question = next_question,form = form)
+			score = 0
+			answers = db.session.query(UserAnswer)
+			choices = db.session.query(QuestionChoice)
+			for answer in answers:
+				for choice in choices:
+					if choice.id == answer.choice_id and choice.choice_correct == True and answer.user_id == current_user.id:
+						score = score + 1
+			return render_template('results.html',quiz = quiz, score = score)
+		#if no form submitted
+		else :
+			form = make_form(quizStyle, question)
+			return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
+	#If starting from the beginning, no cookie
 	question=quiz.get_first_question()
 	session['question_number'] = question.question_number
-	form = StyleOneForm(question.get_question_choices_as_array_of_pairs())
-	return render_template(quizStyle,quiz = quiz,question = question,form = form)
-			
+	form = make_form(quizStyle, question)
+	return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
+
+def make_form(style, question):
+	if style.id == 1:
+		return StyleOneForm(question.get_question_choices_as_array_of_pairs())
+	else :#style.id == 2:
+		return StyleTwoForm(question.get_question_choices_as_array_of_pairs())
 
 @app.route('/languageQuiz')
 def languageQuiz():
