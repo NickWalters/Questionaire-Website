@@ -1,27 +1,29 @@
 ### Github Meeting:
 
-### Project Plan:
+### Project Requirements:
 * <del>Quiz content into DB - Flag quiz
-* Quiz content into DB - Language quiz
+* <del>Quiz content into DB - Language quiz
 * <del>POST of quiz data to DB
-* Flask-Login (done?)
+* <del>Flask-Login (done?)
+* <del>Migrate
 * Flask-Admin - fix up individual pages
-* Migrate
 * Unit testing
 * DB drawings - dbSchema.xlsx
 * README.md
-* Results landing page 
+* Results landing page  
 
 ### Known issues:
-* IMG files > 5MB
+* <del>IMG files > 5MB
 * Wrong links around the place
+* Form validation on quizzes - reject empty forms
 * Change quizSelect to use DB (for quiz in Quiz.query.all())
 * AttributeError: 'AnonymousUserMixin' object has no attribute 'get_last_answer'
-* Takes submitting question 1 multiple times
-* Question 10 not submitting -> form issue
+* <del>Takes submitting question 1 multiple times
+* <del>Question 10 not submitting -> form issue
 
-### Minor issues:
+### Minor cosmetic issues:
 * quizSelect border around images
+* Style mixups from template corrections
 * User.get_last_answer(self, quiz) is hacky
 
 ### Optional extension:
@@ -39,3 +41,5 @@ banner.jpg
 - https://unsplash.com/photos/jCBzW_Q_UGI
 Overlay.png
 - https://www.pexels.com/photo/beige-analog-gauge-697662/
+Flag quiz - all .svg
+- http://hjnilsson.github.io/country-flags/
