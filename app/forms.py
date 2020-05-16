@@ -38,6 +38,6 @@ def StyleOneForm(choices, *args, **kwargs):
 def StyleTwoForm(choices, *args, **kwargs):
 	class StaticForm(FlaskForm):
 		pass
-	StaticForm.radioField = RadioField('radioField', coerce=int, choices=choices)
-	StaticForm.submit = SubmitField('Submit')
+	print("Here8")
+	StaticForm.submitFields = [SubmitField(choice[1]) for choice in choices]
 	return StaticForm()

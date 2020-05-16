@@ -15,9 +15,11 @@
             <div id="answer-buttons" class="btn-grid">
                 <form action="{{ url_for('quiz', quiz_name='lang') }}" method="post" class="answer"></form>
                     <div id="answer-buttons" class="btn-grid">
-                        {% for choice in question.question_choices %}
-                            <button id="btn0" class="btn">{{choice.choice_content}}</button>
-                        {% endfor %}
+                        <div class="button"></div>
+                            {{ form.submitFields[0].get(0)}}
+                        </div>
+                        
+                        
                     </div>
                 </form>
             </div>

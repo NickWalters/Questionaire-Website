@@ -118,6 +118,7 @@ def quiz(quiz_name):
 	question=quiz.get_first_question()
 	session['question_number'] = question.question_number
 	form = make_form(quizStyle, question)
+	print("Here9")
 	return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 
 def make_form(style, question):
