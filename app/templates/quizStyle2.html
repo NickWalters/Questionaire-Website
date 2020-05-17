@@ -13,13 +13,28 @@
             <p id="p1" style="text-align: center;">{{question.question_contents.first().text_content}}</p>
             <p class="center"><img src="{{ url_for('static',    filename='images/'+question.question_contents.first().img_content) }}" alt="map" id="image"></p>
             <div id="answer-buttons" class="btn-grid">
-                <form action="{{ url_for('quiz', quiz_name='lang') }}" method="post" class="answer"></form>
+                <form action="{{ url_for('quiz', quiz_name='lang') }}" method="post" class="answer">
                     <div id="answer-buttons" class="btn-grid">
                         <div class="button"></div>
-                            {{ form.submitFields[0].get(0)}}
+                            {% if form.len > 0 %}
+                                {{form.submitField0()}}
+                            {% endif %}
+                            {% if form.len > 1 %}
+                                {{form.submitField1()}}
+                            {% endif %}
+                            {% if form.len > 2 %}
+                                {{form.submitField2()}}
+                            {% endif %}
+                            {% if form.len > 3 %}
+                                {{form.submitField3()}}
+                            {% endif %}
+                            {% if form.len > 4 %}
+                                {{form.submitField4()}}
+                            {% endif %}
+                            {% if form.len > 5 %}
+                                {{form.submitField5()}}
+                            {% endif %}
                         </div>
-                        
-                        
                     </div>
                 </form>
             </div>

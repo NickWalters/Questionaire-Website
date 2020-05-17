@@ -91,17 +91,29 @@ def quiz(quiz_name):
 	if session.get('question_number') != None:
 		question_number = session.pop('question_number', None)
 		question = quiz.get_question_by_question_number(question_number)
-		form = request.form
-		if form:
-			print("here")
-			answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=form.get('radioField'))
+		form = make_form(quizStyle, question)
+		submitted_form = request.form
+		if submitted_form:
+			submitted_choice = None
+			print(quizStyle)
+			if quizStyle.id == 1 :
+				submitted_choice = submitted_form.get('radioField')
+			elif quizStyle.id == 2:
+				i = 0
+				while i < form.len:
+					choices_array = question.get_question_choices_as_array_of_pairs()
+					if choices_array[i][1] == list(submitted_form.values())[0]:
+						submitted_choice = i
+						break
+					i = i + 1
+			answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=submitted_choice)
 			db.session.add(answer)
 			db.session.commit()
 			next_question = quiz.get_next_question(last_question = question)
 			if next_question != None:
 				session['question_number']=next_question.question_number
-				form = make_form(quizStyle, next_question)
-				return render_template(quizStyle.template_file,quiz = quiz,question = next_question,form = form)
+				next_form = make_form(quizStyle, next_question)
+				return render_template(quizStyle.template_file,quiz = quiz,question = next_question,form = next_form)
 			score = 0
 			answers = db.session.query(UserAnswer)
 			choices = db.session.query(QuestionChoice)
@@ -112,13 +124,11 @@ def quiz(quiz_name):
 			return render_template('results.html',quiz = quiz, score = score)
 		#if no form submitted
 		else :
-			form = make_form(quizStyle, question)
 			return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 	#If starting from the beginning, no cookie
 	question=quiz.get_first_question()
 	session['question_number'] = question.question_number
 	form = make_form(quizStyle, question)
-	print("Here9")
 	return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 
 def make_form(style, question):

@@ -38,6 +38,12 @@ def StyleOneForm(choices, *args, **kwargs):
 def StyleTwoForm(choices, *args, **kwargs):
 	class StaticForm(FlaskForm):
 		pass
-	print("Here8")
-	StaticForm.submitFields = [SubmitField(choice[1]) for choice in choices]
+	#StaticForm.submitFields = [SubmitField(choice[1]) for choice in choices]
+	StaticForm.len = len(choices)
+	if StaticForm.len > 0: StaticForm.submitField0 = SubmitField(choices[0][1])
+	if StaticForm.len > 1: StaticForm.submitField1 = SubmitField(choices[1][1])
+	if StaticForm.len > 2: StaticForm.submitField2 = SubmitField(choices[2][1])
+	if StaticForm.len > 3: StaticForm.submitField3 = SubmitField(choices[3][1])
+	if StaticForm.len > 4: StaticForm.submitField4 = SubmitField(choices[4][1])
+	if StaticForm.len > 5: StaticForm.submitField5 = SubmitField(choices[5][1])
 	return StaticForm()
