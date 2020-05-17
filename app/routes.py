@@ -79,13 +79,13 @@ def home():
 @app.route('/quizSelect')
 @login_required
 def quizSelect():
-	return render_template('quizSelect.html')
+	return render_template('quizSelect.html', quizzes = Quiz.query.all())
 
 @app.route('/quiz/<string:quiz_name>', methods=['GET', 'POST'])
 def quiz(quiz_name):
 	quiz = None
-	if quiz_name == "flag":	quiz = Quiz.query.filter_by(quizname="Flag Quiz").first()
-	if quiz_name == "lang": quiz = Quiz.query.filter_by(quizname="Language Quiz").first()
+	for quiz in Quiz.query.all():
+		if quiz_name == quiz.short(): quiz = quiz
 	quizStyle = quiz.quizStyle
 
 	if session.get('question_number') != None:

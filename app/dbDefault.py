@@ -19,6 +19,8 @@ db.session.add(Quiz(quizname="Flag Quiz",creator_id=1,style=1))
 
 db.session.add(QuizStyle(style_name="Old flag style",template_file="quizStyle1.html"))
 
+db.session.add(QuizContent(quiz_id=1,text_content="Are you truly aware of the outside world? Do you have what it takes to test your knowledge on the flags of the world? Take our test !",img_content="au.svg"))
+
 db.session.add(Question(quiz_id=1,question_number=1))
 db.session.add(Question(quiz_id=1,question_number=2))
 db.session.add(Question(quiz_id=1,question_number=3))
@@ -95,6 +97,8 @@ db.session.add(QuestionChoice(question_id=10,choice_number=4,choice_content="Jer
 db.session.add(Quiz(quizname="Language Quiz",creator_id=1,style=2))
 
 db.session.add(QuizStyle(style_name="Language quiz style",template_file="quizStyle2.html"))
+
+db.session.add(QuizContent(quiz_id=2,text_content="How much do you know about world culture, information and languages?",img_content="people-banner.png"))
 
 db.session.add(Question(quiz_id=2,question_number=1))
 db.session.add(Question(quiz_id=2,question_number=2))

@@ -53,6 +53,10 @@ class Quiz(db.Model):
 	style = db.Column(db.Integer, ForeignKey('quizStyle.id'))
 	quizStyle = relationship('QuizStyle', back_populates="quizzes")
 	questions = db.relationship('Question', backref='quiz', lazy='dynamic')
+	quizContents = db.relationship('QuizContent', backref='quiz', lazy='dynamic')
+	
+	def short(self):
+		return self.quizname.split(' ', 1)[0].lower()
 
 	def get_first_question(self):
 		return self.questions.filter_by(question_number=1).first()
@@ -66,6 +70,15 @@ class Quiz(db.Model):
 	def __repr__(self):
 		return '<Quiz {}>'.format(self.quizname)
 
+class QuizContent(db.Model):
+	__tablename__ = 'quizContent'
+	id = db.Column(db.Integer,primary_key=True)
+	quiz_id = db.Column(db.Integer, ForeignKey('quiz.id'))
+	text_content = db.Column(db.String(128))
+	img_content = db.Column(db.String(80))
+	
+	def __repr__(self):
+		return '<Question {}>'.format(self.question_id)
 
 class QuizStyle(db.Model):
 	__tablename__ = 'quizStyle'
@@ -80,24 +93,6 @@ class QuizStyle(db.Model):
 
 	def __repr__(self):
 		return '<Style: {}>'.format(self.style_name)
-
-"""
-class StyleJs(db.Model):
-	__tablename__ = 'styleJs'
-	id = db.Column(db.Integer, ForeignKey('quizStyle.id'))
-	content = db.Column(db.String(80))
-
-	def __repr__(self):
-		return '<QuizJs {}>'.format(self.content)
-
-class StyleCss(db.Model):
-	__tablename__ = 'styleCss'
-	id = db.Column(db.Integer, ForeignKey('quizStyle.id'))
-	content = db.Column(db.String(80))
-
-	def __repr__(self):
-		return '<QuizCss {}>'.format(self.content)
-"""
 
 class Question(db.Model):
 	__tablename__ = 'question'
@@ -162,10 +157,10 @@ def load_user(id):
 db.create_all()
 
 #Print all DB data
-print(User.query.all())
-print(Quiz.query.all())
-print(QuizStyle.query.all())
-print(Question.query.all())
-print(QuestionContent.query.all())
+#print(User.query.all())
+#print(Quiz.query.all())
+#print(QuizStyle.query.all())
+#print(Question.query.all())
+#print(QuestionContent.query.all())
 #print(QuestionChoice.query.all())
-print(UserAnswer.query.all())
+#print(UserAnswer.query.all())

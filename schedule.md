@@ -17,8 +17,9 @@
 * Wrong links around the place
 * Form validation on quizzes - reject empty forms + check form data is valid
 * Will proceed to next question even if the answer failed to commit to DB
-* Change quizSelect to use DB (for quiz in Quiz.query.all())
+* <del>Change quizSelect to use DB (for quiz in Quiz.query.all())
 * AttributeError: 'AnonymousUserMixin' object has no attribute 'get_last_answer' when attempting to do a quiz without being loged in
+* <del>Quiz blurb variable in DB
 * <del>Takes submitting question 1 multiple times
 * <del>Question 10 not submitting -> form issue
 
