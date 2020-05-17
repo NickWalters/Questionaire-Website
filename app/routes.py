@@ -85,7 +85,7 @@ def quizSelect():
 def quiz(quiz_name):
 	quiz = None
 	for quiz in Quiz.query.all():
-		if quiz_name == quiz.short(): quiz = quiz
+		if quiz_name == quiz.short(): break
 	quizStyle = quiz.quizStyle
 
 	if session.get('question_number') != None:
@@ -145,6 +145,7 @@ admin = Admin(app)
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Quiz, db.session))
 admin.add_view(ModelView(QuizStyle, db.session))
+admin.add_view(ModelView(QuizContent, db.session))
 admin.add_view(ModelView(Question, db.session))
 admin.add_view(ModelView(QuestionChoice, db.session))
 admin.add_view(ModelView(QuestionContent, db.session))

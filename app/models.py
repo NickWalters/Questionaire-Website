@@ -40,7 +40,7 @@ class User(UserMixin, db.Model):
 		return lastanswer
 
 	def __repr__(self):
-		return 'User: {}'.format(self.username)+' (admin:{}'.format(self.admin)+')'
+		return self.username
 
 class Quiz(db.Model):
 	__tablename__ = 'quiz'
@@ -68,7 +68,7 @@ class Quiz(db.Model):
 		return self.questions.filter_by(question_number = question_number).first()
 
 	def __repr__(self):
-		return '<Quiz {}>'.format(self.quizname)
+		return self.quizname
 
 class QuizContent(db.Model):
 	__tablename__ = 'quizContent'
@@ -78,7 +78,7 @@ class QuizContent(db.Model):
 	img_content = db.Column(db.String(80))
 	
 	def __repr__(self):
-		return '<Question {}>'.format(self.question_id)
+		return str(self.id)
 
 class QuizStyle(db.Model):
 	__tablename__ = 'quizStyle'
@@ -92,7 +92,7 @@ class QuizStyle(db.Model):
 	#styleCss = db.relationship('StyleCss', backref='style', lazy=True)
 
 	def __repr__(self):
-		return '<Style: {}>'.format(self.style_name)
+		return self.style_name
 
 class Question(db.Model):
 	__tablename__ = 'question'
@@ -112,7 +112,7 @@ class Question(db.Model):
 		return choices
 	
 	def __repr__(self):
-		return '<Quiz {}'.format(self.quiz_id)+':Q{}>'.format(self.question_number)
+		return str(self.id)
 
 class QuestionContent(db.Model):
 	__tablename__ = 'questionContent'
@@ -122,7 +122,7 @@ class QuestionContent(db.Model):
 	img_content = db.Column(db.String(80))
 	
 	def __repr__(self):
-		return '<Question {}>'.format(self.question_id)
+		return str(self.id)
 
 class QuestionChoice(db.Model):
 	__tablename__ = 'questionChoice'
@@ -135,7 +135,7 @@ class QuestionChoice(db.Model):
 	#choice_chosen = db.relationship('UserAnswer', backref='questionChoice', lazy=True)
 	
 	def __repr__(self):
-		return '<Choice {}>'.format(self.choice_content)
+		return str(self.id)
 
 class UserAnswer(db.Model):
 	__tablename__ = 'userAnswer'
@@ -147,7 +147,7 @@ class UserAnswer(db.Model):
 	
 	answered_question = db.relationship('Question', back_populates="user_answers")
 	def __repr__(self):
-		return '<Answer id:{}'.format(self.id)+' u_id:{}'.format(self.user_id)+' q_id:{}'.format(self.question_id)+' q_id:{}'.format(self.choice_id)+'>'
+		return str(self.id)
 
 @login.user_loader
 def load_user(id):

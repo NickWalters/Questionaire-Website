@@ -1,5 +1,3 @@
-### Github Meeting:
-
 ### Project Requirements:
 * <del>Quiz content into DB - Flag quiz
 * <del>Quiz content into DB - Language quiz
