@@ -7,7 +7,7 @@
     <title>View your results!</title>
 	<style>
 		.result{
-			font-size: 5vh;
+			font-size: 10vh;
 		}
 		.score, .message{
 			text-align: center;
@@ -30,13 +30,7 @@
 			<div class="result" class="center">
 				<h1 class="score">{{score}}/10</h1>
 			
-				<p class="message center">you got {{score}} out of 10 correct</p>
-				
-				<p class= "messsage center">{{prevscoretext}}</p>
-				<p class= "messsage center">{{improvetext}}</p>
-				<p class= "messsage center">Quiz attempt number: {{attemptnumber}}</p>
-				<p class= "messsage center">your average score for this quiz is {{averagescore}}/10</p>
-				
+				<p class="message">you got {{score}} out of 10 correct</p>
 			</div>
 			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 	</div>

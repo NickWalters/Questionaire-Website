@@ -7,7 +7,6 @@ import os
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 from flask_migrate import Migrate
 
-
 class User(UserMixin, db.Model):
 	__tablename__ = "user"
 	id = db.Column(db.Integer, primary_key=True)
@@ -18,7 +17,6 @@ class User(UserMixin, db.Model):
 
 	userAnswers = db.relationship('UserAnswer', backref='user', lazy="dynamic")
 	quizzes = db.relationship('Quiz', back_populates="creator")
-	attempt = db.relationship('User_attempt', backref='author', lazy=True)
 	
 	def is_admin(self):
 		return self.admin
@@ -42,20 +40,7 @@ class User(UserMixin, db.Model):
 		return lastanswer
 
 	def __repr__(self):
-		return 'User: {}'.format(self.username)+' (admin:{}'.format(self.admin)+')'
-		
-class User_attempt(db.Model):
-	__tablename__ ='userattempt'
-	id = db.Column(db.Integer, primary_key=True)
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-	quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'))
-	totalscore = db.Column(db.Integer)
-	attemptnum = db.Column(db.Integer)
-	prevattempt = db.Column(db.Integer)
-	def __repr__(self):
-		return '<id:{}'.format(self.id)+' user_id:{}'.format(self.user_id)+ 'total:{}'.format(self.totalscore) + 'attemptnum:{}'.format(self.attemptnum) +'quiz id:{}'.format(self.quiz_id)
-
-
+		return self.username
 
 class Quiz(db.Model):
 	__tablename__ = 'quiz'
@@ -83,7 +68,7 @@ class Quiz(db.Model):
 		return self.questions.filter_by(question_number = question_number).first()
 
 	def __repr__(self):
-		return '<id:{}'.format(self.id) +'<quiz name:{}'.format(self.quizname) 
+		return self.quizname
 
 class QuizContent(db.Model):
 	__tablename__ = 'quizContent'
@@ -127,7 +112,8 @@ class Question(db.Model):
 		return choices
 	
 	def __repr__(self):
-		return '< id:{}'.format(self.id)+' quiz_id:{}'.format(self.quiz_id) +' question num:{}'.format(self.question_number)
+		return str(self.id)
+
 class QuestionContent(db.Model):
 	__tablename__ = 'questionContent'
 	id = db.Column(db.Integer,primary_key=True)
@@ -149,7 +135,7 @@ class QuestionChoice(db.Model):
 	#choice_chosen = db.relationship('UserAnswer', backref='questionChoice', lazy=True)
 	
 	def __repr__(self):
-		return ' id:{}'.format(self.id) +'<question_id:{}'.format(self.question_id) +'<choice num:{}'.format(self.choice_number) + '< correct :{}'.format(self.choice_correct) + '<choice content:{}'.format(self.choice_content)  
+		return str(self.id)
 
 class UserAnswer(db.Model):
 	__tablename__ = 'userAnswer'
@@ -161,7 +147,7 @@ class UserAnswer(db.Model):
 	
 	answered_question = db.relationship('Question', back_populates="user_answers")
 	def __repr__(self):
-		return '<Answer id:{}'.format(self.id)+' user_id:{}'.format(self.user_id)+' question_id:{}'.format(self.question_id)+' choice_id_id:{}'.format(self.choice_id)+'>'
+		return str(self.id)
 
 @login.user_loader
 def load_user(id):
@@ -169,18 +155,9 @@ def load_user(id):
 
 #Create DB models
 db.create_all()
-#db.drop_all()
-#db.session.query(UserAnswer).delete()
-#db.session.query(User_attempt).delete()
-#db.session.add(User_attempt(totalscore = 1, attemptnum = 1, prevattempt = 1, user_id = 1, quiz_id = 1))
-#db.session.commit()
-
-#Print all DB data
-print(User_attempt.query.all())
 
 #Print all DB data
 #print(User.query.all())
-
 #print(Quiz.query.all())
 #print(QuizStyle.query.all())
 #print(Question.query.all())
