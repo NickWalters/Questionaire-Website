@@ -26,6 +26,11 @@ class TestCase(unittest.TestCase):
         password=password,
         password2=password2),
         follow_redirects = True)
+    
+    def  login(self, username, password):
+        return self.app.post("/login", data=dict(username=username,
+        password=password), follow_redirects = True)
+
 
 #Registration Functionality Tests
     #tests a valid registration attempt
@@ -94,4 +99,49 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'<title>Register</title>', response.data)
         self.assertIn(b'value=""', response.data)
+
+#LOGIN FUNCTIONALITY TESTS
+    #Tests a valid login 
+    def test_successful_login(self):
+        user = User(username="bob", email="bob@email.com")
+        user.set_password('password')
+        self.assertTrue(user.check_password('password'))
+        db.session.add(user)
+        db.session.commit()
+
+        response = self.login("bob", "password")
+        self.assertIn(b'Hello, bob', response.data)
+        self.assertIn(b'<title>Home</title>', response.data)
+    
+    #Tests invalid login attempts
+    def test_unsuccussful_login(self):
+        user = User(username="bob", email="bob@email.com")
+        user.set_password('password')
+        self.assertTrue(user.check_password('password'))
+        db.session.add(user)
+        db.session.commit()
+
+        #invalid username or password
+        response = self.login("bob", "invalid")
+        self.assertIn(b'Invalid username or password', response.data)
+
+        response = self.login("invalid", "password")
+        self.assertIn(b'Invalid username or password', response.data)
+        
+        #username or password missing
+        response = self.login("", "password")
+        self.assertIn(b'This field is required', response.data)
+
+        response = self.login("bob", "")
+        self.assertIn(b'This field is required', response.data)
+
+#LOGOUT FUNCTIONALITY TESTS:
+    #test logout
+    def test_logout(self):
+        self.app.get('/register', follow_redirects = True)
+        self.register("user", "user@email.com", "password", "password", "submit")
+        self.app.get('/login', follow_redirects = True)
+        self.login("user", "password")
+        response = self.app.get('/logout', follow_redirects = True)
+        self.assertIn(b'Logged Out', response.data)
 
