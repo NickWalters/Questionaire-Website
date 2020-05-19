@@ -45,6 +45,9 @@ class User(UserMixin, db.Model):
 		return lastanswer
 
 	def __repr__(self):
+		return str(self.id)
+
+	def as_str(self):
 		return 'User: {}'.format(self.username)+' (admin:{}'.format(self.admin)+')'
 		
 class User_attempt(db.Model):
@@ -56,6 +59,9 @@ class User_attempt(db.Model):
 	attemptnum = db.Column(db.Integer)
 	prevattempt = db.Column(db.Integer)
 	def __repr__(self):
+		return str(self.id)
+
+	def as_str(self):
 		return '<id:{}'.format(self.id)+' user_id:{}'.format(self.user_id)+ 'total:{}'.format(self.totalscore) + 'attemptnum:{}'.format(self.attemptnum) +'quiz id:{}'.format(self.quiz_id)
 
 
@@ -86,6 +92,9 @@ class Quiz(db.Model):
 		return self.questions.filter_by(question_number = question_number).first()
 
 	def __repr__(self):
+		return self.quizname
+
+	def as_str(self):
 		return '<id:{}'.format(self.id) +'<quiz name:{}'.format(self.quizname) 
 
 class QuizContent(db.Model):
@@ -128,8 +137,10 @@ class Question(db.Model):
 		for choice in self.question_choices:
 			choices.append((choice.choice_number,choice.choice_content))
 		return choices
-	
 	def __repr__(self):
+		return str(self.id)
+
+	def as_str(self):
 		return '< id:{}'.format(self.id)+' quiz_id:{}'.format(self.quiz_id) +' question num:{}'.format(self.question_number)
 class QuestionContent(db.Model):
 	__tablename__ = 'questionContent'
@@ -137,8 +148,10 @@ class QuestionContent(db.Model):
 	question_id = db.Column(db.Integer, ForeignKey('question.id'))
 	text_content = db.Column(db.String(80))
 	img_content = db.Column(db.String(80))
-	
 	def __repr__(self):
+		return str(self.id)
+
+	def as_str(self):
 		return str(self.id)
 
 class QuestionChoice(db.Model):
@@ -150,8 +163,10 @@ class QuestionChoice(db.Model):
 	choice_correct = db.Column(db.Boolean)
 	
 	#choice_chosen = db.relationship('UserAnswer', backref='questionChoice', lazy=True)
-	
 	def __repr__(self):
+		return str(self.id)
+
+	def as_str(self):
 		return ' id:{}'.format(self.id) +'<question_id:{}'.format(self.question_id) +'<choice num:{}'.format(self.choice_number) + '< correct :{}'.format(self.choice_correct) + '<choice content:{}'.format(self.choice_content)  
 
 class UserAnswer(db.Model):
@@ -164,6 +179,9 @@ class UserAnswer(db.Model):
 	
 	answered_question = db.relationship('Question', back_populates="user_answers")
 	def __repr__(self):
+		return str(self.id)
+
+	def as_str(self):
 		return '<Answer id:{}'.format(self.id)+' user_id:{}'.format(self.user_id)+' question_id:{}'.format(self.question_id)+' choice_id_id:{}'.format(self.choice_id)+'>'
 
 admin.add_view(ModelView(User, db.session))
@@ -174,6 +192,7 @@ admin.add_view(ModelView(Question, db.session))
 admin.add_view(ModelView(QuestionChoice, db.session))
 admin.add_view(ModelView(QuestionContent, db.session))
 admin.add_view(ModelView(UserAnswer, db.session))
+admin.add_view(ModelView(User_attempt, db.session))
 
 @login.user_loader
 def load_user(id):
@@ -188,11 +207,8 @@ db.create_all()
 #db.session.commit()
 
 #Print all DB data
-print(User_attempt.query.all())
-
-#Print all DB data
 #print(User.query.all())
-
+#print(User_attempt.query.all())
 #print(Quiz.query.all())
 #print(QuizStyle.query.all())
 #print(Question.query.all())

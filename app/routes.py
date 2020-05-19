@@ -157,7 +157,8 @@ def quiz(quiz_name):
 			
 			print('before for loop')
 
-			print(answers)
+			for answer in answers:
+				print(answer.as_str())
 			if quiz_name == 'lang':
 				for answer in answers:
 					for choice in choices:
@@ -276,33 +277,6 @@ def results():
 		if attempt.quiz_id == 2:
 			quiz2score = quiz2score + attempt.totalscore
 			attempts2 = attempts2 + attempt.attemptnum
-
-	average1 = round((Decimal(quiz1score / attempts1)),2)
-	average2 = round((Decimal(quiz2score / attempts2)),2)
-
-@app.route('/results')
-@login_required
-def results():
-	quiz1score = 0
-	attempts1 = 0
-	quiz2score = 0
-	attempts2 = 0
-	average1 = 0
-	average2 = 0
-	attempts = db.session.query(User_attempt)
-	choices = db.session.query(QuestionChoice)
-
-	for attempt in attempts:
-		if attempt.quiz_id == 1:
-			quiz1score = quiz1score + attempt.totalscore
-			attempts1 = attempts1 + attempt.attemptnum
-
-	for attempt in attempts:
-		if attempt.quiz_id == 2:
-			quiz2score = quiz2score + attempt.totalscore
-			attempts2 = attempts2 + attempt.attemptnum
-
-		
 
 	average1 = round((Decimal(quiz1score / attempts1)),2)
 	average2 = round((Decimal(quiz2score / attempts2)),2)
