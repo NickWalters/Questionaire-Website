@@ -12,11 +12,11 @@
         <div id="question-container">
             <p id="p1" style="text-align: center;">{{question.question_contents.first().text_content}}</p>
             <p class="center"><img src="{{ url_for('static',    filename='images/'+question.question_contents.first().img_content) }}" alt="map" id="image"></p>
-            <div id="answer-buttons" class="btn-grid">
+            
                 <form action="{{ url_for('quiz', quiz_name='lang') }}" method="post" class="answer">
                     {{ form.hidden_tag() }}
                     <div id="answer-buttons" class="btn-grid">
-                        <div class="button"></div>
+                        
                             {% if form.len > 0 %}
                                 {{form.submitField0()}}
                             {% endif %}
@@ -35,10 +35,8 @@
                             {% if form.len > 5 %}
                                 {{form.submitField5()}}
                             {% endif %}
-                        </div>
                     </div>
                 </form>
-            </div>
         </div>
     </div>
 {% endblock %}

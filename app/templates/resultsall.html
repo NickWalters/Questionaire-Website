@@ -19,7 +19,7 @@
     <div class="center">
         <!-- Header -->
 			<header id="header">
-				<h1><strong><a href="{{ url_for('home') }}">Your</a></strong> Results for {{ quiz.quizname }} </h1>
+				<h1><strong><a href="{{ url_for('home') }}">Your</a></strong> Overall results </h1>
 				<nav id="nav">
 					<ul>
 						<li><a href="{{ url_for('home') }}">Home</a></li>
@@ -28,14 +28,12 @@
 			</header>
 
 			<div class="result" class="center">
-				<h1 class="score">{{score}}/10</h1>
-			
-				<p class="message center">you got {{score}} out of 10 correct</p>
 				
-				<p class= "messsage center">{{prevscoretext}}</p>
-				<p class= "messsage center">{{improvetext}}</p>
-				<p class= "messsage center">Quiz attempt number: {{attemptnumber}}</p>
-				<p class= "messsage center">your average score for this quiz is {{averagescore}}/10</p>
+			
+				<p class="message center">Average for flag quiz is {{average1}}</p>
+				
+				<p class= "messsage center">Average for language quiz is {{average2}}</p>
+				
 				
 			</div>
 			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
