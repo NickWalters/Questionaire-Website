@@ -4,14 +4,7 @@ from werkzeug.urls import url_parse
 from app.forms import LoginForm, RegistrationForm, StyleOneForm, StyleTwoForm
 from app.models import *
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
-<<<<<<< HEAD
-=======
-from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
 from decimal import Decimal
-
->>>>>>> 7396049feebfd24d8dd6ba2385eed228df9f75f7
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -117,6 +110,7 @@ def quiz(quiz_name):
 						break
 					i = i + 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 			#If any choice was given at all
 			if submitted_choice != None:
 				answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=submitted_choice)
@@ -146,6 +140,8 @@ def quiz(quiz_name):
 			return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 		#No form submitted
 =======
+=======
+>>>>>>> 08798745807fe9d86ec2a4ec29a85331fa46ba8d
 			print('below is submitted chocie')
 			print(submitted_choice)'''
 			answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=submitted_choice)
@@ -245,7 +241,6 @@ def quiz(quiz_name):
 						
 			return render_template('results.html',quiz = quiz, score = score, prevscoretext = prevscoretext, averagescore = averagescore, improvetext =improvetext, attemptnumber = attemptnumber )
 		#if no form submitted
->>>>>>> 7396049feebfd24d8dd6ba2385eed228df9f75f7
 		else :
 			return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 	#If starting from the beginning, no cookie
@@ -259,6 +254,31 @@ def make_form(style, question):
 		return StyleOneForm(question.get_question_choices_as_array_of_pairs())
 	else :#style.id == 2:
 		return StyleTwoForm(question.get_question_choices_as_array_of_pairs())
+
+@app.route('/results')
+@login_required
+def results():
+	quiz1score = 0
+	attempts1 = 0
+	quiz2score = 0
+	attempts2 = 0
+	average1 = 0
+	average2 = 0
+	attempts = db.session.query(User_attempt)
+	choices = db.session.query(QuestionChoice)
+
+	for attempt in attempts:
+		if attempt.quiz_id == 1:
+			quiz1score = quiz1score + attempt.totalscore
+			attempts1 = attempts1 + attempt.attemptnum
+
+	for attempt in attempts:
+		if attempt.quiz_id == 2:
+			quiz2score = quiz2score + attempt.totalscore
+			attempts2 = attempts2 + attempt.attemptnum
+
+	average1 = round((Decimal(quiz1score / attempts1)),2)
+	average2 = round((Decimal(quiz2score / attempts2)),2)
 
 @app.route('/results')
 @login_required

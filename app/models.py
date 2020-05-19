@@ -10,6 +10,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
 
+
 class User(UserMixin, db.Model):
 	__tablename__ = "user"
 	id = db.Column(db.Integer, primary_key=True)
@@ -164,6 +165,7 @@ class UserAnswer(db.Model):
 	answered_question = db.relationship('Question', back_populates="user_answers")
 	def __repr__(self):
 		return '<Answer id:{}'.format(self.id)+' user_id:{}'.format(self.user_id)+' question_id:{}'.format(self.question_id)+' choice_id_id:{}'.format(self.choice_id)+'>'
+<<<<<<< HEAD
 
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Quiz, db.session))
@@ -173,6 +175,8 @@ admin.add_view(ModelView(Question, db.session))
 admin.add_view(ModelView(QuestionChoice, db.session))
 admin.add_view(ModelView(QuestionContent, db.session))
 admin.add_view(ModelView(UserAnswer, db.session))
+=======
+>>>>>>> 08798745807fe9d86ec2a4ec29a85331fa46ba8d
 
 @login.user_loader
 def load_user(id):
