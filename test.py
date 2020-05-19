@@ -145,3 +145,25 @@ class TestCase(unittest.TestCase):
         response = self.app.get('/logout', follow_redirects = True)
         self.assertIn(b'Logged Out', response.data)
 
+#ADMIN TESTS:
+    #successful login as admin
+    def test_admin_login(self):
+        user = User(username="john", email="john@email.com")
+        user.set_password('password')
+        user.admin = True
+        db.session.add(user)
+        db.session.commit()
+
+        response = self.login("john", "password")
+        self.assertIn(b'Welcome Admin John!', response.data)
+
+    #unsuccessful login as admin
+    def test_nonadmin_login(self):
+        user = User(username="john", email="john@email.com")
+        user.set_password('password')
+        user.admin = False
+        db.session.add(user)
+        db.session.commit()
+
+        response = self.login("john", "password")
+        self.assertNotIn(b'Welcome Admin John!', response.data)
