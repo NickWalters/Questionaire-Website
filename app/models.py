@@ -175,14 +175,13 @@ db.create_all()
 #db.session.add(User_attempt(totalscore = 1, attemptnum = 1, prevattempt = 1, user_id = 1, quiz_id = 1))
 #db.session.commit()
 
-
 #Print all DB data
 print(User_attempt.query.all())
 
 #Print all DB data
 #print(User.query.all())
 
-print(Quiz.query.all())
+#print(Quiz.query.all())
 #print(QuizStyle.query.all())
 #print(Question.query.all())
 #print(QuestionContent.query.all())
