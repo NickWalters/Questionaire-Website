@@ -6,8 +6,6 @@ from app.models import *
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from decimal import Decimal
-
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -85,7 +83,6 @@ def quizSelect():
 
 @app.route('/quiz/<string:quiz_name>', methods=['GET', 'POST'])
 def quiz(quiz_name):
-	print(quiz_name)
 	quiz = None
 	for quiz in Quiz.query.all():
 		if quiz_name == quiz.short(): break
@@ -100,34 +97,15 @@ def quiz(quiz_name):
 			submitted_choice = None
 			print(quizStyle)
 			if quizStyle.id == 1 :
-				choices = db.session.query(QuestionChoice).all()
 				submitted_choice = submitted_form.get('radioField')
 			elif quizStyle.id == 2:
-				choices = db.session.query(QuestionChoice).all()
 				i = 0
-				choices_array = question.get_question_choices_as_array_of_pairs()
-				print(choices_array[i][1])
-				
-				what = list(submitted_form.values())[0]
-
-				for choice in choices:
-					if choice.question_id == question.id and choice.choice_content == what:
-						thing = choice.choice_number
-						print(thing)
-						submitted_choice = thing
-
-				print('below is wtf')
-				print(what)
-				'''while i < form.len:
+				while i < form.len:
 					choices_array = question.get_question_choices_as_array_of_pairs()
 					if choices_array[i][1] == list(submitted_form.values())[0]:
 						submitted_choice = i
-						print('sub inside loop')
-						print(choices_array[i][1])
 						break
 					i = i + 1
-			print('below is submitted chocie')
-			print(submitted_choice)'''
 			answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=submitted_choice)
 			db.session.add(answer)
 			db.session.commit()
@@ -137,93 +115,13 @@ def quiz(quiz_name):
 				next_form = make_form(quizStyle, next_question)
 				return render_template(quizStyle.template_file,quiz = quiz,question = next_question,form = next_form)
 			score = 0
-			answers = db.session.query(UserAnswer).all()
-			
-			print('before for loop')
-
-			print(answers)
-			if quiz_name == 'lang':
-				for answer in answers:
-					for choice in choices:
-						if choice.question_id == answer.question_id and answer.choice_id == choice.choice_number and choice.choice_correct == True and answer.user_id == current_user.id:
-							score = score + 1
-							print('new for loop')
-			
-			if quiz_name =='flag':
-				for answer in answers:
-					for choice in choices:
-						if choice.id == answer.choice_id and choice.choice_correct == True and answer.user_id == current_user.id:
-							print('im inside hehe')
-							score = score + 1
-						
-				
-			db.session.query(UserAnswer).delete()
-			db.session.commit()
-			prevscoretext = ''
-			averagescore = 0
-			improvetext = ''
-			attemptnumber = 0
-			'''if quiz_name == "lang":
-				print('this is the language quiz baby')
-				prevscoretext = 'this is the lang'
-				averagescore = 100
-				improvetext = 'yoyoyo'
-				attemptnumber = 9''' 
-			
-			attempts = db.session.query(User_attempt)
-			count = attempts.count()
-			prevscore = 0
-			averagescore = 0
-			attemptnumber = 0
-			here = 0
-			print('count is:' + str(count))
-			'''if count == 0:
-				db.session.add(User_attempt(totalscore = score, attemptnum = 1, prevattempt = score, user_id = current_user.id, quiz_id = 1))
-				averagescore = score
-				attemptnum = 1
-				db.session.commit()
-				print('why here')'''
-			
-				
-			for attempt in attempts:
-				if attempt.user_id == current_user.id and attempt.quiz_id == quiz.id:
-					here = 1
-			if here == 1:
-				update = User_attempt.query.filter_by(user_id = current_user.id ).filter_by(quiz_id = quiz.id).first()
-				update.totalscore = update.totalscore + score
-				update.attemptnum = update.attemptnum + 1
-				prevscore = update.prevattempt
-				update.prevattempt = score
-				averagescore = round((Decimal(update.totalscore / update.attemptnum)),2)
-				attemptnumber = update.attemptnum
-				print('average score is: ' + str(averagescore))
-				db.session.commit()
-				print("if ")
-				print('prev score = ' +  str(prevscore))
-			elif here == 0:
-				db.session.add(User_attempt(totalscore = score, attemptnum = 1, prevattempt = score, user_id = current_user.id, quiz_id = quiz.id))
-				averagescore = score
-				attemptnumber = 1
-				db.session.commit()
-				print("elseaddign")
-			print("after")
-			print(prevscore)
-			prevscoretext = ''
-			improvetext = ''
-			if prevscore == 0:
-				prevscoretext = 'Last attempt: You havent attempted the quiz before.' 
-			else:
-				prevscoretext = 'Your previous attempt score was: ' + str(prevscore)
-				if score > prevscore:
-					improvetext = 'You have improved by' + str(score - prevscore) + '0%'
-				elif score < prevscore:
-					improvetext = 'Somehow your score went down by ' + str(score - prevscore) + '0% what happened?!'
-				elif score == 10 and prevscore ==10:
-					improvetext = 'Great job!'
-				elif score == prevscore:
-					improvetext = 'No improvement, keep trying!'	
-						
-			return render_template('results.html',quiz = quiz, score = score, prevscoretext = prevscoretext, averagescore = averagescore, improvetext =improvetext, attemptnumber = attemptnumber )
+			answers = db.session.query(UserAnswer)
+			choices = db.session.query(QuestionChoice)
+			for answer in answers:
+				for choice in choices:
+					if choice.id == answer.choice_id and choice.choice_correct == True and answer.user_id == current_user.id:
+						score = score + 1
+			return render_template('results.html',quiz = quiz, score = score)
 		#if no form submitted
 		else :
 			return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
@@ -273,28 +171,12 @@ def hoster():
 @app.route('/results')
 @login_required
 def results():
-	quiz1score = 0
-	attempts1 = 0
-	quiz2score = 0
-	attempts2 = 0
-	average1 = 0
-	average2 = 0
-	attempts = db.session.query(User_attempt)
+	score = 0
+	answers = db.session.query(UserAnswer)
 	choices = db.session.query(QuestionChoice)
+	for answers1 in answers:
+		for choices1 in choices:
+			if choices1.id == answers1.choice_id and choices1.choice_correct == True and answers1.user_id == current_user.id:
+				score = score + 1
 
-	for attempt in attempts:
-		if attempt.quiz_id == 1:
-			quiz1score = quiz1score + attempt.totalscore
-			attempts1 = attempts1 + attempt.attemptnum
-
-	for attempt in attempts:
-		if attempt.quiz_id == 2:
-			quiz2score = quiz2score + attempt.totalscore
-			attempts2 = attempts2 + attempt.attemptnum
-
-		
-
-	average1 = round((Decimal(quiz1score / attempts1)),2)
-	average2 = round((Decimal(quiz2score / attempts2)),2)
-
-	return render_template('resultsall.html', quiz1score = quiz1score, quiz2score = quiz2score, attempts1 = attempts1, attempts2= attempts2, average1 = average1, average2=average2)
+	return render_template('results.html', score = score)
