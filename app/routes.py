@@ -8,6 +8,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated:
