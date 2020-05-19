@@ -4,17 +4,13 @@ from werkzeug.urls import url_parse
 from app.forms import LoginForm, RegistrationForm, StyleOneForm, StyleTwoForm
 from app.models import *
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
-from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-	if current_user.is_authenticated:
-		if User.is_admin(current_user):
-			return redirect(url_for('hoster'))
-		else:
-			return redirect(url_for('index'))
+	if current_user:
+		if current_user.is_authenticated:
+			return redirect(url_for('home'))
 	
 	form = LoginForm()
 	if form.validate_on_submit():
@@ -24,10 +20,8 @@ def login():
 			return redirect(url_for('login'))
 		login_user(user, remember=form.remember_me.data)
 		next_page = request.args.get('next')
-		if User.is_admin(current_user):
-			return redirect(url_for('hoster'))
 		if not next_page or url_parse(next_page).netloc !='':
-			next_page = url_for('index')
+			next_page = url_for('home')
 		return redirect(next_page)
 	return render_template('login.html', title='Sign In', form=form)
 
@@ -36,18 +30,15 @@ def login():
 def logout():
 	logout_user()
 	flash("You have Logged Out")
-	return redirect(url_for('prelogin'))
+	return redirect(url_for('home'))
 	
-@app.route('/index')
-def index():
+@app.route('/')
+def home():
 	if current_user.is_authenticated:
-		if current_user.admin == False:
-			return render_template('index.html')
-		else:
+		if current_user.admin:
 			flash("You are an Admin")
 			return render_template('index.html')
-	else:
-		return render_template('index.html')
+	return render_template('index.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -63,39 +54,33 @@ def register():
 		return redirect(url_for('login'))
 	
 	return render_template('register.html', title='Register', form=form)
-	
 
-@app.route('/prelogin')
-@app.route('/')
-def prelogin():
-	if current_user.is_authenticated:
-		return render_template('index.html')
-	return render_template('prelogin.html')
-
-@app.route('/')
-def home():
- 	return render_template('index.html')
+@app.route('/about')
+def about():
+	return None
 
 @app.route('/quizSelect')
-@login_required
 def quizSelect():
 	return render_template('quizSelect.html', quizzes = Quiz.query.all())
 
 @app.route('/quiz/<string:quiz_name>', methods=['GET', 'POST'])
+@login_required
 def quiz(quiz_name):
 	quiz = None
 	for quiz in Quiz.query.all():
 		if quiz_name == quiz.short(): break
 	quizStyle = quiz.quizStyle
 
+	#If there is a cookie telling us what question the user is up to
 	if session.get('question_number') != None:
 		question_number = session.pop('question_number', None)
 		question = quiz.get_question_by_question_number(question_number)
 		form = make_form(quizStyle, question)
 		submitted_form = request.form
+
+		#If a form was submitted
 		if submitted_form:
 			submitted_choice = None
-			print(quizStyle)
 			if quizStyle.id == 1 :
 				submitted_choice = submitted_form.get('radioField')
 			elif quizStyle.id == 2:
@@ -106,23 +91,34 @@ def quiz(quiz_name):
 						submitted_choice = i
 						break
 					i = i + 1
-			answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=submitted_choice)
-			db.session.add(answer)
-			db.session.commit()
-			next_question = quiz.get_next_question(last_question = question)
-			if next_question != None:
-				session['question_number']=next_question.question_number
-				next_form = make_form(quizStyle, next_question)
-				return render_template(quizStyle.template_file,quiz = quiz,question = next_question,form = next_form)
-			score = 0
-			answers = db.session.query(UserAnswer)
-			choices = db.session.query(QuestionChoice)
-			for answer in answers:
-				for choice in choices:
-					if choice.id == answer.choice_id and choice.choice_correct == True and answer.user_id == current_user.id:
-						score = score + 1
-			return render_template('results.html',quiz = quiz, score = score)
-		#if no form submitted
+			#If any choice was given at all
+			if submitted_choice != None:
+				answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=submitted_choice)
+				#Check this isn't a resubmitted form
+				
+
+				if True:
+					#Commit the answer to the DB
+					db.session.add(answer)
+					db.session.commit()
+					next_question = quiz.get_next_question(last_question = question)
+
+					#If there are more questions to go
+					if next_question != None:
+						session['question_number']=next_question.question_number
+						next_form = make_form(quizStyle, next_question)
+						return render_template(quizStyle.template_file,quiz = quiz,question = next_question,form = next_form)
+					score = 0
+					answers = db.session.query(UserAnswer)
+					choices = db.session.query(QuestionChoice)
+					for answer in answers:
+						for choice in choices:
+							if choice.id == answer.choice_id and choice.choice_correct == True and answer.user_id == current_user.id:
+								score = score + 1
+					return render_template('results.html',quiz = quiz, score = score)
+			#No choice in submitted form or it is a resubmitted form
+			return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
+		#No form submitted
 		else :
 			return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 	#If starting from the beginning, no cookie
@@ -136,37 +132,6 @@ def make_form(style, question):
 		return StyleOneForm(question.get_question_choices_as_array_of_pairs())
 	else :#style.id == 2:
 		return StyleTwoForm(question.get_question_choices_as_array_of_pairs())
-
-@app.route('/languageQuiz')
-def languageQuiz():
-	return render_template('HTML-languageQuizFinal.html')
-
-admin = Admin(app)
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Quiz, db.session))
-admin.add_view(ModelView(QuizStyle, db.session))
-admin.add_view(ModelView(QuizContent, db.session))
-admin.add_view(ModelView(Question, db.session))
-admin.add_view(ModelView(QuestionChoice, db.session))
-admin.add_view(ModelView(QuestionContent, db.session))
-admin.add_view(ModelView(UserAnswer, db.session))
-
-@app.route('/hoster')
-@login_required
-def hoster():
-
-	if current_user.admin == True: 
-		users = User.query.all()
-
-		quiz = db.session.query(Quiz)
-		# quiz = db.session.query(Quiz).join(Question)
-
-		return render_template('admin.html', users=users, quiz=quiz)
-	
-	else:
-		flash('Cannot access admin page directly')
-		return redirect(url_for('index'))
-
 
 @app.route('/results')
 @login_required

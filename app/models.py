@@ -1,4 +1,4 @@
-from app import db, login
+from app import db, login, admin
 from datetime import datetime
 from sqlalchemy import ForeignKey, Column, Integer, String, desc
 from sqlalchemy.orm import relationship
@@ -6,6 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 from flask_migrate import Migrate
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 
 class User(UserMixin, db.Model):
 	__tablename__ = "user"
@@ -148,6 +150,15 @@ class UserAnswer(db.Model):
 	answered_question = db.relationship('Question', back_populates="user_answers")
 	def __repr__(self):
 		return str(self.id)
+
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Quiz, db.session))
+admin.add_view(ModelView(QuizStyle, db.session))
+admin.add_view(ModelView(QuizContent, db.session))
+admin.add_view(ModelView(Question, db.session))
+admin.add_view(ModelView(QuestionChoice, db.session))
+admin.add_view(ModelView(QuestionContent, db.session))
+admin.add_view(ModelView(UserAnswer, db.session))
 
 @login.user_loader
 def load_user(id):

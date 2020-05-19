@@ -42,7 +42,7 @@
 					</div>
 				</div>
 				<form action="{{ url_for('quiz', quiz_name='flag') }}" method="post" class="answer" name="form">
-					
+					{{ form.hidden_tag() }}
 					{% for subfield in form.radioField %}
 						<tr>
 							<td>{{ subfield }}</td>

@@ -5,7 +5,6 @@ from app.forms import LoginForm, RegistrationForm, StyleOneForm, StyleTwoForm
 import os
 from config import basedir
 
-
 class TestCase(unittest.TestCase):
     def setUp(self):
         app.config['TESTING'] = True

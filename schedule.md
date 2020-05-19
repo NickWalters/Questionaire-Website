@@ -16,10 +16,11 @@
 * Form validation on quizzes - reject empty forms + check form data is valid
 * Will proceed to next question even if the answer failed to commit to DB
 * <del>Change quizSelect to use DB (for quiz in Quiz.query.all())
-* AttributeError: 'AnonymousUserMixin' object has no attribute 'get_last_answer' when attempting to do a quiz without being loged in
+* <del>AttributeError: 'AnonymousUserMixin' object has no attribute 'get_last_answer' when attempting to do a quiz without being loged in
 * <del>Quiz blurb variable in DB
 * <del>Takes submitting question 1 multiple times
 * <del>Question 10 not submitting -> form issue
+* <del>Unauthorized, should boot to login page not
 
 ### Minor flawed implementations:
 * User.get_last_answer(self, quiz) is hacky
@@ -29,6 +30,7 @@
 * quizSelect border around images
 * Style problems from when everything was moved over to templates
 * Buttons on language quiz style
+* 
 
 ### Optional extension:
 * Community polling - i.e. “what country are you from?” Or “how many languages do you speak?” And compare that to other users.

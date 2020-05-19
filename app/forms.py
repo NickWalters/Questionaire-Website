@@ -31,7 +31,7 @@ class RegistrationForm(FlaskForm):
 def StyleOneForm(choices, *args, **kwargs):
 	class StaticForm(FlaskForm):
 		pass
-	StaticForm.radioField = RadioField('radioField', coerce=int, choices=choices)
+	StaticForm.radioField = RadioField('radioField', coerce=int, choices=choices, validators=[DataRequired()])
 	StaticForm.submit = SubmitField('Submit')
 	return StaticForm()
 
