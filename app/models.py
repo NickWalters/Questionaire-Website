@@ -7,6 +7,7 @@ import os
 from flask_login import login_user, logout_user, current_user, login_required, LoginManager, UserMixin
 from flask_migrate import Migrate
 
+
 class User(UserMixin, db.Model):
 	__tablename__ = "user"
 	id = db.Column(db.Integer, primary_key=True)
