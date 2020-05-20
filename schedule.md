@@ -11,8 +11,10 @@
 * Results landing page
 
 ### Known issues:
+* Flash and alerts not functional
 * <del>IMG files > 5MB
-* Wrong links around the place
+* Section 2 of home page, 'SAMPLE TEST'
+* About page
 * Form validation on quizzes - reject empty forms + check form data is valid
 * Will proceed to next question even if the answer failed to commit to DB
 * <del>Change quizSelect to use DB (for quiz in Quiz.query.all())
@@ -30,7 +32,6 @@
 * quizSelect border around images
 * Style problems from when everything was moved over to templates
 * Buttons on language quiz style
-* 
 
 ### Optional extension:
 * Community polling - i.e. “what country are you from?” Or “how many languages do you speak?” And compare that to other users.
