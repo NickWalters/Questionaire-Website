@@ -1,0 +1,70 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(108, 171, 223)
+}
+
+.container {
+    width: 80%;
+    height: 80%;
+    background-color:white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+    position: relative;
+}
+
+p {
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    color: rgb(49, 53, 53);
+}
+
+h1{
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+.btn_link {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 10px;
+    font-size: 30px;
+    border: none;
+    box-shadow: 0 0 2px 0px;
+    transition-duration: 0.75s;
+}
+
+.btn_link:hover {
+    border-color: black;
+    background-color: rgb(216, 216, 216)  ;
+}
+
+.btn_link2 {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    padding: 10px;
+    font-size: 30px;
+    border: none;
+    box-shadow: 0 0 2px 0px;
+    transition-duration: 0.75s;
+}
+
+.btn_link2:hover {
+    border-color: black;
+    background-color: rgb(216, 216, 216)  ;
+}
