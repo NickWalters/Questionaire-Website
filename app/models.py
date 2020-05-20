@@ -19,9 +19,8 @@ class User(UserMixin, db.Model):
 	admin = db.Column(db.Boolean, default=False, nullable=False) 
 	password_hash = db.Column(db.String(128))
 
-	userAnswers = db.relationship('UserAnswer', backref='user', lazy="dynamic")
-	quizzes = db.relationship('Quiz', back_populates="creator")
-	attempt = db.relationship('User_attempt', backref='author', lazy=True)
+	userAttempts = db.relationship('UserAttempt', backref='user', lazy='dynamic')
+	quizzes = db.relationship('Quiz', back_populates='creator')
 	
 	def is_admin(self):
 		return self.admin
@@ -32,39 +31,24 @@ class User(UserMixin, db.Model):
 	def check_password(self, password):
 		return check_password_hash(self.password_hash, password)
 
-	def get_last_answer(self, quiz):
-		lastanswer = None
-		for question in quiz.questions:
-			for answer in question.user_answers:
-				if answer.user_id==current_user.id:
-					if lastanswer == None:
-						lastanswer=answer
-					elif lastanswer.id<answer.id:
-						lastanswer = answer
+	def get_user_quiz_attempts(self, quiz):
+		return self.userAttempts.filter_by(quiz_id = quiz.id)
+
+	def get_last_attempt(self, userAttempts):
+		lastAttempt = None
+		for attempt in userAttempts:
+			if lastAttempt == None:
+				lastAttempt = attempt
+			elif lastAttempt.id<attempt.id:
+				lastAttempt = attempt
 		#quiz.questions.user_answers.filter_by(user_id=id).order_by(UserAnswer.timestamp).first()
-		return lastanswer
+		return lastAttempt
 
 	def __repr__(self):
 		return str(self.id)
 
 	def as_str(self):
 		return 'User: {}'.format(self.username)+' (admin:{}'.format(self.admin)+')'
-		
-class User_attempt(db.Model):
-	__tablename__ ='userattempt'
-	id = db.Column(db.Integer, primary_key=True)
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-	quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'))
-	totalscore = db.Column(db.Integer)
-	attemptnum = db.Column(db.Integer)
-	prevattempt = db.Column(db.Integer)
-	def __repr__(self):
-		return str(self.id)
-
-	def as_str(self):
-		return '<id:{}'.format(self.id)+' user_id:{}'.format(self.user_id)+ 'total:{}'.format(self.totalscore) + 'attemptnum:{}'.format(self.attemptnum) +'quiz id:{}'.format(self.quiz_id)
-
-
 
 class Quiz(db.Model):
 	__tablename__ = 'quiz'
@@ -129,19 +113,20 @@ class Question(db.Model):
 
 	question_choices = db.relationship('QuestionChoice', backref='question', lazy='dynamic')
 	question_contents = db.relationship('QuestionContent', backref='question', lazy='dynamic')
-	
-	user_answers = db.relationship('UserAnswer', back_populates="answered_question")
+	userAnswers = db.relationship('UserAnswer', back_populates='question')
 
 	def get_question_choices_as_array_of_pairs(self):
 		choices = []
 		for choice in self.question_choices:
 			choices.append((choice.choice_number,choice.choice_content))
 		return choices
+	
 	def __repr__(self):
 		return str(self.id)
 
 	def as_str(self):
 		return '< id:{}'.format(self.id)+' quiz_id:{}'.format(self.quiz_id) +' question num:{}'.format(self.question_number)
+
 class QuestionContent(db.Model):
 	__tablename__ = 'questionContent'
 	id = db.Column(db.Integer,primary_key=True)
@@ -167,17 +152,44 @@ class QuestionChoice(db.Model):
 		return str(self.id)
 
 	def as_str(self):
-		return ' id:{}'.format(self.id) +'<question_id:{}'.format(self.question_id) +'<choice num:{}'.format(self.choice_number) + '< correct :{}'.format(self.choice_correct) + '<choice content:{}'.format(self.choice_content)  
+		return ' id:{}'.format(self.id) +'<question_id:{}'.format(self.question_id) +'<choice num:{}'.format(self.choice_number) + '< correct :{}'.format(self.choice_correct) + '<choice content:{}'.format(self.choice_content)
+		
+class UserAttempt(db.Model):
+	__tablename__ ='userAttempt'
+	id = db.Column(db.Integer, primary_key=True)
+	attempt_number = db.Column(db.Integer)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+	quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'))
+	#totalscore = db.Column(db.Integer)
+	#attemptnum = db.Column(db.Integer)
+	#prevattempt = db.Column(db.Integer)
+
+	userAnswers = db.relation('UserAnswer', backref='userAttempt', lazy='dynamic')
+
+	def __repr__(self):
+		return str(self.id)
+
+	def as_str(self):
+		return '<id:{}'.format(self.id)+' user_id:{}'.format(self.user_id)+ 'total:{}'.format(self.totalscore) + 'attemptnum:{}'.format(self.attemptnum) +'quiz id:{}'.format(self.quiz_id)
+
+	def get_score(self):
+		score = 0
+		for answer in self.userAnswers:
+			if answer.questionChoice.choice_correct: score = score + 1
+		return score
 
 class UserAnswer(db.Model):
 	__tablename__ = 'userAnswer'
 	id = db.Column(db.Integer, primary_key=True)
+	attempt_id = db.Column(db.Integer, ForeignKey('userAttempt.id'))
 	user_id = db.Column(db.Integer, ForeignKey('user.id'))
 	question_id = db.Column(db.Integer, ForeignKey('question.id'))
 	choice_id = db.Column(db.Integer, ForeignKey('questionChoice.id'))
 	timestamp = db.Column(db.DateTime, default = datetime.utcnow)
 	
-	answered_question = db.relationship('Question', back_populates="user_answers")
+	questionChoice = db.relation('QuestionChoice', backref='userAnswer', lazy=True)
+	question = db.relationship('Question', back_populates="userAnswers")
+
 	def __repr__(self):
 		return str(self.id)
 
@@ -192,26 +204,11 @@ admin.add_view(ModelView(Question, db.session))
 admin.add_view(ModelView(QuestionChoice, db.session))
 admin.add_view(ModelView(QuestionContent, db.session))
 admin.add_view(ModelView(UserAnswer, db.session))
-admin.add_view(ModelView(User_attempt, db.session))
+admin.add_view(ModelView(UserAttempt, db.session))
+
+#Create DB models
+db.create_all()
 
 @login.user_loader
 def load_user(id):
 	return User.query.get(int(id))
-
-#Create DB models
-db.create_all()
-#db.drop_all()
-#db.session.query(UserAnswer).delete()
-#db.session.query(User_attempt).delete()
-#db.session.add(User_attempt(totalscore = 1, attemptnum = 1, prevattempt = 1, user_id = 1, quiz_id = 1))
-#db.session.commit()
-
-#Print all DB data
-#print(User.query.all())
-#print(User_attempt.query.all())
-#print(Quiz.query.all())
-#print(QuizStyle.query.all())
-#print(Question.query.all())
-#print(QuestionContent.query.all())
-#print(QuestionChoice.query.all())
-#print(UserAnswer.query.all())
