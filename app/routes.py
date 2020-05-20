@@ -71,7 +71,13 @@ def quiz(quiz_name):
 	for quiz in Quiz.query.all():
 		if quiz_name == quiz.short(): break
 	quizStyle = quiz.quizStyle
-	
+	if session.get('quiz_id') == None:
+		session['quiz_id'] = quiz.id
+	elif session.get('quiz_id') != quiz.id:
+		if session.get('question_id') != None: session.pop('question_id')
+		session['quiz_id'] = quiz.id
+
+
 	#If there isn't an attempt_id cookie
 	if session.get('attempt_id') == None:
 		#Start a new attempt
@@ -118,62 +124,48 @@ def quiz(quiz_name):
 			#Commit the answer to the DB
 			print('below is submitted choice')
 			print(submitted_choice)
-			answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=submitted_choice,attempt_id=session.get('attempt_id'))
-			db.session.add(answer)
-			db.session.commit()
+			if submitted_choice:
+				answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=submitted_choice,attempt_id=session.get('attempt_id'))
+				db.session.add(answer)
+				db.session.commit()
 
-			#Serve next question if there is a next question
-			next_question = quiz.get_next_question(last_question = question)
-			if next_question != None:
-				session['question_id']=next_question.id
-				next_form = make_form(quizStyle, next_question)
-				return render_template(quizStyle.template_file,quiz = quiz,question = next_question,form = next_form)
+				#Serve next question if there is a next question
+				next_question = quiz.get_next_question(last_question = question)
+				if next_question != None:
+					session['question_id']=next_question.id
+					next_form = make_form(quizStyle, next_question)
+					return render_template(quizStyle.template_file,quiz = quiz,question = next_question,form = next_form)
 
-			#Setup for results page
-			#Get UserAttempt objects
-			userAttempts = current_user.get_user_quiz_attempts(quiz = quiz)
-			attempt_list = userAttempts.all() #List may not be correctly ordered
-			session_attempt_id = session.pop('attempt_id', None)
-			thisAttempt = None
-			for thisAttempt in attempt_list:
-				if thisAttempt.id == session_attempt_id:
-					index = attempt_list.index(thisAttempt)
-					break
-			attemptnumber = thisAttempt.attempt_number
-			prevscore = 0
-			try:
-				lastAttempt = attempt_list[index-1]
-				prevscore = lastAttempt.get_score()
-			except:
-				pass
-
-			#Scores
-			total_score = 0
-			for attempt in userAttempts:
-				total_score = total_score + attempt.get_score()
-			average_score = round(total_score / userAttempts.count(),2)
-			score = thisAttempt.get_score()
-			
-
-			if lastAttempt == None:
-				prevscoretext = 'Last attempt: You havent attempted the quiz before.' 
-			else:
-				prevscoretext = 'Your previous attempt score was: ' + str(prevscore)
-				if score > prevscore:
-					improvetext = 'You have improved by' + str(score - prevscore) + '0%'
-				elif score < prevscore:
-					improvetext = 'Somehow your score went down by ' + str(score - prevscore) + '0% what happened?!'
-				elif score == 10 and prevscore ==10:
-					improvetext = 'Great job!'
-				elif score == prevscore:
-					improvetext = 'No improvement, keep trying!'	
-						
-			return render_template('results.html',quiz = quiz, score = score, prevscoretext = prevscoretext, averagescore = average_score, improvetext =improvetext, attemptnumber = attemptnumber )
-		#if no form submitted
-		else :
-			return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
+				#Setup for results page
+				#Get UserAttempt objects
+				user_attempts = current_user.get_user_quiz_attempts(quiz = quiz)
+				attempt_list = user_attempts.all() #List may not be correctly ordered
+				session_attempt_id = session.pop('attempt_id', None)
+				this_attempt = None
+				for this_attempt in attempt_list:
+					if this_attempt.id == session_attempt_id:
+						index = attempt_list.index(this_attempt)
+						break
+				attempt_number = this_attempt.attempt_number
+				prev_score = None
+				last_attempt = None
+				if index > 0:
+					last_attempt = attempt_list[index-1]
+					prev_score = last_attempt.get_score()
+				
+				#Scores
+				total_score = 0
+				for attempt in user_attempts:
+					total_score = total_score + attempt.get_score()
+				average_score = round(total_score / user_attempts.count(),2)
+				score = this_attempt.get_score()
+				
+				return render_template('results.html',quiz = quiz, score = score, prev_score = prev_score, average_score = average_score, attempt_number = attempt_number )
+		#if no form submitted or no choice made
+		session['question_id'] = question.id
+		return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 	#If starting from the beginning, no cookie
-	question=quiz.get_question_by_question_number(1)
+	question=quiz.get_question_by_question_number(question_number = 1)
 	session['question_id'] = question.id
 	form = make_form(quizStyle, question)
 	return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)

@@ -15,28 +15,30 @@
 
 {% block body %}
 {{ super() }}
-    <div class="center">
-        <!-- Header -->
-			<header id="header">
-				<h1><strong><a href="{{ url_for('home') }}">Your</a></strong> Results for {{ quiz.quizname }} </h1>
-				<nav id="nav">
-					<ul>
-						<li><a href="{{ url_for('home') }}">Home</a></li>
-					</ul>
-				</nav>
-			</header>
+	<div class="result" class="center">
+		<h1 class="score">{{score}}/10</h1>
+	
+		<p class="message center">You received {{score}} out of {{quiz.questions.count()}} correct</p>
+		
+		{% if prev_score != None %}
+		<p class= "messsage center">Your previous attempt score was: {{prevscoretext}}</p>
 
-			<div class="result" class="center">
-				<h1 class="score">{{score}}/10</h1>
-			
-				<p class="message center">you got {{score}} out of 10 correct</p>
-				
-				<p class= "messsage center">{{prevscoretext}}</p>
-				<p class= "messsage center">{{improvetext}}</p>
-				<p class= "messsage center">Quiz attempt number: {{attemptnumber}}</p>
-				<p class= "messsage center">your average score for this quiz is {{averagescore}}/10</p>
-				
-			</div>
-			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+		{% if score > prev_score != None %}
+		<p class= "messsage center">You have improved by {{ score - prev_score }}!</p>
+		{% elif score < prev_score != None %}
+		<p class= "messsage center">Somehow your score went down by {{ prev_score - score}}, what happened?!</p>
+		{% endif %}
+		
+		{% if score == 10 and prevscore == 10 %}
+		<p class= "messsage center">Great job!</p>
+		{% elif score == prev_score != None %}
+		<p class= "messsage center">No improvement, keep trying!</p>
+		{% endif %}
+
+		{% endif %}
+		
+		<p class= "messsage center">Quiz attempt number: {{attempt_number}}</p>
+		<p class= "messsage center">Making your average score for this quiz: {{average_score}}/{{quiz.questions.count()}}</p>
+		
 	</div>
 {% endblock %}

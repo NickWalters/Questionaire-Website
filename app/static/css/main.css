@@ -18,6 +18,14 @@
 		text-align:center;
 	}
 
+	div.center{
+		margin-top: 100px
+	}
+	
+	div.result{
+		margin-top:200px
+	}
+
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
