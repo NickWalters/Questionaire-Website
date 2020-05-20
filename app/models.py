@@ -9,8 +9,6 @@ from flask_migrate import Migrate
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
-
-
 class User(UserMixin, db.Model):
 	__tablename__ = "user"
 	id = db.Column(db.Integer, primary_key=True)
@@ -60,7 +58,7 @@ class Quiz(db.Model):
 
 	style = db.Column(db.Integer, ForeignKey('quizStyle.id'))
 	quizStyle = relationship('QuizStyle', back_populates="quizzes")
-	questions = db.relationship('Question', backref='quiz', lazy='dynamic')
+	questions = db.relationship('Question', back_populates='quiz', lazy='dynamic')
 	quizContents = db.relationship('QuizContent', backref='quiz', lazy='dynamic')
 	
 	def short(self):
@@ -113,7 +111,10 @@ class Question(db.Model):
 
 	question_choices = db.relationship('QuestionChoice', backref='question', lazy='dynamic')
 	question_contents = db.relationship('QuestionContent', backref='question', lazy='dynamic')
+
+
 	userAnswers = db.relationship('UserAnswer', back_populates='question')
+	quiz = db.relationship('Quiz', back_populates='questions')
 
 	def get_question_choices_as_array_of_pairs(self):
 		choices = []
@@ -175,7 +176,6 @@ class UserAttempt(db.Model):
 	def get_score(self):
 		score = 0
 		for answer in self.userAnswers:
-			print(answer.questionChoice)
 			if answer.questionChoice.choice_correct: score = score + 1
 		return score
 
@@ -215,7 +215,7 @@ def load_user(id):
 	return User.query.get(int(id))
 
 
-'''
+''''
 db.session.add(User(username="admin", email="admin@admin.admin", admin=True, password_hash=generate_password_hash("admin")))
 db.session.add(User(username="user", email="user@user.user", admin=False, password_hash=generate_password_hash("user")))
 

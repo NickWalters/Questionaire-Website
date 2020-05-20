@@ -86,24 +86,33 @@ def quiz(quiz_name):
 		lastUserAttempt = current_user.get_last_attempt(userAttempts = userAttempts)
 		session['attempt_id'] = lastUserAttempt.id
 
+	print("HERE NOW 3")
+	print(session.get('question_id'))
 	#If there is a cookie telling us what question the user is up to
-	if session.get('question_number') != None:
-		question_number = session.pop('question_number', None)
-		question = quiz.get_question_by_question_number(question_number)
+	if session.get('question_id') != None:
+		question_id = session.pop('question_id', None)
+		question = quiz.questions.filter_by(id=question_id).first()
 		form = make_form(quizStyle, question)
 		submitted_form = request.form
 
+		print("HERE NOW")
 		#If a form was submitted
 		if submitted_form:
+			print("HERE NOW 2")
 			submitted_choice = None
 			if quizStyle.id == 1 :
+				choices = question.question_choices
 				submitted_choice = submitted_form.get('radioField')
+				for choice in choices:
+					if choice.choice_number == submitted_choice:
+						submitted_choice = choice.id
+						break
 			elif quizStyle.id == 2:
 				choices = question.question_choices
 				submitted_choice = list(submitted_form.values())[1]
 				for choice in choices:
 					if choice.choice_content == submitted_choice:
-						submitted_choice = choice.choice_number
+						submitted_choice = choice.id
 						break
 
 			#Commit the answer to the DB
@@ -116,7 +125,7 @@ def quiz(quiz_name):
 			#Serve next question if there is a next question
 			next_question = quiz.get_next_question(last_question = question)
 			if next_question != None:
-				session['question_number']=next_question.question_number
+				session['question_id']=next_question.id
 				next_form = make_form(quizStyle, next_question)
 				return render_template(quizStyle.template_file,quiz = quiz,question = next_question,form = next_form)
 
@@ -164,8 +173,8 @@ def quiz(quiz_name):
 		else :
 			return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 	#If starting from the beginning, no cookie
-	question=quiz.get_first_question()
-	session['question_number'] = question.question_number
+	question=quiz.get_question_by_question_number(1)
+	session['question_id'] = question.id
 	form = make_form(quizStyle, question)
 	return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 
