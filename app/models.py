@@ -375,4 +375,4 @@ db.session.add(QuestionChoice(question_id=20,choice_number=1,choice_content="Mal
 db.session.add(QuestionChoice(question_id=20,choice_number=2,choice_content="Indonesia",choice_correct=True))
 db.session.add(QuestionChoice(question_id=20,choice_number=3,choice_content="Mandarin",choice_correct=False))
 db.session.add(QuestionChoice(question_id=20,choice_number=4,choice_content="Thai",choice_correct=False))
-db.session.commit()'''
+db.session.commit()''''

@@ -1,21 +1,19 @@
 {% extends "siteBase.html" %}
 
 {% block head %}
-		<title>Quiz Select</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
-		<style>
-			main {
-				padding-top:20px;
-			}
-			div.worldQuiz{
-				padding-top:150px;
-			}
-		</style>
+	{{ super() }}
+	<style>
+		main {
+			padding-top:20px;
+		}
+		div.worldQuiz{
+			padding-top:150px;
+		}
+	</style>
 {% endblock %}
 
-{% block content %}
+{% block body %}
+	{{ super() }}
 	<div class="center">
 		<!-- Main -->
 		<section id="main" class="wrapper">

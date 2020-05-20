@@ -1,38 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name ="viewport" content="width=device-width, initial-scale=1.0">
-        <Title>dunno</Title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="row">
+{% extends "siteBase.html" %}
+
+{% block body %}
+{{ super() }}
+    <div class="row">
 
 
-            <div class="col">
-                <div class="leftside">
-                    <h1>Results for Flag quiz</h1>
-                    <p>Amount of quiz attempts:</p>
-                    <p>Amount of users who attempted Quiz:</p>
-                    <p>Average Score:</p>
+        <div class="col">
+            <div class="leftside">
+                <h1>Results for Flag quiz</h1>
+                <p>Amount of quiz attempts:</p>
+                <p>Amount of users who attempted Quiz:</p>
+                <p>Average Score:</p>
 
-                </div>
             </div>
-
-
-            <div class="col">
-                <div class="rightside">
-                    <h1>Results for Language quiz</h1>
-                    <p>Amount of quiz attempts:</p>
-                    <p>Amount of users who attempted Quiz:</p>
-                    <p>Average Score:</p>
-                </div>
-            </div>
-
-
         </div>
-    </body>
 
-</html>
+
+        <div class="col">
+            <div class="rightside">
+                <h1>Results for Language quiz</h1>
+                <p>Amount of quiz attempts:</p>
+                <p>Amount of users who attempted Quiz:</p>
+                <p>Average Score:</p>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

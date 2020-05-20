@@ -1,14 +1,12 @@
 {% extends "siteBase.html" %}
 
 {% block head %}
+{{ super() }}
 		<title>Questionaire - How do you Compare?</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
 {% endblock %}
 
-{% block content %}
+{% block body %}
+{{ super() }}
 <!-- Banner -->
 <section id="banner">
 	</ul>
@@ -47,21 +45,7 @@
 	</div>
 </section>
 
-<!-- Two -->
-	<section id="two" class="wrapper style2 special">
-		<div class="container">
-			<header class="major">
-				<h2>SAMPLE TEST</h2>
-				<p>Sample button to lead to another test</p>
-			</header>
-			<ul class="actions">
-				<li><a href="quizSelect.html" class="button special big">Start Test</a></li>
-				<li><a href="#" class="button big">Resume Test</a></li>
-			</ul>
-		</div>
-	</section>
-
-<!-- Four -->
+<!-- TWO -->
 	<section id="four" class="wrapper style3 special">
 		<div class="container">
 			<header class="major">

@@ -11,8 +11,6 @@
             {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
             {% endif %}
-            <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-            <li><a href="{{ url_for('about') }}">About</a></li>
         </ul>
     </nav>
 </header>
