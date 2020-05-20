@@ -83,6 +83,7 @@ def quiz(quiz_name):
 		newAttempt = UserAttempt(attempt_number = attemptNumber, user_id = current_user.id, quiz_id = quiz.id)
 		db.session.add(newAttempt)
 		db.session.commit()
+		lastUserAttempt = current_user.get_last_attempt(userAttempts = userAttempts)
 		session['attempt_id'] = lastUserAttempt.id
 
 	#If there is a cookie telling us what question the user is up to
@@ -98,8 +99,8 @@ def quiz(quiz_name):
 			if quizStyle.id == 1 :
 				submitted_choice = submitted_form.get('radioField')
 			elif quizStyle.id == 2:
-				choices = question.choices
-				submitted_choice = list(submitted_form.values())[0]
+				choices = question.question_choices
+				submitted_choice = list(submitted_form.values())[1]
 				for choice in choices:
 					if choice.choice_content == submitted_choice:
 						submitted_choice = choice.choice_number
@@ -124,12 +125,18 @@ def quiz(quiz_name):
 			userAttempts = current_user.get_user_quiz_attempts(quiz = quiz)
 			attempt_list = userAttempts.all() #List may not be correctly ordered
 			session_attempt_id = session.pop('attempt_id', None)
+			thisAttempt = None
 			for thisAttempt in attempt_list:
 				if thisAttempt.id == session_attempt_id:
 					index = attempt_list.index(thisAttempt)
 					break
 			attemptnumber = thisAttempt.attempt_number
-			lastAttempt = attempt_list[index-1]
+			prevscore = 0
+			try:
+				lastAttempt = attempt_list[index-1]
+				prevscore = lastAttempt.get_score()
+			except:
+				pass
 
 			#Scores
 			total_score = 0
@@ -137,7 +144,7 @@ def quiz(quiz_name):
 				total_score = total_score + attempt.get_score()
 			average_score = round(total_score / userAttempts.count(),2)
 			score = thisAttempt.get_score()
-			prevscore = lastAttempt.get_score()
+			
 
 			if lastAttempt == None:
 				prevscoretext = 'Last attempt: You havent attempted the quiz before.' 
