@@ -6,8 +6,18 @@ README should describe:
 5. Include commit logs, showing contributions and review from both contributing students
 
 # Geography Quiz - Test your world knowledge
+This flask application provides an architecture for multiple quizzes to be assigned to one database.
+In this example, we have used a Geography Quiz, testing flag knowledge and how much you know about official languages.
+This app provides functionality for:
 
+- **User Registration and Log In** allowing users to log into our system securely (with hashing and validation) and access their previous scores, or any other allowed query with the database
 
+- **Admins** Admin users can log into the page, change permissions of other users (admin or not) change user details, change questions, change question answers in the database, and look at the results of all the users in the database (who have submitted answers).
+
+- **Results Page** Logged in users can see a summary of their results. Such as their average score, number of attempts, how much percentage improvement since last quiz (-% or +%) and their last raw score.
+
+If users want to take a quiz, they must register an account. Users are 'unauthorized' to take a quiz without login information. After successful registration, there is a redirect and prompt on the login page. You can now use these registration details to log into your account. 
+After log in, there is a welcome splash screen displayed to the user, outlining the various quizzes you can take.
 
 # Installation 
 1:
@@ -48,4 +58,24 @@ python -m venv venv, or; python3 -m venv venv
 2: Enter the virtual environment 
 Linux by: source venv/bin/activate
 Windows: venv/Scripts/activate
+
+
+# Dependencies 
+main packages:
+
+`Flask`
+`Flask-Admin`
+`Flask-Login`
+`Flask-SQLAlchemy`
+`Flask-WTF`
+`sqlalchemy-migrate`
+`Flask-Migrate`
+
+other packages:
+
+`email-validator`
+`itsdangerous`
+`Jinja2`
+`MarkupSafe`
+`Werkzeug`
 
