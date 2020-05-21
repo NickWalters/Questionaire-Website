@@ -34,40 +34,44 @@ class TestCase(unittest.TestCase):
         return self.app.post("/login", data=dict(username=username,
         password=password), follow_redirects = True)
 
+    def logout(self):
+        return self.app.get('/logout', follow_redirects = True)
+
+
 
 #Registration Functionality Tests
     #tests a valid registration attempt
     def test_valid_registration(self):
         response = self.register("user", "user@email.com", "password", "password")
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Congratulations, you are now a registered user!', response.data)
+        self.assertIn(b'<title>Log In</title>', response.data)
 
     #Tests an invalid registration attempt where passwords do not match
     def test_invalid_registration_passwords(self):
         response = self.register("user", "grae@email.com", "password", "invalid password")
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Field must be equal to password', response.data)
+        self.assertIn(b'<title>Register</title>', response.data)
 
     #Tests an invalid registration attempt where email is invalid
     def test_invalid_registration_email(self):
         #missing @ symbol
         response = self.register("user", "invalid email.com", "password", "password")
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Invalid email address', response.data)
+        self.assertIn(b'<title>Register</title>', response.data)
 
         #missing domain
         response = self.register("user", "invalid@email", "password", "password")
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Invalid email address', response.data)
+        self.assertIn(b'<title>Register</title>', response.data)
 
         #invalid space inserted
         response = self.register("user", "invalid@ email.com", "password", "password")
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Invalid email address', response.data)
+        self.assertIn(b'<title>Register</title>', response.data)
 
     #Tests an invalid registration where the username and/or email are already taken
     def test_invalid_registration_duplicates(self):
-        u1 = User(username = "existing_user", email = "existing_user@email.com")
+        u1 = User(username = "existing_user", email = "existing_user@email.com", password_hash = "User.set_password('password')")
         db.session.add(u1)
         db.session.commit()
 
@@ -146,7 +150,7 @@ class TestCase(unittest.TestCase):
         self.app.get('/login', follow_redirects = True)
         self.login("user", "password")
         response = self.app.get('/logout', follow_redirects = True)
-        self.assertIn(b'Logged Out', response.data)
+        self.assertIn(b'Please Login to save your scores', response.data)
 
 #ADMIN TESTS:
     #successful login as admin
