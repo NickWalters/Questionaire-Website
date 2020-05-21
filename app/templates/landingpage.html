@@ -1,22 +1,42 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name ="viewport" content="width=device-width, initial-scale=1.0">
-        <Title>dunno</Title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="container">
-            <h1>your results for this quiz</h1>
-            <p> your score was trash!</p>
-            <p>your previous score was also bad</p>
-            <p>you should do better cause you suck</p>
-            <p>this is how many times you attempted it you idiot</p>
-            <p>your average score for this is a fail like you</p>
 
-            <button class="btn_link" style="float: left;" onclick="window.location.href = 'https://w3docs.com'">question list</button>
-            <button class="btn_link2" style="float: right;" onclick="window.location.href = 'https://w3docs.com'">question list</button>
-        </div>
-    </body>
-</html>
+{% extends "siteBase.html" %}
+
+{% block head %}
+{{ super() }}
+	<title>Results</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',    filename='css/stylelanding.css') }}">
+{% endblock %}
+
+{% block body %}
+{{ super() }}
+<div class="container">
+
+            
+    <h1 class="score">{{score}}/10</h1>
+
+    <p class="message center">You received {{score}} out of {{quiz.questions.count()}} correct</p>
+    
+    {% if prev_score != None %}
+    <p class= "messsage center">Your previous attempt score was: {{prev_score}}</p>
+
+    {% if score > prev_score != None %}
+    <p class= "messsage center">You have improved by {{ score - prev_score }}!</p>
+    {% elif score < prev_score != None %}
+    <p class= "messsage center">Somehow your score went down by {{ prev_score - score}}, what happened?!</p>
+    {% endif %}
+    
+    {% if score == 10 and prev_score == 10 %}
+    <p class= "messsage center">Great job!</p>
+    {% elif score == prev_score != None %}
+    <p class= "messsage center">No improvement, keep trying!</p>
+    {% endif %}
+
+    {% endif %}
+    
+    <p class= "messsage center">Quiz attempt number: {{attempt_number}}</p>
+    <p class= "messsage center">Making your average score for this quiz: {{average_score}}/{{quiz.questions.count()}}</p>
+    
+</div>
+{% endblock %}
