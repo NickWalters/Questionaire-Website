@@ -156,7 +156,7 @@ def quiz(quiz_name):
 				average_score = round(total_score / user_attempts.count(),2)
 				score = this_attempt.get_score()
 				
-				return render_template('results.html',quiz = quiz, score = score, prev_score = prev_score, average_score = average_score, attempt_number = attempt_number )
+				return render_template('landingpage.html',quiz = quiz, score = score, prev_score = prev_score, average_score = average_score, attempt_number = attempt_number )
 		#if no form submitted or no choice made
 		return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 	#If starting from the beginning, no cookie
@@ -174,26 +174,35 @@ def make_form(style, question):
 @app.route('/results')
 @login_required
 def results():
-	quiz1score = 0
-	attempts1 = 0
-	quiz2score = 0
-	attempts2 = 0
-	average1 = 0
-	average2 = 0
-	attempts = db.session.query(User_attempt)
+	answers = db.session.query(UserAnswer)
 	choices = db.session.query(QuestionChoice)
+	attempts = db.session.query(UserAttempt)
+	attnum1 = 0
+	attnum2 = 0
+	score = 0
+	score2 = 0
 
 	for attempt in attempts:
 		if attempt.quiz_id == 1:
-			quiz1score = quiz1score + attempt.totalscore
-			attempts1 = attempts1 + attempt.attemptnum
+			attnum1 = attnum1 + 1
+		elif attempt.quiz_id == 2:
+			attnum2 = attnum2 + 1
+	
 
-	for attempt in attempts:
-		if attempt.quiz_id == 2:
-			quiz2score = quiz2score + attempt.totalscore
-			attempts2 = attempts2 + attempt.attemptnum
+	for answer in answers:
+				for choice in choices:
+					if choice.id == answer.choice_id and choice.choice_correct == True and choice.question_id < 11:
+						score = score + 1
+					
+	for answer in answers:
+				for choice in choices:
+					if choice.id == answer.choice_id and choice.choice_correct == True and choice.question_id > 10:
+						score2 = score2 + 1
 
-	average1 = round((Decimal(quiz1score / attempts1)),2)
-	average2 = round((Decimal(quiz2score / attempts2)),2)
+	average1 = round(score / attnum1,2)
+	average2 = round(score2 / attnum2,2)
 
-	return render_template('resultsall.html', quiz1score = quiz1score, quiz2score = quiz2score, attempts1 = attempts1, attempts2= attempts2, average1 = average1, average2=average2)
+	
+	
+
+	return render_template('resultsall.html', attnum1 = attnum1, attnum2 = attnum2, average1 = average1, average2=average2)
