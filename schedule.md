@@ -29,9 +29,9 @@
 * Style2 form generation is hacky
 
 ### Minor cosmetic issues:
-* quizSelect border around images
-* Style problems from when everything was moved over to templates
-* Buttons on language quiz style
+* <del>quizSelect border around images
+* <del>Style problems from when everything was moved over to templates
+* <del>Buttons on language quiz style
 
 ### Optional extension:
 * Community polling - i.e. “what country are you from?” Or “how many languages do you speak?” And compare that to other users.

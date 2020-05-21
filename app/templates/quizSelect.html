@@ -28,7 +28,7 @@
 						<h2>{{quiz.quizname}}</h2>
 						<div class="image fit flush">
 							<a href="{{ url_for('quiz', quiz_name=quiz.short()) }}">
-								<img src="{{ url_for('static',    filename='images/'+quiz.quizContents.first().img_content) }}"/>
+								<img class="quizSelect" src="{{ url_for('static',    filename='images/'+quiz.quizContents.first().img_content) }}"/>
 							</a>
 						</div>
 						<p>{{quiz.quizContents.first().text_content}}</p>
