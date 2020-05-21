@@ -92,19 +92,15 @@ def quiz(quiz_name):
 		lastUserAttempt = current_user.get_last_attempt(userAttempts = userAttempts)
 		session['attempt_id'] = lastUserAttempt.id
 
-	print("HERE NOW 3")
-	print(session.get('question_id'))
 	#If there is a cookie telling us what question the user is up to
 	if session.get('question_id') != None:
-		question_id = session.pop('question_id', None)
+		question_id = session.get('question_id', None)
 		question = quiz.questions.filter_by(id=question_id).first()
 		form = make_form(quizStyle, question)
 		submitted_form = request.form
 
-		print("HERE NOW")
 		#If a form was submitted
 		if submitted_form:
-			print("HERE NOW 2")
 			submitted_choice = None
 			if quizStyle.id == 1 :
 				choices = question.question_choices
@@ -122,14 +118,13 @@ def quiz(quiz_name):
 						break
 
 			#Commit the answer to the DB
-			print('below is submitted choice')
-			print(submitted_choice)
+			print('Submitted choice:'+str(submitted_choice))
 			if submitted_choice:
 				answer = UserAnswer(user_id=current_user.id,question_id=question.id,choice_id=submitted_choice,attempt_id=session.get('attempt_id'))
 				db.session.add(answer)
 				db.session.commit()
-
-				#Serve next question if there is a next question
+				
+				#Serve next question
 				next_question = quiz.get_next_question(last_question = question)
 				if next_question != None:
 					session['question_id']=next_question.id
@@ -137,6 +132,7 @@ def quiz(quiz_name):
 					return render_template(quizStyle.template_file,quiz = quiz,question = next_question,form = next_form)
 
 				#Setup for results page
+				session.pop('question_id', None)
 				#Get UserAttempt objects
 				user_attempts = current_user.get_user_quiz_attempts(quiz = quiz)
 				attempt_list = user_attempts.all() #List may not be correctly ordered
@@ -162,7 +158,6 @@ def quiz(quiz_name):
 				
 				return render_template('results.html',quiz = quiz, score = score, prev_score = prev_score, average_score = average_score, attempt_number = attempt_number )
 		#if no form submitted or no choice made
-		session['question_id'] = question.id
 		return render_template(quizStyle.template_file,quiz = quiz,question = question,form = form)
 	#If starting from the beginning, no cookie
 	question=quiz.get_question_by_question_number(question_number = 1)

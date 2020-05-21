@@ -4,19 +4,19 @@
 * <del>POST of quiz data to DB
 * <del>Flask-Login (done?)
 * <del>Migrate
-* Flask-Admin - fix up individual pages
+* <del>Flask-Admin - fix up individual pages
 * Unit testing
 * DB drawings - dbSchema.xlsx
 * README.md
-* Results landing page
+* <del>Results landing page
 
 ### Known issues:
 * Flash and alerts not functional
 * <del>IMG files > 5MB
-* Section 2 of home page, 'SAMPLE TEST'
-* About page
-* Form validation on quizzes - reject empty forms + check form data is valid
-* Will proceed to next question even if the answer failed to commit to DB
+* <del>Section 2 of home page, 'SAMPLE TEST'
+* <del>Form validation on quizzes - reject empty forms
+* Form validation on quizzes -  check form data is valid
+* <del>Will proceed to next question even if the answer failed to commit to DB
 * <del>Change quizSelect to use DB (for quiz in Quiz.query.all())
 * <del>AttributeError: 'AnonymousUserMixin' object has no attribute 'get_last_answer' when attempting to do a quiz without being loged in
 * <del>Quiz blurb variable in DB
