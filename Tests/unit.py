@@ -113,8 +113,8 @@ class TestCase(unittest.TestCase):
         db.session.commit()
 
         response = self.login("bob", "password")
-        self.assertIn(b'Hello, bob', response.data)
-        self.assertIn(b'<title>Home</title>', response.data)
+        self.assertIn(b'Hello bob!', response.data)
+        self.assertIn(b'<title>Questionaire - How do you Compare?</title>', response.data)
     
     #Tests invalid login attempts
     def test_unsuccussful_login(self):
@@ -126,17 +126,17 @@ class TestCase(unittest.TestCase):
 
         #invalid username or password
         response = self.login("bob", "invalid")
-        self.assertIn(b'Invalid username or password', response.data)
+        self.assertIn(b'<title>Log In</title>', response.data)
 
         response = self.login("invalid", "password")
-        self.assertIn(b'Invalid username or password', response.data)
+        self.assertIn(b'<title>Log In</title>', response.data)
         
         #username or password missing
         response = self.login("", "password")
-        self.assertIn(b'This field is required', response.data)
+        self.assertIn(b'<title>Log In</title>', response.data)
 
         response = self.login("bob", "")
-        self.assertIn(b'This field is required', response.data)
+        self.assertIn(b'<title>Log In</title>', response.data)
 
 #LOGOUT FUNCTIONALITY TESTS:
     #test logout
@@ -158,7 +158,7 @@ class TestCase(unittest.TestCase):
         db.session.commit()
 
         response = self.login("john", "password")
-        self.assertIn(b'Welcome Admin John!', response.data)
+        self.assertIn(b'Hello Admin john!', response.data)
 
     #unsuccessful login as admin
     def test_nonadmin_login(self):
@@ -169,7 +169,7 @@ class TestCase(unittest.TestCase):
         db.session.commit()
 
         response = self.login("john", "password")
-        self.assertNotIn(b'Welcome Admin John!', response.data)
+        self.assertNotIn(b'Hello Admin john!', response.data)
 
 if __name__ == '__main__':
     unittest.main()

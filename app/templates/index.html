@@ -12,8 +12,10 @@
 	</ul>
 		{% if current_user.is_anonymous %}
 		<h4 style="color:white">Please Login to save your scores<p>
-		{% else %}
-		<h4 style="color:white">Hello, {{ current_user.username }}!</h1>
+		{% elif current_user.admin == False %}
+		<h4 style="color:white">Hello {{ current_user.username }}!</h1>
+		{% elif current_user.admin == True%}
+		<h4 style="color:white">Hello Admin {{ current_user.username }}!</h1>
 		{% endif %}
 	
 	<h2 class="title1">Take our Tests</h2>

@@ -1,7 +1,10 @@
 {% extends "siteBase.html" %}
 
 {% block body %}
+{% block head %}
 {{ super() }}
+	<title>Log In</title>
+{% endblock %}
 <div class="loginBox center">
 	<h1>Sign in</h1>
 	<form action="" method="post" novalidate>
