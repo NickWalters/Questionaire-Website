@@ -1,5 +1,13 @@
 {% extends "siteBase.html" %}
 
+{% block head %}
+{{ super() }}
+	<title>results</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',    filename='css/styleresultsall.css') }}">
+{% endblock %}
+
 {% block body %}
 {{ super() }}
     <div class="row">
@@ -8,9 +16,8 @@
         <div class="col">
             <div class="leftside">
                 <h1>Results for Flag quiz</h1>
-                <p>Amount of quiz attempts:</p>
-                <p>Amount of users who attempted Quiz:</p>
-                <p>Average Score:</p>
+                <p>Amount of quiz attempts: {{attnum1}}</p>
+                <p>Average Score: {{average1}}</p>
 
             </div>
         </div>
@@ -18,10 +25,9 @@
 
         <div class="col">
             <div class="rightside">
-                <h1>Results for Language quiz</h1>
-                <p>Amount of quiz attempts:</p>
-                <p>Amount of users who attempted Quiz:</p>
-                <p>Average Score:</p>
+                <h1>Results for Lang quiz</h1>
+                <p>Amount of quiz attempts: {{attnum2}}</p>         
+                <p>Average Score: {{average2}}</p>
             </div>
         </div>
 
