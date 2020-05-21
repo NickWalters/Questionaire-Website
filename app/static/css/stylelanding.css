@@ -8,21 +8,22 @@ body{
     padding: 0;
     margin: 0;
     display: flex;
-    width: 100vw;
-    height: 100vh;
     justify-content: center;
     align-items: center;
     background-color: rgb(108, 171, 223)
 }
 
 .container {
-    width: 80%;
-    height: 80%;
+    
+    width: 90%;
+    height: 90%;
     background-color:white;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 0 10px 2px;
     position: relative;
+    margin-top: 10%;
+    margin-left: 18%;
 }
 
 p {
@@ -34,7 +35,7 @@ p {
 
 h1{
     text-align: center;
-    padding-bottom: 60px;
+    padding-bottom: 15px;
 }
 
 .btn_link {
@@ -42,7 +43,7 @@ h1{
     right: 20px;
     bottom: 20px;
     padding: 10px;
-    font-size: 30px;
+    font-size: 20px;
     border: none;
     box-shadow: 0 0 2px 0px;
     transition-duration: 0.75s;
@@ -58,7 +59,7 @@ h1{
     left: 20px;
     bottom: 20px;
     padding: 10px;
-    font-size: 30px;
+    font-size: 20px;
     border: none;
     box-shadow: 0 0 2px 0px;
     transition-duration: 0.75s;
