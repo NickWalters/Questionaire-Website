@@ -46,12 +46,20 @@ venv\Scripts\activate
 
 3:
 **install the required files/packages (you must be in the project directory)**
-```pip install -r requirements.txt```
+```bash
+pip install -r requirements.txt
+```
 
 4:
 **Set path:**
-Linux: export ```FLASK_APP=app.py```
-Windows: set ```FLASK_APP=app.py```
+Linux: 
+```bash 
+export FLASK_APP=app.py
+```
+Windows: 
+```bash
+set FLASK_APP=app.py
+```
 
 5:
 **Run flask:**
