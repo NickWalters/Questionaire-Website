@@ -19,14 +19,30 @@ This app provides functionality for:
 If users want to take a quiz, they must register an account. Users are 'unauthorized' to take a quiz without login information. After successful registration, there is a redirect and prompt on the login page. You can now use these registration details to log into your account. 
 After log in, there is a welcome splash screen displayed to the user, outlining the various quizzes you can take.
 
+## Authors
+  * Nicholas Walters (22243339)
+  * Nicholas Turner
+  * Sean Chu
+  * Rio Akbar
+
+
 ## Installation 
 1:
 **Install python3**
 
 2:
 **Enter the virtual environment by:**
-```virtualenv env -p python3```
-```source env/bin/activate```
+```bash
+virtualenv venv
+source venv/bin/activate
+```
+
+To run a virtual environment on Windows, run the following commands:
+
+```bash
+virtualenv venv
+venv\Scripts\activate
+```
 
 3:
 **install the required files/packages (you must be in the project directory)**
