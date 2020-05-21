@@ -5,31 +5,34 @@ README should describe:
 4. describe some unit tests for the web application, and how to run them. 
 5. Include commit logs, showing contributions and review from both contributing students
 
-#Installing as per mega tutorial with venv
+# Geography Quiz - Test your world knowledge
 
+
+
+# Installation 
 1:
-Install python and pip
+**Install python3**
 
 2:
-Enter the virtual environment by:
+**Enter the virtual environment by:**
 ```virtualenv env -p python3```
 ```source env/bin/activate```
 
 3:
-install the required files/packages (you must be in the project directory)
+**install the required files/packages (you must be in the project directory)**
 ```pip install -r requirements.txt```
 
 4:
-Set path:
+**Set path:**
 Linux: export ```FLASK_APP=app.py```
 Windows: set ```FLASK_APP=app.py```
 
 5:
-Run flask:
+**Run flask:**
 ```flask run```
 
-Running this command will start the website
-You can access the website by visiting the provided link:
+**Running this command will start the website
+You can access the website by visiting the provided link:**
 
 http://127.0.0.1:5000/
 
