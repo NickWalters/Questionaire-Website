@@ -4,6 +4,8 @@
 {% block head %}
 {{ super() }}
 <title>Register</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{ url_for('static',    filename='js/register.js') }}"></script>
 {% endblock %}
 <div class="loginBox center">
 	<h1>Register</h1>
@@ -15,7 +17,7 @@
 			{{ form.username.label }}<br>
 			{{ form.username(size=32) }}<br>
 			{% for error in form.username.errors %}
-			<span style="color: red;">[{{ error }}]</span>
+			<span id="errorusername" style="color: red;">[{{ error }}]</span>
 			{% endfor %}
 		</p>
 		</div>
@@ -24,7 +26,7 @@
 			{{ form.email.label }}<br>
 			{{ form.email(size=64) }}<br>
 			{% for error in form.email.errors %}
-			<span style="color: red;">[{{ error }}]</span>
+			<span id="erroremail" style="color: red;">[{{ error }}]</span>
 			{% endfor %}
 		</p>
 		</div>
@@ -33,7 +35,7 @@
 			{{ form.password.label }}<br>
 			{{ form.password(size=32) }}<br>
 			{% for error in form.password.errors %}
-			<span style="color: red;">[{{ error }}]</span>
+			<span id="errorpassword1" style="color: red;">[{{ error }}]</span>
 			{% endfor %}
 		</p>
 		</div>
@@ -42,7 +44,7 @@
 			{{ form.password2.label }}<br>
 			{{ form.password2(size=32) }}<br>
 			{% for error in form.password2.errors %}
-			<span style="color: red;">[{{ error }}]</span>
+			<span id="errorpassword2" style="color: red;">[{{ error }}]</span>
 			{% endfor %}
 		</p>
 		</div>
