@@ -198,9 +198,14 @@ def results():
 				for choice in choices:
 					if choice.id == answer.choice_id and choice.choice_correct == True and choice.question_id > 10:
 						score2 = score2 + 1
-
-	average1 = round(score / attnum1,2)
-	average2 = round(score2 / attnum2,2)
+	if score != 0:
+		average1 = round(score / attnum1,2)
+	elif score == 0:
+		average1 = 0
+	if score2 != 0:
+		average2 = round(score2 / attnum2,2)
+	elif score2 == 0:
+		average2 = 0
 
 	
 	
