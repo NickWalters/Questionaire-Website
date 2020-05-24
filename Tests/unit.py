@@ -175,5 +175,52 @@ class TestCase(unittest.TestCase):
         response = self.login("john", "password")
         self.assertNotIn(b'Hello Admin john!', response.data)
 
+    #accessing the flag quiz if not logged in
+    def test_flagquiz_not_logged_in(self):
+        self.app.get('/register', follow_redirects = True)
+        self.register("user", "user@email.com", "password", "password")
+        self.app.get('/login', follow_redirects = True)
+        self.login("user", "password")
+        self.app.get('/logout', follow_redirects = True)
+        response = self.app.get('/quiz/flag', follow_redirects = True)
+        self.assertIn(b'<title>Log In</title>', response.data)
+
+    #accessing the language quiz if not logged in
+    def test_languagequiz_not_logged_in(self):
+        self.app.get('/register', follow_redirects = True)
+        self.register("user", "user@email.com", "password", "password")
+        self.app.get('/login', follow_redirects = True)
+        self.login("user", "password")
+        self.app.get('/logout', follow_redirects = True)
+        response = self.app.get('/quiz/language', follow_redirects = True)
+        self.assertIn(b'<title>Log In</title>', response.data)
+
+    #access the results page test
+    def test_access_results_page_logged_in(self):
+        self.app.get('/register', follow_redirects = True)
+        self.register("user", "user@email.com", "password", "password")
+        self.app.get('/login', follow_redirects = True)
+        self.login("user", "password")
+        response = self.app.get('/results', follow_redirects = True)
+        self.assertIn(b'<title>results</title>', response.data)
+    
+    #access the results page, not logged in
+    def test_access_results_page_not_logged(self):
+        self.app.get('/register', follow_redirects = True)
+        self.register("user", "user@email.com", "password", "password")
+        self.app.get('/login', follow_redirects = True)
+        self.login("user", "password")
+        self.app.get('/logout', follow_redirects = True)
+        response = self.app.get('/results', follow_redirects = True)
+        self.assertIn(b'<title>Log In</title>', response.data)
+
+    #tests the flag quiz submit button after each question
+   # def test_flag_quiz_submit(self):
+    #    self.app.get('/login', follow_redirects = True)
+     #   self.login("user", "password")
+      #  self.app.get('/quiz/language', follow_redirects = True)
+
+
+
 if __name__ == '__main__':
     unittest.main()
