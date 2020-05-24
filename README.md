@@ -22,7 +22,7 @@ After log in, there is a welcome splash screen displayed to the user, outlining 
 ## Authors
   * Nicholas Walters (22243339)
   * Nicholas Turner
-  * Sean Chu
+  * Sean Chu (22479185)
   * Rio Akbar
 
 
