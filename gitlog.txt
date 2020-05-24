@@ -1,0 +1,1318 @@
+commit 6b25ea2e374abf9d242f40ef5e757a7970976b32 (HEAD -> master, origin/master, origin/HEAD)
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Sun May 24 16:47:55 2020 +0800
+
+	Update routes.py
+
+commit 9294f9a45e085b234321ee41d06913c9312f83a0
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Sun May 24 16:37:12 2020 +0800
+
+	update to testing
+
+commit f57015296182ad16ea0ac51ada1948dc93361ca8
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Sun May 24 15:31:45 2020 +0800
+
+	Update README.md
+
+commit 3fe7ea737e638ca56c2f8ac5ae586fd0d3ef6f9d
+Author: turnn <nick@elecnett.com.au>
+Date:   Sun May 24 12:55:02 2020 +0800
+
+	Add client-sided registration validators
+
+commit a05373dc9c5111182869b15dc1bee54ff3d40b3d
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Fri May 22 05:24:52 2020 +0800
+
+	Testing works for basic tests
+
+commit 6e03d4be9e96269d6c3fbb8dfeebbf00475c6097
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Thu May 21 21:25:46 2020 +0800
+
+	saving changes
+
+commit d7d0b6ebfd7a27ec277b9a86a1e56d4b469d13d5
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Thu May 21 18:42:58 2020 +0800
+
+	Update test.py
+
+commit 93b050c9395be1462c2e6a040e62d7ca0bd1382e
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu May 21 15:37:19 2020 +0800
+
+	Add files via upload
+
+commit f9cb82f8b60c764a413cea4d24f2d7c4b6e3ae97
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu May 21 15:19:57 2020 +0800
+
+	Update routes.py
+
+commit 70e23b313f98acddac8cfb4a227b90fa6013fcb0
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu May 21 15:14:20 2020 +0800
+
+	Update stylelanding.css
+
+commit 795148a4e0289724ff78de47922222a6e1972cdb
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu May 21 15:13:54 2020 +0800
+
+	Update styleresultsall.css
+
+commit 8c0cd1114db0d5e58adac8c14b4e3db986ddd088
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu May 21 15:13:13 2020 +0800
+
+	Update resultsall.html
+
+commit e55970cdd0637dcf0854510d7b3b2bbf06685e5e
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu May 21 15:12:17 2020 +0800
+
+	Update resultsall.html
+
+commit d60fffca90836647adbb419c9fd25b991f8e31f8
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu May 21 15:11:53 2020 +0800
+
+	Update landingpage.html
+
+commit e1b00ac0057c29a59fd6f1d32a9532cbd8e780d8
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Thu May 21 13:27:27 2020 +0800
+
+	small changes
+
+commit 71bf301d0805cae882d2c5b8e130e90b34652ff6
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Thu May 21 13:22:59 2020 +0800
+
+	Update README.md
+
+commit 416ee88c1e715bd483048d281ecc03ae08f1acd1
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Thu May 21 13:04:51 2020 +0800
+
+	Update README.md
+
+commit 819351620ef6cce5e44e9616c359c6f08dcae389
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Thu May 21 12:51:55 2020 +0800
+
+	Update README.md
+
+commit 6cd7ab1b002422a18e719cc807d630f12b2b4657
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Thu May 21 12:23:07 2020 +0800
+
+	Update README.md
+
+commit 671f3334755572b3b7eecb8c76550025fab1b238
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 21 11:16:16 2020 +0800
+
+	Add border around images of quizSelect
+
+commit 8fa9db36c3a8df2cfa5cc01a84c6540663a29323
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 21 11:12:32 2020 +0800
+
+	Fix issue with cookie question_id not being removed at end of quiz
+
+commit 0abb4c7ccfea345a6c3eab9f0fd3150179f609cb
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 21 01:36:26 2020 +0800
+
+	Even more template fixes
+
+commit d75927351d21855d29953903f5cfd19725c3e22c
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 21 00:47:22 2020 +0800
+
+	Even more template fixing
+
+commit a21b6821d4a2b8507859100ea8c07184c3345c76
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 21 00:31:25 2020 +0800
+
+	Fix issues with quizzes
+
+commit be263c95b6d08e61be4a15df4c1a898972d8d35e
+Author: turnn <nick@elecnett.com.au>
+Date:   Wed May 20 21:51:11 2020 +0800
+
+	Refresh db, change choice in userAnswer to nullable:false
+
+commit 90cc4a53168725b30c1be57b0554967ae31c9215
+Merge: df3e677 c1ec8a0
+Author: turnn <nick@elecnett.com.au>
+Date:   Wed May 20 21:34:15 2020 +0800
+
+	Merge branch 'master' of https://github.com/NickWalters/Questionaire-Website
+
+commit df3e67798c7f4b7a05ee1374e1377bad8c3ebc04
+Author: turnn <nick@elecnett.com.au>
+Date:   Wed May 20 21:33:53 2020 +0800
+
+	Fix language quiz issue
+
+commit c1ec8a0f517790060f9aec306546cac084dcc87b
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Wed May 20 21:25:30 2020 +0800
+
+	Add files via upload
+
+commit a26a1c3ba24d2e75565d064b687a7431c1eb39c7
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Wed May 20 21:24:49 2020 +0800
+
+	Add files via upload
+
+commit cb0aff7aa7c1db4b574167a40401f8a4044574f6
+Author: turnn <nick@elecnett.com.au>
+Date:   Wed May 20 18:02:25 2020 +0800
+
+	Change UserAttempt from static to relational
+
+commit 4d384c098dcd26e35356eba43d3eefff042470fb
+Author: turnn <nick@elecnett.com.au>
+Date:   Wed May 20 15:13:57 2020 +0800
+
+	Add to schedule
+
+commit 1d8ec0eabd901d25328a61d5dc2e8d70b11cec84
+Author: turnn <nick@elecnett.com.au>
+Date:   Wed May 20 00:09:15 2020 +0800
+
+	Fix merge issues
+
+commit 653ec9caab8f2910f4a52ba3775dcf3a8f4593e9
+Author: turnn <nick@elecnett.com.au>
+Date:   Tue May 19 23:52:07 2020 +0800
+
+	Change location of admin.views from routes to models
+
+commit 99d362148115957aa5c7e31abe63db89fe97b5df
+Author: turnn <nick@elecnett.com.au>
+Date:   Tue May 19 23:49:50 2020 +0800
+
+	Remove Sean's venv
+
+commit 502c5b1cc94ce02f800d74778f7c5f984f12cb6b
+Merge: 4acdc6d 0879874
+Author: turnn <nick@elecnett.com.au>
+Date:   Tue May 19 23:48:57 2020 +0800
+
+	Merge branch 'master' of https://github.com/NickWalters/Questionaire-Website
+	
+	Finish merge of master
+
+commit 08798745807fe9d86ec2a4ec29a85331fa46ba8d
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 23:15:19 2020 +0800
+
+	Update .gitignore
+
+commit 4a3a470270614d163ac704ac12d714a6a13dab30
+Merge: bac50c0 a8029d3
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 23:03:07 2020 +0800
+
+	Merge pull request #3 from NickWalters/revert-2-revert-1-test4
+	
+	Revert "Revert "Test4""
+
+commit a8029d3da3c479dbc0e525b231b13ce3122d6c6f (origin/revert-2-revert-1-test4)
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 23:02:44 2020 +0800
+
+	Revert "Revert "Test4""
+
+commit bac50c01d23e4cc4252d2ec97bbfa119415f91eb
+Merge: 7396049 5631600
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 22:56:02 2020 +0800
+
+	Merge pull request #2 from NickWalters/revert-1-test4
+	
+	Revert "Test4"
+
+commit 56316005b65dbfce2f10eed5e1a58da445c1570f (origin/revert-1-test4)
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 22:55:16 2020 +0800
+
+	Revert "Test4"
+
+commit 4acdc6dc3a1bb60485d9bbba0384f0bbe6b3cc0a
+Author: turnn <nick@elecnett.com.au>
+Date:   Tue May 19 22:50:49 2020 +0800
+
+	merge commit
+
+commit a6ee3364089429f38c8c475aec472ef40ddc0451 (origin/mergeissues)
+Author: turnn <nick@elecnett.com.au>
+Date:   Tue May 19 22:47:39 2020 +0800
+
+	Rearrange location of classes, more rigorous templating, fix some CSS issues, start form validation
+
+commit 7396049feebfd24d8dd6ba2385eed228df9f75f7
+Merge: f87db53 8f54273
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 22:46:01 2020 +0800
+
+	Merge pull request #1 from NickWalters/test4
+	
+	Test4
+
+commit 8f542733bc507882fc6b05bc56e06752bcb22d98 (origin/test4)
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 22:41:45 2020 +0800
+
+	results finished
+
+commit dfd0689cb37fc30648b7356efff2e37164d482b1
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 21:27:03 2020 +0800
+
+	base
+
+commit 22e3c8056aada9a6b4a10ec5045185068d7a88e0
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 21:21:11 2020 +0800
+
+	change
+
+commit 7bdeef3dce1748948c79ad35dd7876b32cb257e7
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 21:18:49 2020 +0800
+
+	Update activate
+
+commit eb663bbf4ee330d327c18b7e950ccd9247579203
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue May 19 21:18:46 2020 +0800
+
+	t
+
+commit f87db5349aeffd2243f1c327da9573afb33674e6
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Tue May 19 19:41:48 2020 +0800
+
+	basic tests for test.py
+
+commit 6968594069fcdcd3a05022cf5bdee9c9e5bf9f41
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Tue May 19 15:45:24 2020 +0800
+
+	Update test.py
+
+commit 52c75dfe5a2bbced9ddd16cdd2956318000866c0
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Tue May 19 05:41:27 2020 +0800
+
+	update test.py
+
+commit 20de196dc624234d628aca7d8e90e71d1c2403db
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Tue May 19 03:59:20 2020 +0800
+
+	adds a few registration tests
+
+commit 93405fd691bf94077b7e57ee10394c28e4be95bd
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Mon May 18 15:14:44 2020 +0800
+
+	saving negligible changes
+
+commit e98a55090244972034462cb22b06b500a78d9ab8
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Sun May 17 19:27:43 2020 +0800
+
+	Create test.py
+
+commit 6d60bfad7142915058e5ed7c7c7480605e3b9ffa
+Author: turnn <nick@elecnett.com.au>
+Date:   Sun May 17 15:52:55 2020 +0800
+
+	Fix issue with for loop and multiple QuizContent in DB
+
+commit aa12be524ea6619a2f473d99ac2d93320b55cce3
+Author: turnn <nick@elecnett.com.au>
+Date:   Sun May 17 13:53:33 2020 +0800
+
+	Update dbSchema.xlsx
+
+commit 30e16d313a6bb8213acab23573eabfd3b4658f74
+Author: turnn <nick@elecnett.com.au>
+Date:   Sun May 17 13:51:33 2020 +0800
+
+	Move quizSelect to use DB, new QuizContents model
+
+commit 8e83cf97159569d0cfafcb2c2971723c6eced20b
+Author: turnn <nick@elecnett.com.au>
+Date:   Sun May 17 13:04:02 2020 +0800
+
+	Finish style2 functional implementation
+
+commit cd4bb0f61337b3b6c3e89c970f4c0055d36b55aa
+Author: turnn <nick@elecnett.com.au>
+Date:   Sat May 16 15:21:54 2020 +0800
+
+	Update schedule
+
+commit 0270bb3586dd59eb1d7865c5206c74feb51eaa5f
+Author: turnn <nick@elecnett.com.au>
+Date:   Sat May 16 14:53:58 2020 +0800
+
+	More attempts at style 2
+
+commit 29e8dae54ab51ed1244629a6a6742b85e6f99fe1
+Author: turnn <nick@elecnett.com.au>
+Date:   Sat May 16 07:27:30 2020 +0800
+
+	Not successful implementation of language quiz
+
+commit d371052aecf852fb4c9af1c8a7ec968a607e2caf
+Author: turnn <nick@elecnett.com.au>
+Date:   Sat May 16 06:33:50 2020 +0800
+
+	Get flag quiz working again
+
+commit 6be2e3a1d0d797c773ee87d917cc21fbfa7e6b9f
+Author: turnn <nick@elecnett.com.au>
+Date:   Sat May 16 01:15:21 2020 +0800
+
+	Get form entry working correctly
+
+commit e229272c175e6ee806915d273fd7a58677fcce8f
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 15 22:11:34 2020 +0800
+
+	add credit
+
+commit 41ab716693c194e2359c8b77fa4fdbd5a3a658d7
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 15 22:00:25 2020 +0800
+
+	add quiz_layout
+
+commit fd7c9bc706af529a932a85fea584faddf9d6dd41
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 15 17:11:59 2020 +0800
+
+	delete unused file, still available via old commits for future use
+
+commit 580a1d98a5b82d3162764a71f6612f6aa3cd7a8d
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 15 17:10:46 2020 +0800
+
+	Change everything to extended templates, still very messy needs revision
+
+commit 2eb1112d84a2c59b1a0f604cc6825d4c848debf5
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 15 16:44:02 2020 +0800
+
+	Make progress towards language quiz templating and remove many files
+
+commit 439d0e001dbd86c4295c009983ed11076bbab721
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 15 15:45:46 2020 +0800
+
+	Change quiz routing from static (url/flag) to variable (url/quiz/<quiz_name>)
+
+commit ce9260d3cad526ebe4912148dd8b6110e4be65c7
+Merge: a0d0dce 5cb510d
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 15 15:26:11 2020 +0800
+
+	Merge branch 'master' of https://github.com/NickWalters/Questionaire-Website
+
+commit a0d0dce077c7acdeb65a331e3a8ac9bb5d14b1e5
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 15 15:24:13 2020 +0800
+
+	Move long statements in routes to functions of classes in models
+
+commit 5cb510d93c0a2da59ab0d7060531d437b5a9f43c
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Fri May 15 05:07:14 2020 +0800
+
+	changed image sizes to less than 5mb
+
+commit 5d02063c9da08dad53772b01f55be2a1f9552cd8
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Fri May 15 04:29:49 2020 +0800
+
+	question content added to admin
+
+commit d31f6595f0db7c8fec5fe56dfcc4c62958ddb3da
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Fri May 15 00:11:12 2020 +0800
+
+	add admin/index.html to customise admin page
+
+commit f14fcbbca15a700065fa601f6d81d429c4ebcc35
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Thu May 14 18:44:47 2020 +0800
+
+	Results page direct from quiz returns score
+
+commit 956f5e1e89018a29f87294323251553fdd4561ad
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 14 17:54:08 2020 +0800
+
+	Add issues to schedule
+
+commit 7a533de0407f20b0e328fe1f29e07d558978c4cc
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 14 17:47:51 2020 +0800
+
+	fixes to last_answered_question
+
+commit becedd7d128b839ef068c8f822a7cf13610d8cab
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 14 17:02:48 2020 +0800
+
+	start moving style2 to templating
+
+commit 062881298ddc548a7996d0b1b966981e0aa384a2
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 14 15:01:20 2020 +0800
+
+	meeting
+
+commit a730006caa881d1f9a79867ffadc93e05632dc84
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 14 13:38:51 2020 +0800
+
+	Fix id issues languagequiz
+
+commit 5f87de17e402777aae2c23a028ad86ff02df9ab4
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 14 12:46:31 2020 +0800
+
+	Add dbSchema.xlsx
+
+commit 9a2da09114432b9507bb834d55aff34d45076c71
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Mon May 11 04:27:36 2020 +0800
+
+	added language quiz to database
+
+commit 65dd2e3f08106e8dd8ba96a44a3575c40cae2909
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Sun May 10 23:36:11 2020 +0800
+
+	random styling adjustments
+
+commit f421a65b85e7f8a766507d9454c4cf312c75d4e2
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Sat May 9 22:28:15 2020 +0800
+
+	minor change to results
+
+commit e1b5c2a7934fcb0e86997d94ddd35456c074b642
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Sat May 9 20:56:29 2020 +0800
+
+	results can be retrieved from user answer database
+
+commit 807de2c01877095e2802743075d5e668087f1350
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Sat May 9 03:12:55 2020 +0800
+
+	saving negligible changes
+
+commit 0a25ad49cbcfc9b17f1e694e83fbb57625d63dab
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Fri May 8 15:26:14 2020 +0800
+
+	adjusted the urls for login/logout funcitons
+
+commit 12bbbb378cf21fb6eb7bc52d5f529e163fa723f5
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Fri May 8 14:54:22 2020 +0800
+
+	add a prelogin page
+
+commit 8d5340fff0f51035a22c4628f1d2de627a43260a
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Fri May 8 13:53:42 2020 +0800
+
+	negligible changes, added template for results
+
+commit ac4e5e04aae1b3ffc7543cdc2275237bada5c3ca
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Fri May 8 13:38:10 2020 +0800
+
+	added admin page
+
+commit 3d3f6d3009406424e8f1ed33d224e4f4a1e1d6a5
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 8 13:23:06 2020 +0800
+
+	Slight changes + update schedule
+
+commit a84a62c758a0071386089f561e6f502f740e9217
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 8 12:48:21 2020 +0800
+
+	Finish convert to WTForms & POST quiz data to DB
+
+commit 103df1893a0957ad0cdb7d0d8ea9dcf7907bd466
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 8 03:07:52 2020 +0800
+
+	Try get submit working, tuple WTForms validation issue
+
+commit 68c333405f2875f3ad1653f74894f768bce2f283
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri May 8 01:45:06 2020 +0800
+
+	Move quiz answers to WTForms
+
+commit cdac9c96e494aaef1571bac8e543e2b8ea40eb42
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 7 22:23:53 2020 +0800
+
+	Update schedule w/ issues list & goals & optional extensions; change quizSelect flag to .svg; Remove redundant files
+
+commit 66af39c641659ad77664e43b97513e4f316e828c
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu May 7 17:42:37 2020 +0800
+
+	Update HTML-languageQuizFinal.html
+
+commit e0dcc87720d1ad104fd5529ca033f65618dfbdef
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 7 13:52:06 2020 +0800
+
+	Finish first draft of flag quiz complete server-rendered from DB
+
+commit 235d5aa89cd1395098eb150d8772b87d3eeaba28
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu May 7 11:28:10 2020 +0800
+
+	Finish flag quiz dataset, start DB to template
+
+commit 700822e61ebf58f1daa93a7d3fd9dfc2b511e857
+Author: turnn <nick@elecnett.com.au>
+Date:   Mon May 4 13:43:06 2020 +0800
+
+	Add Nick's project plan
+
+commit ddc05516ee4f157aad15d311f55e734ec907006c
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Sun May 3 12:11:34 2020 +0800
+
+	minor changes
+
+commit 7ac8cceb0787bee723dbbf221367d75c6281f492
+Author: turnn <nick@elecnett.com.au>
+Date:   Sat May 2 22:41:03 2020 +0800
+
+	Fix default logins admin/admin user/user
+
+commit 36268ca58195dc54e961e60daef63340f17a19df
+Merge: fa7c6c0 d0bcdff
+Author: turnn <nick@elecnett.com.au>
+Date:   Sat May 2 21:09:19 2020 +0800
+
+	Merge remote-tracking branch 'refs/remotes/origin/master'
+
+commit fa7c6c092abaef021b920e3957b2f783d3cac52a
+Author: turnn <nick@elecnett.com.au>
+Date:   Sat May 2 21:09:03 2020 +0800
+
+	Add comments on models
+
+commit d0bcdffd0c9023e1f844a72f092732563d78f4e1
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Sat May 2 15:33:26 2020 +0800
+
+	rearrangements
+	
+	added an "app" folder and split the previous app.py file into __init__.py and main.py. the website still works the same. to mirror the file structures in the "super cars" website
+
+commit b0216a0bb1bffe891c9700869d72be23aba78f1f
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Fri May 1 21:37:07 2020 +0800
+
+	Trying to work on Admin... a little
+
+commit df03971d4830fa5891639fb8907733057004e3ba
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Fri May 1 20:57:23 2020 +0800
+
+	Welcome page with name of logged in User
+
+commit 9aa703e5453e4607ff04e164f43905fc2d6fde9b
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Fri May 1 20:37:12 2020 +0800
+
+	Logout Function
+
+commit e64ca13e4a19b2a7b58681e6a9740e8a4333b72e
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Fri May 1 20:29:15 2020 +0800
+
+	Login
+
+commit a9189b74b994a8f6ccb76d1bac54480268e49265
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Fri May 1 17:05:50 2020 +0800
+
+	Update requirements.txt
+
+commit e316d1cc421c183957c34297bfbcd48f8952dec6
+Author: turnn <nick@elecnett.com.au>
+Date:   Wed Apr 29 23:11:47 2020 +0800
+
+	Fix new registrations not appearing in db summary printout
+
+commit 6cb1d10d7d8d4631d1452aedaa68fd4ee2f85b38
+Author: turnn <nick@elecnett.com.au>
+Date:   Wed Apr 29 18:04:37 2020 +0800
+
+	DB entry tests and flag quiz retrieve data from static/json
+
+commit ac4511ee042b8298e1ff2d5507139f5bd74502fb
+Author: turnn <nick@elecnett.com.au>
+Date:   Wed Apr 29 15:41:29 2020 +0800
+
+	Additions and changes to database schema, move files
+
+commit 4cd5adc776dfca5414487ca92d0c6a60545f23a6
+Author: turnn <nick@elecnett.com.au>
+Date:   Wed Apr 29 12:54:54 2020 +0800
+
+	Some character encoding issue messing with vscode
+
+commit 1650ed8884dd6e65471c3980e525d6aafe36afce
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 29 01:12:16 2020 +0800
+
+	Update routes.py
+
+commit a75f1697cf8da1caffdde8e3aae21dbfd3f90fb0
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 29 01:07:32 2020 +0800
+
+	c
+
+commit 563c77e1d172966bb12876539188d9b06f23212f
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 29 01:03:07 2020 +0800
+
+	migration
+
+commit 7d66ca8fe9fa79707fc47091ff82e129c4018f18
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 29 01:01:21 2020 +0800
+
+	Update models.py
+
+commit d93e16a92d2edc55b93fcdad8d8b8357e48cd79a
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 29 00:59:17 2020 +0800
+
+	removed sample/dummy users
+
+commit 7b9c98c3905bd32b8ad01d51d1f32f53c8eb8849
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 29 00:18:45 2020 +0800
+
+	still working on login
+
+commit c66735b0f34563ae5c35a2cf74ca5e7576ec3c44
+Merge: dea4ce5 da6c871
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 29 00:01:39 2020 +0800
+
+	Merge branch 'master' of https://github.com/NickWalters/Questionaire-Website
+
+commit dea4ce53d31a2bb464f8ac9ffed4ff48fa579e21
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 29 00:01:06 2020 +0800
+
+	small changes login page
+
+commit da6c8715ecd4e45ac72055cd7892d69414997490
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 23:51:17 2020 +0800
+
+	Update README.md
+
+commit d31d54d29ea4b35dd0c04daeaaf74107e352d77d
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 23:49:28 2020 +0800
+
+	Update README.md
+
+commit f7de6e680154204882444c0308650b9b93dc2d77
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 23:48:51 2020 +0800
+
+	Update README.md
+
+commit 56b0e42d50b1a782d308ff15f695cd483b79afd8
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 23:38:35 2020 +0800
+
+	Update requirements.txt
+
+commit 9d913f76eca3620bf57fce581cd6c72b518e93d3
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 21:55:48 2020 +0800
+
+	Now able to register users
+
+commit eb489fb810045680aad8547eaa70b62e16b7f454
+Merge: 533b05c b44cdc7
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 21:28:27 2020 +0800
+
+	Merge branch 'master' of https://github.com/NickWalters/Questionaire-Website
+
+commit 533b05cedd9d5b92f6f310f16a788d9bcd7d98a1
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 21:28:22 2020 +0800
+
+	User Login and Registration into Database
+
+commit b44cdc729911b2ffd1fbd496260f76a6cdeacaff
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 18:53:53 2020 +0800
+
+	change image reference
+
+commit ecdba84f48b1c89edc1478a3aec6ae6983e916fd
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 18:49:21 2020 +0800
+
+	adding style to btn at endpage
+
+commit 84b92ee7a443b251c6c5071326346cc248039fa8
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 18:48:32 2020 +0800
+
+	added 2 btns to final page, links to home and quizzes
+
+commit 03d5fef088efc96cb720a5eeabf17f2e3d583e60
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 18:47:49 2020 +0800
+
+	Update Create a User in Database.rtf
+
+commit b98b4cf58ab820c112b6b2c9b0aab22999f4da60
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 18:16:45 2020 +0800
+
+	language quiz linked to website
+
+commit 01a8f39646eab0f3baa4049a48a6eac2dc9a10e4
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 18:10:45 2020 +0800
+
+	small updates
+
+commit 0bd69d5f43effeed714b823d303cf441d920db07
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 17:50:27 2020 +0800
+
+	db stuff
+
+commit 0493a07606501d43ce4cabc2e0f477e57d817adb
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Tue Apr 28 17:11:35 2020 +0800
+
+	Added Question/Answer databases
+
+commit a7e4f827fcbda439cf882ed279b8270a077cb199
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 16:17:59 2020 +0800
+
+	Update javascript-languageQuizFinal.js
+
+commit 948b99c26ec1776c55883570cc4dbe41748edf90
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 16:16:41 2020 +0800
+
+	Update javascript-languageQuizFinal.js
+
+commit 3fa045ee92595e6204a0adbf9555c13b36b75104
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 16:14:03 2020 +0800
+
+	Update javascript-languageQuizFinal.js
+
+commit b7479113ccc092583b5bb06e0b575b0c54993946
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 16:13:17 2020 +0800
+
+	Update javascript-languageQuizFinal.js
+
+commit 72e8f82c4a65a265780e336896f334fc5ccde38d
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 16:10:28 2020 +0800
+
+	Update javascript-languageQuizFinal.js
+
+commit 9008fe5050b39203bf59d4788e8e8fcfe75d16bb
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 16:09:02 2020 +0800
+
+	Add files via upload
+
+commit 11fbf3c9d3f90875d3fab5ed04f89389d0c71f55
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 16:08:40 2020 +0800
+
+	Delete HTML-languageQuizFinal.html
+
+commit fb3472bdda66a989d19de7c9df6af1fd5b2953ba
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 16:01:10 2020 +0800
+
+	Update HTML-languageQuizFinal.html
+
+commit b227f1a35cd8266c77b5a94b24d2b5624194e946
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 15:57:35 2020 +0800
+
+	Update HTML-languageQuizFinal.html
+
+commit b06db10eec7d835441f514139a85c87c5bba995e
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:41:18 2020 +0800
+
+	Add files via upload
+
+commit b629cf67c363f673c9a56535e02d1106751ce3d1
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:40:13 2020 +0800
+
+	Delete ukraine-languageQuiz.jpg
+
+commit f94c399f8f12cef2151b2640895c6eb954d73d9b
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:40:03 2020 +0800
+
+	Delete taiwan-languageQuiz.jpg
+
+commit 9cc30ac3105a6aec9e199e48805a13b2c99a379f
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:39:52 2020 +0800
+
+	Delete pakistan-languageQuiz.jpg
+
+commit 968b412ffcd99f112d12a590d8728df0fcbf3d99
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:39:42 2020 +0800
+
+	Delete mexico-languageQuiz.jpg
+
+commit 246dd4fc114fbd2750252afda481ae19e7734d49
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:38:54 2020 +0800
+
+	Delete javascript-languageQuizFinal.js
+
+commit 7bf50469f00e22f980871fa8cdda31e9cc261475
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:38:44 2020 +0800
+
+	Delete australia-languageQuiz.jpg
+
+commit 6f212bba1c5230e57c4eb3d40bbf8d28ae1ee688
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:38:31 2020 +0800
+
+	Delete iran-languageQuiz.jpg
+
+commit 6a026163d81f2497580c07b6d78bd80f66a499fa
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:38:19 2020 +0800
+
+	Delete malaysia-languageQuiz.jpg
+
+commit 8e89fefc22a91ab229ca22b21933facb14e6dd10
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:38:09 2020 +0800
+
+	Delete norway-languageQuiz.jpg
+
+commit 55164e87980b0aa947a987ecda6c47d20fb7cd7a
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:37:57 2020 +0800
+
+	Delete styles-languageQuizFinal.css
+
+commit ab4df6ba8f812a7ee022991e51d9d2a12de7e328
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:37:45 2020 +0800
+
+	Delete indonesia-languageQuiz.jpg
+
+commit bb82f737200f74aa69b2bb85f98bc36eeeb441e9
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:37:32 2020 +0800
+
+	Delete LANGUAGEQUIZ_README
+
+commit 7454be8b09fcf2fe9de6987202fd52f5b4fe936d
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:32:36 2020 +0800
+
+	Delete colombia-languageQuiz.jpg
+
+commit 9b9b7aabdb8bc7dad3e8037e3b0d112069897c05
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:32:07 2020 +0800
+
+	Add files via upload
+
+commit 85951ef4e68d96128c35cb331ad3b78b858f87f4
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:31:50 2020 +0800
+
+	Delete HTML-languageQuizFinal.html
+
+commit d75db8b61192ecadffb3c1123a960d20ff8f2711
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:31:26 2020 +0800
+
+	Delete HTML-languageQuizFinal.html
+
+commit 67c27e8155dad756d0ef33beb6618d5366ecfc2d
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:30:39 2020 +0800
+
+	Delete drumroll.jpg
+
+commit 297f1cf3e96376f6916cb4171fc721c038b7a6f3
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:29:50 2020 +0800
+
+	Add files via upload
+
+commit dd91691cf99d77b65d5925ac6452cba6c29a4b22
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:27:26 2020 +0800
+
+	Add files via upload
+
+commit 64bccdf60c5fd35ae2b35afaa0a79793cb44509b
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Tue Apr 28 14:26:05 2020 +0800
+
+	Add files via upload
+
+commit 8275c61ae7a2aae5c0893d418c6079855f0cd158
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 02:17:56 2020 +0800
+
+	revert back
+
+commit ad1f606d3c1a2d00d74c8e109e44515c392c23d3
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 02:13:47 2020 +0800
+
+	Changed Directories of Quiz Content
+
+commit 40ac07204a3fa38a3e4e587c44b17b3c7344b522
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Tue Apr 28 01:13:21 2020 +0800
+
+	Working on Database (Not Finished)
+
+commit de21250262a0beae87fa85a7972e061ff1f87d64
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Mon Apr 27 23:53:48 2020 +0800
+
+	Rename LanguageQuiz_readme to LANGUAGEQUIZ_README
+
+commit 205cf50394c4bc9710fe10e606c983860b9daf09
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Mon Apr 27 23:53:11 2020 +0800
+
+	Create LanguageQuiz_readme
+
+commit b07186c7c613db54a121527d20d1c6e89e6dbd97
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Mon Apr 27 23:50:43 2020 +0800
+
+	Add files via upload
+
+commit 0cb15de0639356eebb05a80c9e032f90a513bb26
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Sat Apr 25 22:01:10 2020 +0800
+
+	Update base.html
+
+commit 834cf0f3df6275bcb93e1740e9ec26469ee8e45a
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Sat Apr 25 21:24:08 2020 +0800
+
+	Update requirements.txt
+
+commit f97cd29983a79d4aa7c18df0f968494025440076
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Sat Apr 25 21:15:25 2020 +0800
+
+	Added User Login (Not Finished)
+	
+	Followed Chapter of Miguel G, Flask Tutorial
+
+commit f2a47c2c60bacc87e6fca263ae0626c4812641c7
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Sat Apr 25 18:42:18 2020 +0800
+
+	Update README.md
+	
+	last change. sorry. formatting is wierd on github
+
+commit aa0da55f29c1637492fa19c9fc1b6e571125d563
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Sat Apr 25 18:40:25 2020 +0800
+
+	Update README.md
+
+commit 786b997824dd6d7dedb30d04eab04e094c5c340e
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Sat Apr 25 18:35:52 2020 +0800
+
+	Update README.md
+
+commit f1f1453cf8bc8501ff47c09e723f2e85d4ec611d
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Sat Apr 25 18:35:16 2020 +0800
+
+	Update README.md
+
+commit 4bdbcdabf62390dc7c220733a18746e88b497daa
+Author: turnn <nick@elecnett.com.au>
+Date:   Sat Apr 25 00:20:32 2020 +0800
+
+	routes.py & config.py & fix js in flagquiz
+
+commit 3c73815e891ed8e3a52ab3d1e07e24c7b29b6ec2
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri Apr 24 23:36:47 2020 +0800
+
+	slight change
+
+commit 2260fbcb868eb39b47d751a4d35dc2b3be9e1c86
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri Apr 24 23:32:39 2020 +0800
+
+	Not really a merge
+
+commit 36eee43361f16b0789dd8b573a9ef80dfa1359a1
+Merge: deb036f 8e438be
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri Apr 24 23:20:40 2020 +0800
+
+	Merge branch 'master' of https://github.com/NickWalters/Questionaire-Website
+
+commit 8e438befbc8bd2f984dab1a4ebaa243869c4cd70
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Fri Apr 24 23:15:13 2020 +0800
+
+	removed redundant code "center.css"
+
+commit deb036f8200001de73d7698bd3a614d62fbd3f25
+Merge: a096807 6a59c8c
+Author: turnn <nick@elecnett.com.au>
+Date:   Fri Apr 24 23:10:46 2020 +0800
+
+	Merge branch 'master' of https://github.com/NickWalters/Questionaire-Website
+
+commit 6a59c8cc639381e48e8ccfd1ad8d1215c8974841
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Fri Apr 24 23:10:22 2020 +0800
+
+	readme for github
+
+commit 4f310b9d7c16c489f035249fc8c6682554938316
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Fri Apr 24 22:59:21 2020 +0800
+
+	Added Flask !
+	
+	We now have the complete directory structure of flask's requirements. Unfortunately it means that you will have to adjust to the new directories provided.
+	You can now run this flask app through the command line:
+	"python3 app.py"
+
+commit a0968078c45aba13ee24950682cb7e40381a2073
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu Apr 23 21:42:02 2020 +0800
+
+	Administrator front-end quiz-editing draft
+
+commit e7dd17ffcb2274510069a8ad92945b42c45dc796
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu Apr 23 20:20:56 2020 +0800
+
+	Update README-languageQuiz.md
+
+commit 8fa5ed820742420ccee96824aa1255131af4784a
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu Apr 23 20:20:00 2020 +0800
+
+	Update README-languageQuiz.md
+
+commit d8cd2f24649ba51d99e2536c936d37f8805f3b64
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu Apr 23 20:19:02 2020 +0800
+
+	Update README-languageQuiz.md
+
+commit 30e0a21b7cb8c8e58b9b83c71b9260fa30e63a41
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu Apr 23 20:15:27 2020 +0800
+
+	Update README-languageQuiz.md
+
+commit 6499a4531b7d42ed7a1d6872f9938d6a7b00c8b3
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu Apr 23 20:12:03 2020 +0800
+
+	Create README-languageQuiz.md
+	
+	describes features in language quiz
+
+commit da3ac60c3eb4d274838e7eb93ed0613ad8adc808
+Author: SeanChuu <62870306+SeanChuu@users.noreply.github.com>
+Date:   Thu Apr 23 20:01:37 2020 +0800
+
+	Add files via upload
+
+commit bd74f0edd9dc2973fdf9d89670f0f519248432e5 (origin/da)
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Thu Apr 23 18:04:36 2020 +0800
+
+	Added names of group members
+
+commit e75f23be2b0830b4dfd159c24bb70c2f7840762a
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu Apr 23 11:26:49 2020 +0800
+
+	Flag quiz SPA POC
+
+commit 0f33838e9925bd57e68c83cc9d74af73f37c2867
+Author: turnn <nick@elecnett.com.au>
+Date:   Thu Apr 23 09:50:51 2020 +0800
+
+	Fix Flag01.svg
+
+commit 89e4de37977c8569469ce8397f41c55021bddb6f
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 22 21:46:42 2020 +0800
+
+	fixed error
+
+commit ede346474c16bd1d603f46dc83cfa3d502bd3045
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 22 21:34:29 2020 +0800
+
+	Update quizSelect.html
+
+commit c42d4688d404ecc12f240d9d25995066992305c3
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 22 21:32:05 2020 +0800
+
+	home page button functionality
+
+commit 04471a440ce24f7dd24126cd3d47c5dc3ebabb7f
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 22 21:29:07 2020 +0800
+
+	Update world.html
+
+commit 1c6ca444c408da38d7e5a46e94e3787b2e81e210
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 22 21:28:10 2020 +0800
+
+	Quiz Selection
+
+commit 4c720b00dd447d64686a7509c603f1a6764ccdd3
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 22 20:46:48 2020 +0800
+
+	button
+
+commit 00b11bdb498255c9536276b3f697d84e6f0c783b
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 22 20:45:22 2020 +0800
+
+	Quiz Selection Page (HTML PAGE)
+
+commit 7cc63b57007bd3b69f6a66539200066419e6f70d
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 22 20:23:59 2020 +0800
+
+	Removed horrible font
+
+commit 7823366b597b0797890b2787dc65bf10943c703b
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Wed Apr 22 20:18:25 2020 +0800
+
+	Centered Text
+	
+	Make the text the center of the screen. I dont want it right next to the edges
+
+commit 2e1dfe150afc6fc345dab2750804ff8c1119d972
+Merge: 34ea453 02876f8
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Thu Apr 16 21:57:16 2020 +0800
+
+	Merge branch 'master' of https://github.com/NickWalters/Questionaire-Website
+
+commit 34ea453c12020b2ca741c485047bbaa753a1aea3
+Author: Rio A <riosyahakbar36@gmail.com>
+Date:   Thu Apr 16 21:52:04 2020 +0800
+
+	Theme Change
+	
+	Changed the theme (Colours Font) for the home page, changed the banner and overlay images, added 1 button
+
+commit 02876f8d09a861d0762976f42893197532a0f560
+Author: turnn <nick@elecnett.com.au>
+Date:   Sun Apr 12 22:14:11 2020 +0800
+
+	Minor fixed and flag quiz example
+
+commit 7d811b9338a9b8e3158d76f225f676b90685161f
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Sun Apr 5 00:01:21 2020 +0800
+
+	small changes
+
+commit d3e7138098d00748c639ec5cc94e40811db0e565
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Sat Apr 4 23:52:29 2020 +0800
+
+	Website Template
+	
+	All Design Choices made through this example template.
+	Refer to .css file for all the design choices made, and see how its presented using the example html files provided
+
+commit 5557c43de5020d873ed562fae3b01ac662c1e9c0
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Mon Mar 30 12:57:28 2020 +0800
+
+	First Commit
+	
+	Published Git Repository for other group members to add to. Published an example html file which is empty so far.
+
+commit 64310c09ac0009691d2db0bf23465e3cd3b191e8
+Author: Nick Walters <nicho.walters@gmail.com>
+Date:   Mon Mar 30 12:53:28 2020 +0800
+
+	Initial commit
