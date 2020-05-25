@@ -77,8 +77,10 @@ def quizSelect():
 def quiz(quiz_name):
 	print(quiz_name)
 	quiz = None
-	for quiz in Quiz.query.all():
-		if quiz_name == quiz.short(): break
+	for a_quiz in Quiz.query.all():
+		if quiz_name == a_quiz.short():
+			quiz = a_quiz
+	if not quiz: return quizSelect()
 	quizStyle = quiz.quizStyle
 	if session.get('quiz_id') == None:
 		session['quiz_id'] = quiz.id
