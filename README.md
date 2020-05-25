@@ -110,14 +110,16 @@ The tests are stored in unit.py in the Tests folder
 
 A few examples:
 
-This tests a registration attempt
+This tests a registration attempt:
+
     #tests a valid registration attempt
     def test_valid_registration(self):
         response = self.register("user", "user@email.com", "password", "password")
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'<title>Log In</title>', response.data)
 
-These are test cases for invalid login attempts
+These are test cases for invalid login attempts:
+
     #Tests invalid login attempts
     def test_unsuccussful_login(self):
         user = User(username="bob", email="bob@email.com")
@@ -140,14 +142,15 @@ These are test cases for invalid login attempts
         response = self.login("bob", "")
         self.assertIn(b'<title>Log In</title>', response.data)
 
-This tests the functionality of moving to the next question for the Language Quiz
-     def test_language_quiz(self):
-        self.init_db_helper()
-        db.session.commit()
-        self.login("user", "password")
-        self.app.get('/quiz/language', follow_redirects = True)
-        response = self.nextQuestionLanguage("Mandarin")
-        self.assertIn(b'<img src="/static/images/australia-languageQuiz.jpg" alt="map" id="image">', response.data)
+This tests the functionality of moving to the next question for the Language Quiz:
+
+    def test_language_quiz(self):
+      self.init_db_helper()
+      db.session.commit()
+      self.login("user", "password")
+      self.app.get('/quiz/language', follow_redirects = True)
+      response = self.nextQuestionLanguage("Mandarin")
+      self.assertIn(b'<img src="/static/images/australia-languageQuiz.jpg" alt="map" id="image">', response.data)
 
 To run tests, the following must be entered in the command prompt:
 `python -m Tests.unit`
