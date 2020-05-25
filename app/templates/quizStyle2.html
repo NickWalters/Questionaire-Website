@@ -13,7 +13,7 @@
             <p id="p1" style="text-align: center;">{{question.question_contents.first().text_content}}</p>
             <p class="center"><img src="{{ url_for('static',    filename='images/'+question.question_contents.first().img_content) }}" alt="map" id="image"></p>
             
-                <form action="{{ url_for('quiz', quiz_name='lang') }}" method="post" class="answer">
+                <form action="{{ url_for('quiz', quiz_name=quiz.short()) }}" method="post" class="answer">
                     {{ form.hidden_tag() }}
                     <div id="answer-buttons" class="btn-grid">
                         

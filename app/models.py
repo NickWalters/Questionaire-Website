@@ -60,7 +60,8 @@ class Quiz(db.Model):
 	quizStyle = relationship('QuizStyle', back_populates="quizzes")
 	questions = db.relationship('Question', back_populates='quiz', lazy='dynamic')
 	quizContents = db.relationship('QuizContent', backref='quiz', lazy='dynamic')
-	
+	attempts = db.relationship('UserAttempt', backref='quiz', lazy='dynamic')
+
 	def short(self):
 		return self.quizname.split(' ', 1)[0].lower()
 
@@ -72,6 +73,20 @@ class Quiz(db.Model):
 
 	def get_question_by_question_number(self, question_number):
 		return self.questions.filter_by(question_number = question_number).first()
+	
+	def get_average_score(self, user):
+		total_score = 0
+		if user:
+			user_attempts = self.attempts.filter_by(user_id = user.id)
+			for attempt in user_attempts:
+				total_score = total_score + attempt.get_score()
+			if user_attempts.count() == 0: return None
+			return round(total_score/user_attempts.count(),2)
+		else:
+			for attempt in self.attempts:
+				total_score = total_score + attempt.get_score()
+			if self.attempts.count() == 0: return None
+			return round(total_score/self.attempts.count(),2)
 
 	def __repr__(self):
 		return self.quizname

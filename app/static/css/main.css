@@ -10,6 +10,20 @@
 		vertical-align: baseline;
 	}
 
+	div.resultsall{
+		background-color:white;
+		box-shadow: 0 0 10px 2px;
+		padding:5%;
+		margin-top: 5%;
+		margin-left:20%;
+		margin-right:20%;
+		border-radius: 10px;
+	}
+	div.resultsall ul{
+		margin-top:2em;
+		list-style-type: none;
+	}
+
 	div.element1{
 		background-color: white;
 	}
@@ -1264,7 +1278,7 @@
 
 				#header.alt nav a {
 					color: #f4f4f4;
-					font-family: 'Righteous', cursive;
+					/*font-family: 'Righteous', cursive;*/
 				}
 
 					#header.alt nav a:active, #header.alt nav a:hover {
@@ -1447,7 +1461,7 @@
 			font-size: 3.5em;
 			line-height: 1.35;
 			margin-bottom: 0.5em;
-			font-family: 'Righteous', cursive;
+			/*font-family: 'Righteous', cursive;*/
 		}
 
 		#banner p {

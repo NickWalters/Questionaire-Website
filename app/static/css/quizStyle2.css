@@ -12,7 +12,7 @@ body{
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: rgb(57, 57, 192);
+    background-color: rgb(235, 235, 235);
 }
 
 .container {
@@ -32,9 +32,9 @@ body{
     
 }
 
-.btn{
-    background-color: rgb(133, 163, 245);
-    border: 2px solid rgb(62, 113, 252);
+input{
+    background-color: rgb(192, 178, 131);
+    border: 2px solid rgb(151, 140, 104);
     border-radius: 5px;
     padding: 5px 10px;
     color: white;
@@ -112,8 +112,6 @@ img{
 }
 
  input[type=submit]{
-    background-color: #4CAF50;
-    border: none;
     color: white;
     padding: 16px 32px;
     text-decoration: none;

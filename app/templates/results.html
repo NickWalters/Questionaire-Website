@@ -16,7 +16,7 @@
 {% block body %}
 {{ super() }}
 	<div class="result" class="center">
-		<h1 class="score">{{score}}/10</h1>
+		<h1 class="score">{{score}}/{{quiz.questions.count()}}</h1>
 	
 		<p class="message center">You received {{score}} out of {{quiz.questions.count()}} correct</p>
 		

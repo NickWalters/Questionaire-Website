@@ -5,32 +5,20 @@
     <title>results</title>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',    filename='css/styleresultsall.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',    filename='css/main.css') }}">
 {% endblock %}
 
 {% block body %}
 {{ super() }}
-    <div class="row">
-
-
-        <div class="col">
-            <div class="leftside">
-                <h1>Results for Flag quiz</h1>
-                <p>Amount of quiz attempts: {{attnum1}}</p>
-                <p>Average Score: {{average1}}</p>
-
+        {% for quiz in quizzes %}
+            <div class="resultsall">
+                <h1>Results for {{quiz.quizname}}</h1>
+                <ul>
+                    <li>Amount of quiz attempts: {{quiz.attempts.count()}}</li>
+                    <li>Your number of quiz attempts: {{quiz.attempts.filter_by(user_id=current_user.id).count()}}</li>
+                    <li>Average Score: {{ quiz.get_average_score(user = None) }}</li>
+                    <li>Your Average Score: {{ quiz.get_average_score(user = current_user) }}</li>
+                </ul>
             </div>
-        </div>
-
-
-        <div class="col">
-            <div class="rightside">
-                <h1>Results for Lang quiz</h1>
-                <p>Amount of quiz attempts: {{attnum2}}</p>         
-                <p>Average Score: {{average2}}</p>
-            </div>
-        </div>
-
-
-    </div>
+        {% endfor %}
 {% endblock %}
