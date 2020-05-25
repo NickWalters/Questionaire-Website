@@ -191,6 +191,7 @@ class UserAttempt(db.Model):
 	def get_score(self):
 		score = 0
 		for answer in self.userAnswers:
+			print("Answer: "+answer.as_str())
 			if answer.questionChoice.choice_correct: score = score + 1
 		return score
 
