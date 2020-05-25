@@ -82,9 +82,12 @@ def quiz(quiz_name):
 			quiz = a_quiz
 	if not quiz: return quizSelect()
 	quizStyle = quiz.quizStyle
+
+	#Check to see if user is currently doing the quiz
 	if session.get('quiz_id') == None:
 		session['quiz_id'] = quiz.id
 	elif session.get('quiz_id') != quiz.id:
+		if session.get('attempt_id') != None: session.pop('attempt_id')
 		if session.get('question_id') != None: session.pop('question_id')
 		session['quiz_id'] = quiz.id
 
