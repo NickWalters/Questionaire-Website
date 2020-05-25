@@ -2,8 +2,13 @@
  * JS Client-sided form validation
  */
 $(document).ready(function() {
-    $( "#username" ).keyup(function() {
+    $( "#username" ).blur(function() {
+        console.log("Username field blurred")
         username();
+    });
+    $( "#username" ).focus(function() {
+        previouslyFocused = true;
+        console.log("Username field has been focused")
     });
     $( "#email" ).keyup(function() {
         email();
@@ -19,30 +24,25 @@ $(document).ready(function() {
 /**
  * Form username AJAX
  */
+var previouslyFocused = false;
 function username(){
-    var usernameSubmitted = $( "#username" ).val();
-    var url = ""; //AJAX request URL
-
-    $.ajax({
-        type: 'GET',
-        url: url,
-        data: { get_param: 'value' }, 
-        dataType: 'json',
-        success: function (data) {
-            /** Check if username already in use
-            var error = $("#errorusername")
-            if() {
-                error.html("");
+    if (previouslyFocused) {
+        var usernameSubmitted = $( "#username" ).val();
+        var url = ""; //AJAX request URL
+        
+        console.log("Looking up whether username "+usernameSubmitted+" is pre-existing via AJAX")
+        $.getJSON($SCRIPT_ROOT + '/_check_username', {
+            username: usernameSubmitted
+        }, function(data) {
+            if(data.exists) {
+                console.log("User already exists");
+                $("#errorusername").text("User name has been used.");
+            } else {
+                console.log("User does not exist");
+                $("#errorusername").text("");
             }
-            else {
-                error.css("color","red");
-                error.html("User name has been used.");
-            }
-
-            */
-        }
-    });
-    return
+        });
+    }
 }
 
 /**
@@ -58,7 +58,7 @@ function email(){
     }
     else {
         error.css("color","red");
-        error.html("This email is not valid");
+        error.html("Invalid email address.");
     }
     return;
 }

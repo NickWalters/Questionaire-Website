@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request, abort, session
+from flask import render_template, flash, redirect, url_for, request, abort, session, jsonify
 from app import app, db
 from werkzeug.urls import url_parse
 from app.forms import LoginForm, RegistrationForm, StyleOneForm, StyleTwoForm
@@ -54,6 +54,15 @@ def register():
 		return redirect(url_for('login'))
 	
 	return render_template('register.html', title='Register', form=form)
+
+@app.route('/_check_username')
+def check_user():
+	if User.query.filter_by(username=request.args.get("username")).first():
+		print("User exists") 
+		return jsonify(exists=True)
+	else:
+		print("User does not exist")
+		return jsonify(exists=False)
 
 @app.route('/about')
 def about():

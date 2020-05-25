@@ -1,12 +1,17 @@
 {% extends "siteBase.html" %}
 
-{% block body %}
 {% block head %}
 {{ super() }}
 <title>Register</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type=text/javascript>
+	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
 <script src="{{ url_for('static',    filename='js/register.js') }}"></script>
 {% endblock %}
+
+{% block body %}
+{{ super() }}
 <div class="loginBox center">
 	<h1>Register</h1>
 
