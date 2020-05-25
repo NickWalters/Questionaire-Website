@@ -53,11 +53,9 @@ function email(){
     var check = new RegExp('^[a-z0-9.]+@[a-z0-9.-]+\\.[a-z]{2,}$');
     var error = $("#erroremail")
     if (check.test(emailSubmitted)) {
-        error.css("color","green");
-        error.html("Email is valid");
+        error.html("");
     }
     else {
-        error.css("color","red");
         error.html("Invalid email address.");
     }
     return;
@@ -67,24 +65,21 @@ function email(){
  * Form password checking
  */
 function password(){
-    return
+    password2();
 }
 
 /**
  * Form password2 checking
  */
 function password2(){
-    console.log($( "#password" ).val())
-    console.log($( "#password2" ).val())
     var error = $("#errorpassword2")
     if($( "#password" ).val() == $( "#password2" ).val()){
-        error.css("color","green");
+        console.log("Passwords are equal")
         error.html("");
     }
     else {
-        error.css("color","red");
+        console.log("Passwords are not equal")
         error.html("Field must be equal to password");
-
     }
     return
 }
