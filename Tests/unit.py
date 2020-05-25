@@ -22,7 +22,6 @@ class TestCase(unittest.TestCase):
         self.app_context.pop()
 
     #Helper Functions
-
     def register(self, username, email, password, password2):
         return self.app.post("/register", data=dict(username=username, 
         email=email,
@@ -40,7 +39,7 @@ class TestCase(unittest.TestCase):
     def nextQuestionFlag(self, radiofield):
         return self.app.post('/quiz/flag', data=dict(radioField = radiofield), follow_redirects = True)
 
-    def nextLanguageFlag(self, submitfield):
+    def nextQuestionLanguage(self, submitfield):
         return self.app.post('/quiz/language', data=dict(foo = 'bar',submitField = submitfield), follow_redirects = True)
 
 
@@ -205,7 +204,7 @@ class TestCase(unittest.TestCase):
         response = self.app.get('/quiz/language', follow_redirects = True)
         self.assertIn(b'<title>Log In</title>', response.data)
 
-    #access the results page test
+    #access the results page
     def test_access_results_page_logged_in(self):
         user = User(username="user", email="user@email.com")
         user.set_password('password')
@@ -228,15 +227,16 @@ class TestCase(unittest.TestCase):
         response = self.app.get('/results', follow_redirects = True)
         self.assertIn(b'<title>Log In</title>', response.data)
 
-
+    #testing if the language quiz works
     def test_language_quiz(self):
         self.init_db_helper()
         db.session.commit()
         self.login("user", "password")
         self.app.get('/quiz/language', follow_redirects = True)
-        response = self.nextLanguageFlag("Mandarin")
+        response = self.nextQuestionLanguage("Mandarin")
         self.assertIn(b'<img src="/static/images/australia-languageQuiz.jpg" alt="map" id="image">', response.data)
 
+    #testing if the flag quiz works
     def test_flag_quiz(self):
         self.init_db_helper()
         self.login("user", "password")
@@ -252,6 +252,7 @@ class TestCase(unittest.TestCase):
         response = self.nextQuestionFlag("Czechia")
         self.assertIn(b'src="/static/images/flag10.svg', response.data)
 
+    #testing if we return on the same question after leaving the flag quiz without finishing it
     def test_return_question_flag(self):
         self.init_db_helper()
         self.login("user", "password")
@@ -268,176 +269,42 @@ class TestCase(unittest.TestCase):
         response = self.app.get('quiz/flag',follow_redirects = True)
         self.assertIn(b'src="/static/images/flag09.svg', response.data)
 
+    #testing if we return on the same question after leaving the language quiz without finishing it
     def test_return_question_lang(self):
         self.init_db_helper()
         db.session.commit()
         self.login("user", "password")
         self.app.get('/quiz/language', follow_redirects = True)
-        self.nextLanguageFlag("Mandarin")
+        self.nextQuestionLanguage("Mandarin")
         self.app.get('/', follow_redirects = True)
         response = self.app.get('/quiz/language', follow_redirects = True)
         self.assertIn(b'<img src="/static/images/australia-languageQuiz.jpg" alt="map" id="image">', response.data)
 
-    # def test_results_after_lang(self):
-    #     user = User(username="user", email="user@email.com")
-    #     user.set_password('password')
-    #     user.admin = False
-    #     db.session.add(user)
-    #     db.session.add(Quiz(quizname="Flag Quiz",creator_id=1,style=1))
-    #     db.session.add(QuizStyle(style_name="Old flag style",template_file="quizStyle1.html"))
-    #     db.session.add(QuizContent(quiz_id=1,text_content="Are you truly aware of the outside world? Do you have what it takes to test your knowledge on the flags of the world? Take our test !",img_content="au.svg"))
-    #     db.session.add(Question(quiz_id=1,question_number=1))
-    #     db.session.add(Question(quiz_id=1,question_number=2))   
-    #     db.session.add(Question(quiz_id=1,question_number=3))
-    #     db.session.add(Question(quiz_id=1,question_number=4))
-    #     db.session.add(Question(quiz_id=1,question_number=5))
-    #     db.session.add(Question(quiz_id=1,question_number=6))
-    #     db.session.add(Question(quiz_id=1,question_number=7))
-    #     db.session.add(Question(quiz_id=1,question_number=8))
-    #     db.session.add(Question(quiz_id=1,question_number=9))
-    #     db.session.add(Question(quiz_id=1,question_number=10))
-    #     db.session.add(QuestionContent(question_id=1,text_content="What country flag is this?",img_content="flag01.svg"))
-    #     db.session.add(QuestionContent(question_id=2,text_content="What country flag is this?",img_content="flag02.svg"))
-    #     db.session.add(QuestionContent(question_id=3,text_content="What country flag is this?",img_content="flag03.svg"))
-    #     db.session.add(QuestionContent(question_id=4,text_content="What country flag is this?",img_content="flag04.svg"))
-    #     db.session.add(QuestionContent(question_id=5,text_content="What country flag is this?",img_content="flag05.svg"))
-    #     db.session.add(QuestionContent(question_id=6,text_content="What country flag is this?",img_content="flag06.svg"))
-    #     db.session.add(QuestionContent(question_id=7,text_content="What country flag is this?",img_content="flag07.svg"))
-    #     db.session.add(QuestionContent(question_id=8,text_content="What country flag is this?",img_content="flag08.svg"))
-    #     db.session.add(QuestionContent(question_id=9,text_content="What country flag is this?",img_content="flag09.svg"))
-    #     db.session.add(QuestionContent(question_id=10,text_content="What country flag is this?",img_content="flag10.svg"))
-    #     db.session.add(QuestionChoice(question_id=1,choice_number=1,choice_content="Namibia",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=1,choice_number=2,choice_content="Turks and Caicos Islands",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=1,choice_number=3,choice_content="Mongolia",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=1,choice_number=4,choice_content="Saint Pierre and Miquelon",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=2,choice_number=1,choice_content="French Polynesia",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=2,choice_number=2,choice_content="Maldives",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=2,choice_number=3,choice_content="Djibouti",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=2,choice_number=4,choice_content="Botswana",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=3,choice_number=1,choice_content="Anguilla",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=3,choice_number=2,choice_content="Lesotho",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=3,choice_number=3,choice_content="Western Sahara",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=3,choice_number=4,choice_content="Gabon",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=4,choice_number=1,choice_content="Heard Island and McDonald Islands",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=4,choice_number=2,choice_content="American Samoa",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=4,choice_number=3,choice_content="Zimbabwe",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=4,choice_number=4,choice_content="Puerto Rico",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=5,choice_number=1,choice_content="Isle of Man",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=5,choice_number=2,choice_content="South Georgia and the South Sandwich Islands",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=5,choice_number=3,choice_content="Iran",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=5,choice_number=4,choice_content="Pitcairn",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=6,choice_number=1,choice_content="Korea (Republic of)",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=6,choice_number=2,choice_content="Cayman Islands",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=6,choice_number=3,choice_content="Myanmar",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=6,choice_number=4,choice_content="Kiribati",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=7,choice_number=1,choice_content="Slovenia",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=7,choice_number=2,choice_content="Brunei",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=7,choice_number=3,choice_content="Saint Martin (French part)",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=7,choice_number=4,choice_content="Suriname",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=8,choice_number=1,choice_content="Finland",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=8,choice_number=2,choice_content="Fiji",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=8,choice_number=3,choice_content="Bahamas",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=8,choice_number=4,choice_content="Colombia",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=9,choice_number=1,choice_content="Rwanda",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=9,choice_number=2,choice_content="Georgia",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=9,choice_number=3,choice_content="Palestine",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=9,choice_number=4,choice_content="Czechia",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=10,choice_number=1,choice_content="Afghanistan",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=10,choice_number=2,choice_content="Indonesia",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=10,choice_number=3,choice_content="Angola",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=10,choice_number=4,choice_content="Jersey",choice_correct=True))
-    #     db.session.add(Quiz(quizname="Language Quiz",creator_id=1,style=2))
-    #     db.session.add(QuizStyle(style_name="Language quiz style",template_file="quizStyle2.html")) 
-    #     db.session.add(QuizContent(quiz_id=2,text_content="How much do you know about world culture, information and languages?",img_content="people-banner.png"))
-    #     db.session.add(Question(quiz_id=2,question_number=1))
-    #     db.session.add(Question(quiz_id=2,question_number=2))
-    #     db.session.add(Question(quiz_id=2,question_number=3))
-    #     db.session.add(Question(quiz_id=2,question_number=4))
-    #     db.session.add(Question(quiz_id=2,question_number=5))
-    #     db.session.add(Question(quiz_id=2,question_number=6))
-    #     db.session.add(Question(quiz_id=2,question_number=7))
-    #     db.session.add(Question(quiz_id=2,question_number=8))
-    #     db.session.add(Question(quiz_id=2,question_number=9))
-    #     db.session.add(Question(quiz_id=2,question_number=10))
-    #     db.session.add(QuestionContent(question_id=11,text_content="What is the Official Language of Taiwan",img_content="taiwan-languageQuiz.jpg"))
-    #     db.session.add(QuestionContent(question_id=12,text_content="What is the Official Language of Australia",img_content="australia-languageQuiz.jpg"))
-    #     db.session.add(QuestionContent(question_id=13,text_content="What is the Official Language of Norway",img_content="norway-languageQuiz.jpg"))
-    #     db.session.add(QuestionContent(question_id=14,text_content="What is the Official Language of Colombia",img_content="colombia-languageQuiz.jpg"))
-    #     db.session.add(QuestionContent(question_id=15,text_content="What is the Official Language of Pakistan",img_content="pakistan-languageQuiz.jpg"))
-    #     db.session.add(QuestionContent(question_id=16,text_content="What is the Official Language of Ukraine",img_content="ukraine-languageQuiz.jpg"))
-    #     db.session.add(QuestionContent(question_id=17,text_content="What is the Official Language of Malaysia",img_content="malaysia-languageQuiz.jpg"))
-    #     db.session.add(QuestionContent(question_id=18,text_content="What is the Official Language of Mexico",img_content="mexico-languageQuiz.jpg"))
-    #     db.session.add(QuestionContent(question_id=19,text_content="What is the Official Language of Iran",img_content="iran-languageQuiz.jpg"))
-    #     db.session.add(QuestionContent(question_id=20,text_content="What is the Official Language of Indonesia",img_content="indonesia-languageQuiz.jpg"))
-    #     db.session.add(QuestionChoice(question_id=11,choice_number=1,choice_content="Taiwanese",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=11,choice_number=2,choice_content="Japanese",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=11,choice_number=3,choice_content="Mandarin",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=11,choice_number=4,choice_content="Cantonese",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=12,choice_number=1,choice_content="English",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=12,choice_number=2,choice_content="German",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=12,choice_number=3,choice_content="Korean",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=12,choice_number=4,choice_content="Russian",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=13,choice_number=1,choice_content="German",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=13,choice_number=2,choice_content="Spanish",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=13,choice_number=3,choice_content="English",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=13,choice_number=4,choice_content="Romani",choice_correct=True))  
-    #     db.session.add(QuestionChoice(question_id=14,choice_number=1,choice_content="Spanish",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=14,choice_number=2,choice_content="Irish",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=14,choice_number=3,choice_content="Dutch",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=14,choice_number=4,choice_content="French",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=15,choice_number=1,choice_content="Perish",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=15,choice_number=2,choice_content="Hindi",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=15,choice_number=3,choice_content="Arabic",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=15,choice_number=4,choice_content="Urdu",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=16,choice_number=1,choice_content="Ukrainian",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=16,choice_number=2,choice_content="Russian",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=16,choice_number=3,choice_content="Greenlandic",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=16,choice_number=4,choice_content="Galician",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=17,choice_number=1,choice_content="Malaysian",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=17,choice_number=2,choice_content="Malayense",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=17,choice_number=3,choice_content="Mandarin",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=17,choice_number=4,choice_content="Malay",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=18,choice_number=1,choice_content="Spanish",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=18,choice_number=2,choice_content="Mexian",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=18,choice_number=3,choice_content="Portuguese",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=18,choice_number=4,choice_content="Welsh",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=19,choice_number=1,choice_content="Arabic",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=19,choice_number=2,choice_content="Hebrew",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=19,choice_number=3,choice_content="Persian",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=19,choice_number=4,choice_content="Hindi",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=20,choice_number=1,choice_content="Malay",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=20,choice_number=2,choice_content="Indonesia",choice_correct=True))
-    #     db.session.add(QuestionChoice(question_id=20,choice_number=3,choice_content="Mandarin",choice_correct=False))
-    #     db.session.add(QuestionChoice(question_id=20,choice_number=4,choice_content="Thai",choice_correct=False))
-    #     db.session.commit()
-    #     self.login("user", "password")
-    #     self.app.get('/quiz/language', follow_redirects = True)
-    #     self.nextLanguageFlag("Mandarin")
-    #     self.nextLanguageFlag("English")
-    #     self.nextLanguageFlag("Norwegian")
-    #     self.nextLanguageFlag("Spanish")
-    #     self.nextLanguageFlag("Urdu")
-    #     self.nextLanguageFlag("Ukrainian")
-    #     self.nextLanguageFlag("Malay")
-    #     self.nextLanguageFlag("Spanish")
-    #     self.nextLanguageFlag("Persian")
-    #     response = self.nextLanguageFlag("Indonesian")
-    #     self.assertIn(b'<title>results</title>', response.data)
-
-
-    def test_results_after_quiz(self):
+    #test if the result page comes up if we finish the language quiz
+    def test_results_after_quiz_lang(self):
         self.init_db_helper()
-        # db.session.add(UserAnswer(question_id=1,choice_id=4,QuestionChoice=4))
-        # db.session.add(UserAnswer(question_id=1,choice_id=8,QuestionChoice=8))
-        # db.session.add(UserAnswer(question_id=1,choice_id=12,QuestionChoice=12))
-        # db.session.add(UserAnswer(question_id=1,choice_id=16,QuestionChoice=16))
-        # db.session.add(UserAnswer(question_id=1,choice_id=20,QuestionChoice=20))
-        # db.session.add(UserAnswer(question_id=1,choice_id=24,QuestionChoice=24))
-        # db.session.add(UserAnswer(question_id=1,choice_id=28,QuestionChoice=28))
-        # db.session.add(UserAnswer(question_id=1,choice_id=32,QuestionChoice=32))
-        # db.session.add(UserAnswer(question_id=1,choice_id=36,QuestionChoice=36))
-        # db.session.add(UserAnswer(question_id=1,choice_id=40,QuestionChoice=40))
-        # db.session.add(UserAttempt(attempt_number=1,user_id=1,quiz_id=1))
+        db.session.commit()
+        self.login("user", "password")
+        self.app.get('/quiz/language', follow_redirects = True)
+        self.nextQuestionLanguage("1")
+        self.nextQuestionLanguage("1")
+        self.nextQuestionLanguage("1")        
+        self.nextQuestionLanguage("1")
+        self.nextQuestionLanguage("1")
+        self.nextQuestionLanguage("1")
+        self.nextQuestionLanguage("1")
+        self.nextQuestionLanguage("1")
+        self.nextQuestionLanguage("1")
+        response = self.nextQuestionLanguage("1")
+        for answer in UserAnswer.query.all():
+            print(answer.as_str())
+        for attempt in UserAttempt.query.all():
+            print(attempt.as_str())
+        self.assertIn(b'<title>Results</title>', response.data)
+
+    #test if the results page comes up if we finish the flag quiz
+    def test_results_after_quiz_flag(self):
+        self.init_db_helper()
         db.session.commit()
         self.login("user", "password")
         self.app.get('/quiz/flag', follow_redirects = True)
@@ -450,13 +317,14 @@ class TestCase(unittest.TestCase):
         self.nextQuestionFlag("1")
         self.nextQuestionFlag("1")
         self.nextQuestionFlag("1")
+        response = self.nextQuestionFlag("1")
         for answer in UserAnswer.query.all():
             print(answer.as_str())
         for attempt in UserAttempt.query.all():
             print(attempt.as_str())
-        response = self.nextQuestionFlag("1")
-        self.assertIn(b'src="/static/images/flag10.svg', response.data)
+        self.assertIn(b'<title>Results</title>', response.data)
 
+    #helper to fill the database
     def init_db_helper(self):
         user = User(username="user", email="user@email.com")
         user.set_password('password')
@@ -589,9 +457,5 @@ class TestCase(unittest.TestCase):
         db.session.add(QuestionChoice(question_id=20,choice_number=3,choice_content="Mandarin",choice_correct=False))
         db.session.add(QuestionChoice(question_id=20,choice_number=4,choice_content="Thai",choice_correct=False))
     
-        
-
-
-
 if __name__ == '__main__':
     unittest.main()
