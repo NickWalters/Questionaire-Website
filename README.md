@@ -23,7 +23,7 @@ After log in, there is a welcome splash screen displayed to the user, outlining 
   * Nicholas Walters (22243339)
   * Nicholas Turner (21118739)
   * Sean Chu (22479185)
-  * Rio Akbar
+  * Rio Akbar (22507035)
 
 
 ## Installation 
