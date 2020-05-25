@@ -1,4 +1,6 @@
-
+/**
+ * JS Client-sided form validation
+ */
 $(document).ready(function() {
     $( "#username" ).keyup(function() {
         username();
@@ -15,23 +17,6 @@ $(document).ready(function() {
 });
 
 /**
- * Form email address format checking
- */
-function email(){
-    var emailSubmitted = $( "#email" ).val();
-    var check = new RegExp('^[a-z0-9.]+@[a-z0-9.-]+\\.[a-z]{2,}$');
-    if (check.test(emailSubmitted)) {
-        /**THIS IS A VALID EMAIL */
-    }
-    else {
-        //valid.style.color="red";
-            //valid.innerHTML="not a valid email";
-        /**THIS IS A NOT VALID EMAIL */
-    }
-    return;
-}
-
-/**
  * Form username AJAX
  */
 function username(){
@@ -44,10 +29,38 @@ function username(){
         data: { get_param: 'value' }, 
         dataType: 'json',
         success: function (data) {
-            /**DO STUFF */
+            /** Check if username already in use
+            var error = $("#errorusername")
+            if() {
+                error.html("");
+            }
+            else {
+                error.css("color","red");
+                error.html("User name has been used.");
+            }
+
+            */
         }
     });
     return
+}
+
+/**
+ * Form email address format checking
+ */
+function email(){
+    var emailSubmitted = $( "#email" ).val();
+    var check = new RegExp('^[a-z0-9.]+@[a-z0-9.-]+\\.[a-z]{2,}$');
+    var error = $("#erroremail")
+    if (check.test(emailSubmitted)) {
+        error.css("color","green");
+        error.html("Email is valid");
+    }
+    else {
+        error.css("color","red");
+        error.html("This email is not valid");
+    }
+    return;
 }
 
 /**
@@ -63,8 +76,15 @@ function password(){
 function password2(){
     console.log($( "#password" ).val())
     console.log($( "#password2" ).val())
+    var error = $("#errorpassword2")
     if($( "#password" ).val() == $( "#password2" ).val()){
-        console.log("PASSWORDS equal")
+        error.css("color","green");
+        error.html("");
+    }
+    else {
+        error.css("color","red");
+        error.html("Field must be equal to password");
+
     }
     return
 }
