@@ -186,7 +186,7 @@ class UserAttempt(db.Model):
 		return str(self.id)
 
 	def as_str(self):
-		return '<id:{}'.format(self.id)+' user_id:{}'.format(self.user_id)+ 'total:{}'.format(self.totalscore) + 'attemptnum:{}'.format(self.attemptnum) +'quiz id:{}'.format(self.quiz_id)
+		return '<id:{}'.format(self.id)+' user_id:{}'.format(self.user_id)+ 'attemptnum:{}'.format(self.attempt_number) +'quiz id:{}'.format(self.quiz_id)
 
 	def get_score(self):
 		score = 0
